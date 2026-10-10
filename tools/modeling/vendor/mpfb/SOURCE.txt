@@ -1,0 +1,5 @@
+MPFB core data only; no MPFB program code copied.
+https://github.com/makehumancommunity/mpfb2
+Revision: d0a32e57a7f915cb2f2b95410e2117648c7bbb7e
+
+License: CC0 (see LICENSE.CC0.md and base.obj header).

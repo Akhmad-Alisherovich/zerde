@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #051B44;
+    color: #F8FCFF;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Glassmorphism */
+.glass-panel {
+  background: rgba(6, 43, 101, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 191, 255, 0.22);
+}
+
+.glass-panel-gold {
+  background: rgba(11, 35, 86, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 154, 53, 0.35);
+}
+
+.glass-card {
+  background: rgba(8, 29, 71, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 191, 255, 0.18);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 191, 255, 0.55);
+  box-shadow: 0 10px 30px -10px rgba(0, 191, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+/* Hologram Glow Animations */
+@keyframes holo-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.6));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(0, 191, 255, 0.9));
+  }
+}
+
+.animate-holo {
+  animation: holo-pulse 3s infinite ease-in-out;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.scanline-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-effect::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.8), transparent);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #051B44;
+}
+::-webkit-scrollbar-thumb {
+  background: #0B357A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00BFFF;
+}
+
+/* Print Styles for Posters */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .poster-page {
+    page-break-after: always;
+    break-after: page;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "scenario": "ar-asar",
+    "gltfLoader": "passed",
+    "selectableHotspots": 7,
+    "skinnedMeshes": 43,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-nauryz",
+    "gltfLoader": "passed",
+    "selectableHotspots": 11,
+    "skinnedMeshes": 29,
+    "animation": "static",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-tusaukeser",
+    "gltfLoader": "passed",
+    "selectableHotspots": 3,
+    "skinnedMeshes": 41,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  }
+]

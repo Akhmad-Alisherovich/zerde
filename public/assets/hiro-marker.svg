@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Outer border -->
+  <rect width="500" height="500" fill="#FFFFFF"/>
+  <!-- Black frame for AR marker (25% border width) -->
+  <rect x="50" y="50" width="400" height="400" fill="#000000"/>
+  <!-- White inner field -->
+  <rect x="125" y="125" width="250" height="250" fill="#FFFFFF"/>
+  <!-- HIRO pattern in center -->
+  <g fill="#000000">
+    <rect x="160" y="160" width="40" height="180"/>
+    <rect x="300" y="160" width="40" height="180"/>
+    <rect x="160" y="230" width="180" height="40"/>
+  </g>
+</svg>
