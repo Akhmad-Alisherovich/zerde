@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="46" stroke="#D49A35" stroke-width="3" fill="#062B65" />
+  <circle cx="50" cy="50" r="40" stroke="#00BFFF" stroke-width="1.5" stroke-dasharray="4 2" />
+  <!-- Traditional Kazakh Kochkar-Muyiz (horn) ornament motif -->
+  <path d="M50 20 C42 20 34 26 34 35 C34 44 42 46 47 48 C38 48 26 44 26 32 C26 22 36 14 50 14 C64 14 74 22 74 32 C74 44 62 48 53 48 C58 46 66 44 66 35 C66 26 58 20 50 20 Z" fill="#D49A35" />
+  <path d="M50 80 C42 80 34 74 34 65 C34 56 42 54 47 52 C38 52 26 56 26 68 C26 78 36 86 50 86 C64 86 74 78 74 68 C74 56 62 52 53 52 C58 54 66 56 66 65 C66 74 58 80 50 80 Z" fill="#D49A35" />
+  <!-- Center gem / shanyrak cross -->
+  <circle cx="50" cy="50" r="8" fill="#00BFFF" />
+  <circle cx="50" cy="50" r="4" fill="#F8FCFF" />
+</svg>
