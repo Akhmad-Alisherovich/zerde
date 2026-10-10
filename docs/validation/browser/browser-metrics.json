@@ -1,0 +1,41 @@
+[
+  {
+    "scene": "asar",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.53,
+    "animationFrames": 6,
+    "rafPerSecond": 2.4,
+    "drawCallsPerRaf": 308,
+    "glbResource": {
+      "name": "asar.glb",
+      "durationMs": 444.1,
+      "transferSize": 9669668
+    }
+  },
+  {
+    "scene": "nauryz",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.54,
+    "animationFrames": 6,
+    "rafPerSecond": 2.4,
+    "drawCallsPerRaf": 296,
+    "glbResource": {
+      "name": "nauryz.glb",
+      "durationMs": 468.9,
+      "transferSize": 12347284
+    }
+  },
+  {
+    "scene": "tusaukeser",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.51,
+    "animationFrames": 16,
+    "rafPerSecond": 6.4,
+    "drawCallsPerRaf": 104,
+    "glbResource": {
+      "name": "tusaukeser.glb",
+      "durationMs": 53.9,
+      "transferSize": 6268132
+    }
+  }
+]

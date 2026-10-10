@@ -29,11 +29,25 @@ for (const [id, definition] of Object.entries(SCENE_ASSETS)) {
     if (id === 'ar-asar') {
       const crown = root.getObjectByName('shanyraq'), poles = root.getObjectByName('uyk'), felt = root.getObjectByName('kiiz'), support = root.getObjectByName('bakan');
       assert(crown && poles && felt && support);
-      mixer.setTime(0); const y0 = crown.position.y; assert(felt.scale.x < .01);
-      mixer.setTime(8); assert(crown.position.y > y0 + 2); assert(felt.scale.x < .01);
-      mixer.setTime(12); assert(poles.scale.x > .9); assert(felt.scale.x < .01);
-      mixer.setTime(16); assert(felt.scale.x > .9); assert(support.scale.x < .01);
-      mixer.setTime(4); assert(crown.position.y < .3); // rewind really restores earlier stages
+      const lift = root.getObjectByName('shanyraq-lift');
+      const hinge = root.getObjectByName('uyk-hinge-0');
+      const panel = root.getObjectByName('felt-set-0');
+      const section = root.getObjectByName('kerege-section-0');
+      assert(lift && hinge && panel && section);
+      assert.equal(crown.parent, lift);
+      assert.equal(support.parent, lift); // same pivot keeps crown on its fork
+      const crownCentre = () => { root.updateMatrixWorld(true); return crown.getWorldPosition(new THREE.Vector3()); };
+      mixer.setTime(0);
+      const y0 = crownCentre().y;
+      const sectionOffset = section.position.length();
+      assert(y0 < .2 && sectionOffset > .3 && hinge.scale.x < .01 && panel.scale.x < .01);
+      mixer.setTime(4); assert(section.position.length() < .001);
+      mixer.setTime(8); assert(crownCentre().y > y0 + 2 && support.scale.x > .9 && panel.scale.x < .01);
+      mixer.setTime(12); assert(hinge.scale.x > .9 && hinge.quaternion.angleTo(new THREE.Quaternion()) < .001 && panel.scale.x < .01,
+        `uyk=${hinge.scale.x}, angle=${hinge.quaternion.angleTo(new THREE.Quaternion())}, felt=${panel.scale.x}`);
+      mixer.setTime(15.999); assert(panel.scale.x > .9 && support.scale.x < .01);
+      mixer.setTime(15.999); assert(panel.scale.x > .9 && support.scale.x < .01, 'Finished pose must survive repeated browser render frames');
+      mixer.setTime(0); assert(crownCentre().y < .2 && panel.scale.x < .01); // rewind
     } else {
       const child = root.getObjectByName('toddler'), rope = root.getObjectByName('ala-zhip'), blade = root.getObjectByName('scissor-blade-1');
       assert(child && rope && blade);

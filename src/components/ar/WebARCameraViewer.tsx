@@ -73,7 +73,7 @@ export const WebARCameraViewer: React.FC<WebARCameraViewerProps> = ({ scenarioId
       if (gltf.animations[0]) {
         mixer = new THREE.AnimationMixer(gltf.scene);
         const action = mixer.clipAction(gltf.animations[0]); action.setLoop(THREE.LoopOnce, 1); action.clampWhenFinished = true; action.play();
-        mixer.setTime(asset.duration); // Initial AR model is fully assembled.
+        mixer.setTime(Math.max(0, asset.duration - .001)); // Keep the finished pose active across frames.
       }
       setStatus('ready');
     }).catch(error => { if (!cancelled) { setStatus('error'); setMessage(`GLB жүктелмеді: ${error.message}`); } });
@@ -113,7 +113,8 @@ export const WebARCameraViewer: React.FC<WebARCameraViewerProps> = ({ scenarioId
         reticle.visible = Boolean(pose); if (pose) reticle.matrix.fromArray(pose.transform.matrix);
       }
       if (replayRef.current && mixer) {
-        animationTime = Math.min(asset.duration, animationTime + delta); mixer.setTime(animationTime);
+        animationTime = Math.min(asset.duration, animationTime + delta);
+        mixer.setTime(Math.max(0, Math.min(animationTime, asset.duration - .001)));
         if (animationTime >= asset.duration) { replayRef.current = false; animationTime = 0; }
       } else animationTime = 0;
       renderer.render(scene, camera);

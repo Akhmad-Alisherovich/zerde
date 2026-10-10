@@ -90,7 +90,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
     controls.minDistance = 1.8; controls.maxDistance = 14; controls.autoRotateSpeed = .65;
     scene.add(new THREE.HemisphereLight('#dceaff', '#7e704f', 2.0));
     const sun = new THREE.DirectionalLight('#fff0d8', 3);
-    sun.position.set(-3, 7, 5); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+    sun.position.set(-3, 7, 5); sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024);
     Object.assign(sun.shadow.camera, { near: .1, far: 20, left: -5, right: 5, top: 5, bottom: -5 });
     sun.shadow.normalBias = .02; sun.shadow.bias = -.0001; scene.add(sun);
     const fill = new THREE.DirectionalLight('#bed9ef', .7); fill.position.set(3, 3, -4); scene.add(fill);
@@ -112,7 +112,9 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
         mixer = new THREE.AnimationMixer(gltf.scene);
         const action = mixer.clipAction(gltf.animations[0]);
         action.setLoop(THREE.LoopOnce, 1); action.clampWhenFinished = true; action.play();
-        mixer.setTime(timelineRef.current.time);
+        // AnimationMixer disables a LoopOnce action after sampling the exact
+        // clip end. Repeated render frames would otherwise restore the bind pose.
+        mixer.setTime(Math.min(timelineRef.current.time, asset.duration - .001));
       }
       setHotspotsList(getHotspots(gltf.scene, scenarioId)); setLoadState('ready');
     }).catch(error => {
@@ -123,9 +125,9 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
       const timeline = timelineRef.current;
       if (mixer && timeline.running) {
         timeline.time = Math.min(timeline.target, timeline.time + (reduceMotion ? asset.duration : delta));
-        mixer.setTime(timeline.time);
+        mixer.setTime(Math.min(timeline.time, asset.duration - .001));
         if (timeline.time >= timeline.target) { timeline.running = false; setIsPlaying(false); }
-      } else if (mixer) mixer.setTime(timeline.time);
+      } else if (mixer) mixer.setTime(Math.min(timeline.time, asset.duration - .001));
       if (now - lastUI > 120) { setTimelineTime(timeline.time); lastUI = now; }
       controls.autoRotate = autoRotateRef.current && !reduceMotion; controls.update(); renderer.render(scene, camera);
     });

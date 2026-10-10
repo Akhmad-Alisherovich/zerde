@@ -39,5 +39,11 @@ lerna-debug.log*
 logs/
 *.log
 
+# Local headless-browser profiles used only for 3D visual QA
+/docs/validation/chrome-profile/
+/docs/validation/chrome-profile-1250/
+/docs/validation/browser-profile-full/
+__pycache__/
+
 # Duplicate raw banner screenshots from root (already preserved in public/assets/)
 Изображение ChatGPT*.png

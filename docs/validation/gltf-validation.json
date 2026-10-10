@@ -4,7 +4,7 @@
     "uri": "asar.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-10T17:47:22.540Z",
+    "validatedAt": "2026-10-10T18:59:28.886Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -21,7 +21,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 8432896
+          "byteLength": 9466648
         },
         {
           "pointer": "/images/0",
@@ -206,14 +206,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 12,
+      "materialCount": 15,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 107,
-      "totalVertexCount": 115900,
-      "totalTriangleCount": 190820,
+      "drawCallCount": 145,
+      "totalVertexCount": 131662,
+      "totalTriangleCount": 216788,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -224,7 +224,7 @@
     "uri": "nauryz.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-10T17:47:23.090Z",
+    "validatedAt": "2026-10-10T18:59:29.711Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -241,7 +241,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 10349104
+          "byteLength": 12184656
         },
         {
           "pointer": "/images/0",
@@ -413,6 +413,43 @@
         },
         {
           "pointer": "/images/14",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/15",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/16",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/17",
           "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
@@ -426,14 +463,14 @@
         }
       ],
       "animationCount": 0,
-      "materialCount": 14,
+      "materialCount": 17,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 51,
-      "totalVertexCount": 167705,
-      "totalTriangleCount": 276976,
+      "drawCallCount": 154,
+      "totalVertexCount": 176311,
+      "totalTriangleCount": 291748,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -444,7 +481,7 @@
     "uri": "tusaukeser.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-10T17:47:23.499Z",
+    "validatedAt": "2026-10-10T18:59:30.179Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -461,7 +498,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 5715872
+          "byteLength": 6177160
         },
         {
           "pointer": "/images/0",
@@ -598,14 +635,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 12,
+      "materialCount": 14,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 49,
-      "totalVertexCount": 69463,
-      "totalTriangleCount": 121580,
+      "drawCallCount": 62,
+      "totalVertexCount": 75306,
+      "totalTriangleCount": 131972,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6

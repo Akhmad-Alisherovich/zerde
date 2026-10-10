@@ -1,27 +1,27 @@
 [
   {
     "file": "asar.glb",
-    "bytes": 8572480,
-    "meshes": 107,
-    "triangles": 190820,
+    "bytes": 9669368,
+    "meshes": 145,
+    "triangles": 216788,
     "skins": 3,
     "bones": 159,
-    "animationChannels": 83
+    "animationChannels": 160
   },
   {
     "file": "nauryz.glb",
-    "bytes": 10415440,
-    "meshes": 51,
-    "triangles": 276976,
+    "bytes": 12346984,
+    "meshes": 154,
+    "triangles": 291748,
     "skins": 2,
     "bones": 106,
     "animationChannels": 0
   },
   {
     "file": "tusaukeser.glb",
-    "bytes": 5792976,
-    "meshes": 49,
-    "triangles": 121580,
+    "bytes": 6267832,
+    "meshes": 62,
+    "triangles": 131972,
     "skins": 3,
     "bones": 159,
     "animationChannels": 12

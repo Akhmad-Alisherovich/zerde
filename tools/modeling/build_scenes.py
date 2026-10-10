@@ -19,6 +19,7 @@ def texture_set(name, base, kind):
     if kind=='wood': height = .5+.12*np.sin(x*.18+np.sin(y*.019)*2)+.06*np.sin(x*.81+np.sin(y*.03)*3)+noise*.028
     elif kind=='cloth': height=.5+.08*np.sin(x*math.pi/2)+.08*np.sin(y*math.pi/2)+noise*.055
     elif kind=='soil': height=.5+noise*.18+.08*np.sin(x*.052)*np.sin(y*.038)
+    elif kind=='baked': height=.5+.14*np.sin(x*.041+np.sin(y*.031)*2)*np.sin(y*.057)+noise*.085
     else: height=.5+noise*.045+.018*np.sin(x*.7)*np.sin(y*.6)
     rgb=np.clip(np.array(base)[None,None,:]*(.80+height[...,None]*.32),0,255).astype('uint8')
     image=Image.fromarray(rgb)
@@ -49,7 +50,8 @@ def texture_set(name, base, kind):
 TEXTURES={name:texture_set(name,base,kind) for name,base,kind in [
     ('wood',(124,68,32),'wood'),('felt',(218,210,190),'felt'),
     ('ornament',(77,29,30),'cloth'),('linen',(227,222,207),'cloth'),
-    ('leather',(42,28,23),'felt'),('skin',(184,129,98),'felt'),('earth',(113,100,72),'soil')]}
+    ('leather',(42,28,23),'felt'),('skin',(184,129,98),'felt'),('earth',(113,100,72),'soil'),
+    ('baked',(195,125,47),'baked')]}
 
 class GLB:
     def __init__(self,name):
@@ -162,13 +164,12 @@ def cloth(g,name,fn,mat,parent=0,rows=24,cols=96):
     v,f,u=grid(rows,cols,fn);return g.mesh(name,v,f,mat,parent,u)
 
 def stage_visibility(g,node,start,end=16):
-    # Full-size authored model is the static default, portable to AR viewers.
-    times=[0,start,start+1.5,end] if start>0 else [0,1.5,end]
-    values=[[.00001]*3,[.001]*3,[1]*3,[1]*3] if start>0 else [[.001]*3,[1]*3,[1]*3]
-    g.track(node,'scale',times,values,'VEC3')
+    # Reveal complete components. Scaling a finished frame or felt sheet through
+    # intermediate sizes made the assembly look elastic and detached.
+    if start > 0:g.track(node,'scale',[0,start,end],[[.00001]*3,[1]*3,[1]*3],'VEC3','STEP')
 
 def mats(g):
-    return {k:g.material(k,tex=k) for k in TEXTURES}|{'brass':g.material('brass',(0.73,.50,.21),rough=.28,metal=.85),'silver':g.material('silver',(.66,.69,.71),rough=.2,metal=.95),'black':g.material('black-wool',(.07,.065,.06)), 'white':g.material('white-wool',(.86,.84,.77)), 'blue':g.material('blue-cloth',(.19,.36,.52),tex='linen'), 'red':g.material('red-cloth',(.64,.2,.19),tex='linen'),'food':g.material('baked-dough',(.78,.46,.16),rough=.87),'kozhe':g.material('kozhe',(.81,.76,.62),rough=.44),'eye':g.material('dark-iris',(.045,.025,.015),rough=.27),'sclera':g.material('sclera',(.77,.74,.67),rough=.35)}
+    return {k:g.material(k,tex=k) for k in TEXTURES}|{'brass':g.material('brass',(0.73,.50,.21),rough=.28,metal=.85),'silver':g.material('silver',(.66,.69,.71),rough=.2,metal=.95),'black':g.material('black-wool',(.07,.065,.06)), 'white':g.material('white-wool',(.86,.84,.77)), 'blue':g.material('blue-cloth',(.19,.36,.52),tex='linen'), 'red':g.material('red-cloth',(.64,.2,.19),tex='linen'),'darkcloth':g.material('dark-cloth',(.16,.17,.18),tex='linen',rough=.92),'hair':g.material('hair',(.10,.07,.055),rough=.96),'food':g.material('baked-dough',(1,1,1),tex='baked',rough=.9),'kozhe':g.material('kozhe',(.81,.76,.62),rough=.44),'eye':g.material('dark-iris',(.045,.025,.015),rough=.27),'sclera':g.material('sclera',(.77,.74,.67),rough=.35)}
 
 def ground(g,m,radius=3.9):
     # Raised irregular terrain patch, not an infinite primitive floor.
@@ -177,6 +178,7 @@ def ground(g,m,radius=3.9):
 def yurt(g,m,parent=0,animated=False,cutaway=False):
     structure=g.node('yurt',parent,extras={'hotspot':'kerege'})
     wall=g.node('kerege',structure,extras={'hotspot':'kerege'});R=2.05;H=1.48
+    sections=[g.node(f'kerege-section-{i}',wall) for i in range(6)]
     # Wooden lattice rails trace real cylindrical wall arcs; door opening at +Z.
     for k in range(72):
         for direction in [-1,1]:
@@ -184,27 +186,37 @@ def yurt(g,m,parent=0,animated=False,cutaway=False):
             path=[]
             for t in np.linspace(0,1,9):
                 a=a0+direction*(t-.5)*.32
-                if abs(math.atan2(math.sin(a),math.cos(a)))<.20:break
+                if abs(math.atan2(math.sin(a),math.cos(a)))<(.90 if cutaway else .20):break
                 path.append([R*math.sin(a),.05+t*H,R*math.cos(a)])
-            if len(path)>1:add_sweep(g,f'kerege-rail-{k}-{direction}',path,m['wood'],wall,w=.022,h=.035)
+            if len(path)>1:add_sweep(g,f'kerege-rail-{k}-{direction}',path,m['wood'],sections[k//12],w=.022,h=.035)
     # Rawhide lashings at lattice crossings, explicitly modelled knotted bands.
     for k in range(66):
         a=.27+k*(TAU-.54)/66
+        if cutaway and abs(math.atan2(math.sin(a),math.cos(a)))<.90:continue
         for y in [.27,.63,.99,1.35]:
             centre=np.array([R*math.sin(a),y,R*math.cos(a)])
             path=[centre+np.array([math.cos(a)*math.cos(t)*.02,math.sin(t)*.034,-math.sin(a)*math.cos(t)*.02]) for t in np.linspace(0,TAU,13)]
-            add_sweep(g,f'rawhide-binding-{k}-{y}',path,m['leather'],wall,w=.005)
+            add_sweep(g,f'rawhide-binding-{k}-{y}',path,m['leather'],sections[min(k//11,5)],w=.005)
     door=g.node('sykyrlauyq',wall,extras={'hotspot':'door'})
     for x in [-.41,.41]:add_sweep(g,f'door-post-{x}',[[x,0,R],[x,H+.06,R]],m['wood'],door,w=.085,h=.07)
     for y in [.04,H+.04]:add_sweep(g,f'door-crossbeam-{y}',[[-.45,y,R],[.45,y,R]],m['wood'],door,w=.085,h=.085)
     # Inset framed door leaves with geometric carved relief.
     for side in [-1,1]:
         x=.20*side
+        # Four fitted boards sit behind each framed leaf; a bare outline read as
+        # an unfinished gate rather than a wooden sykyrlauyq.
+        for board in range(4):
+            bx=x-.12+board*.08
+            add_sweep(g,f'leaf-board-{side}-{board}',[[bx,.17,R+.004],[bx,1.35,R+.004]],m['wood'],door,w=.078,h=.022)
         for xx in [-.16,.16]:add_sweep(g,f'leaf-upright-{side}-{xx}',[[x+xx,.12,R+.02],[x+xx,1.4,R+.02]],m['wood'],door,w=.046,h=.034)
         for yy in [.16,.6,1.06,1.39]:add_sweep(g,f'leaf-rail-{side}-{yy}',[[x-.16,yy,R+.02],[x+.16,yy,R+.02]],m['wood'],door,w=.035,h=.032)
         for yy in [.37,.82,1.23]:
             add_sweep(g,f'leaf-carving-{side}-{yy}',[[x,yy-.14,R+.035],[x+.11,yy,R+.045],[x,yy+.14,R+.035],[x-.11,yy,R+.045],[x,yy-.14,R+.035]],m['brass'],door,w=.009)
-    crown=g.node('shanyraq',structure,pos=(0,2.55,0),extras={'hotspot':'shanyraq'})
+        for yy in [.27,1.22]:
+            add_sweep(g,f'door-hinge-strap-{side}-{yy}',[[x+side*.15,yy,R+.05],[x+side*.02,yy,R+.05]],m['black'],door,w=.018,h=.008)
+    if cutaway:g.doc['nodes'][door]['scale']=[.00001]*3
+    lift=g.node('shanyraq-lift',structure)
+    crown=g.node('shanyraq',lift,pos=(0,2.55,0),extras={'hotspot':'shanyraq'})
     # Actual radial mortises between two continuous rim bands. Uyk ends enter
     # these openings, rather than black decals painted onto a solid cylinder.
     for label,lo,hi in [('lower',-.07,-.018),('upper',.018,.065)]:
@@ -223,41 +235,69 @@ def yurt(g,m,parent=0,animated=False,cutaway=False):
                 q=t*math.sqrt(.49**2-x*x);y=.20*(1-t*t)
                 path.append([x,y,q] if not rotate else [q,y,x])
             add_sweep(g,f'kuldireuish-{x}-{rotate}',path,m['wood'],crown,w=.022,h=.035)
-    supports=g.node('bakan',structure,extras={'hotspot':'bakan'})
+    supports=g.node('bakan',lift,extras={'hotspot':'bakan'})
     add_sweep(g,'forked-support-shaft',[[.10,.0,-.03],[.06,2.46,-.03]],m['wood'],supports,w=.055,h=.047)
     for side in [-1,1]:add_sweep(g,f'fork-{side}',[[.06,2.31,-.03],[side*.15,2.54,-.03]],m['wood'],supports,w=.026)
+    if not animated:g.doc['nodes'][supports]['scale']=[.00001]*3
     poles=g.node('uyk',structure,extras={'hotspot':'uyk'})
     for k in range(64):
         a=.24+k*(TAU-.48)/63;path=[]
+        anchor=np.array([R*math.sin(a),H+.05,R*math.cos(a)])
         for t in np.linspace(0,1,22):
             r=R*(1-t)+.53*t;y=H+.05+1.02*(t**.72)
-            path.append([r*math.sin(a),y,r*math.cos(a)])
-        p=add_sweep(g,f'curved-uyk-{k}',path,m['wood'],poles,w=.023,h=.033)
+            path.append((np.array([r*math.sin(a),y,r*math.cos(a)])-anchor).tolist())
+        p=g.node(f'uyk-hinge-{k}',poles,pos=anchor.tolist())
+        add_sweep(g,f'curved-uyk-{k}',path,m['wood'],p,w=.023,h=.033)
         if animated:
-            st=8+(k/64)*2.5;g.track(p,'translation',[0,st,st+1,16],[[0,-1.45,.55],[0,-1.45,.55],[0,0,0],[0,0,0]],'VEC3')
+            st=8+(k/64)*2.7
+            stage_visibility(g,p,st)
+            axis=[math.cos(a),0,-math.sin(a)]
+            g.track(p,'rotation',[0,st,st+.85,16],[quat(axis,-1.45),quat(axis,-1.45),quat(axis,0),quat(axis,0)],'VEC4')
     felt=g.node('kiiz',structure,extras={'hotspot':'kiiz'})
     # Open entry; Nauryz cutaway deliberately exposes interior for study.
     amin=.24 if not cutaway else .90;amax=TAU-.24 if not cutaway else TAU-.90
     for panel in range(8):
         a0=amin+(amax-amin)*panel/8;a1=amin+(amax-amin)*(panel+1)/8
+        piece=g.node(f'felt-set-{panel}',felt)
         def wall_fn(u,v,a0=a0,a1=a1):
             a=a0+(a1-a0)*u;r=R+.038+.009*math.sin(v*21+u*4)+.004*math.sin(u*65)
-            return [r*math.sin(a),.035+v*H,r*math.cos(a)]
-        cloth(g,f'tuyrlyq-panel-{panel}',wall_fn,m['felt'],felt,rows=18,cols=18)
-        edge=[wall_fn(0,t) for t in np.linspace(0,1,20)];add_sweep(g,f'felt-seam-{panel}',edge,m['linen'],felt,w=.008)
-        def roof_fn(u,v,a0=a0,a1=a1):
-            a=a0+(a1-a0)*u;r=.59+(R-.59)*v;y=2.59-1.05*(v**1.26)+.012*math.sin(u*38+v*6)
+            return [r*math.sin(a),.035+v*(H+.05),r*math.cos(a)]
+        cloth(g,f'tuyrlyq-panel-{panel}',wall_fn,m['felt'],piece,rows=18,cols=18)
+        for edge_u in [0,1]:
+            edge=[wall_fn(edge_u,t) for t in np.linspace(0,1,20)]
+            add_sweep(g,f'felt-wall-edge-{panel}-{edge_u}',edge,m['felt'],piece,w=.024,h=.022)
+        for edge_v in [0,1]:
+            edge=[wall_fn(t,edge_v) for t in np.linspace(0,1,28)]
+            add_sweep(g,f'felt-wall-hem-{panel}-{edge_v}',edge,m['linen'],piece,w=.012,h=.012)
+        ra0=(0 if not cutaway else amin)+(TAU if not cutaway else amax-amin)*panel/8
+        ra1=(0 if not cutaway else amin)+(TAU if not cutaway else amax-amin)*(panel+1)/8
+        def roof_fn(u,v,a0=ra0,a1=ra1):
+            a=a0+(a1-a0)*u;r=.59+(R-.59)*v
+            rise=(R-r)/(R-.53)
+            y=H+.095+1.02*(rise**.72)+.006*math.sin(u*38+v*6)
             return [r*math.sin(a),y,r*math.cos(a)]
-        cloth(g,f'uzik-panel-{panel}',roof_fn,m['felt'],felt,rows=22,cols=18)
+        cloth(g,f'uzik-panel-{panel}',roof_fn,m['felt'],piece,rows=22,cols=18)
+        for edge_u in [0,1]:
+            edge=[roof_fn(edge_u,t) for t in np.linspace(0,1,24)]
+            add_sweep(g,f'felt-roof-edge-{panel}-{edge_u}',edge,m['felt'],piece,w=.024,h=.022)
+        if animated:stage_visibility(g,piece,12.1+panel*.34)
     cloth(g,'basqur-woven-belt',lambda u,v:[(R+.052)*math.sin(amin+(amax-amin)*u),1.27+v*.15,(R+.052)*math.cos(amin+(amax-amin)*u)],m['ornament'],felt,rows=3,cols=128)
     # Tundik is folded back; smoke/light opening remains legible.
     cloth(g,'folded-tundik',lambda u,v:[-.55+u*1.1,2.62-1.05*(max(0,math.hypot(-.55+u*1.1,-.9+v*.5)-.59)/(R-.59))**1.26+.009*math.sin(v*math.pi*5),-.9+v*.5],m['felt'],felt,rows=18,cols=32)
     for y in [.58,1.13]:
         add_sweep(g,f'outer-lashing-{y}',[[(R+.065)*math.sin(a),y,(R+.065)*math.cos(a)] for a in np.linspace(amin,amax,160)],m['leather'],felt,w=.018)
     if animated:
-        stage_visibility(g,wall,0);stage_visibility(g,crown,4);g.doc['nodes'][supports]['scale']=[.00001]*3;g.track(supports,'scale',[0,4,5.5,13,15,16],[[.00001]*3,[.00001]*3,[1]*3,[1]*3,[.00001]*3,[.00001]*3],'VEC3');stage_visibility(g,poles,8);stage_visibility(g,felt,12)
-        g.track(crown,'translation',[0,4,7.5,16],[[0,.20,1.1],[0,.20,1.1],[0,2.55,0],[0,2.55,0]],'VEC3')
-        g.track(wall,'rotation',[0,3.5,16],[[0,math.sin(-.25),0,math.cos(-.25)],[0,0,0,1],[0,0,0,1]],'VEC4')
+        for sec,panel in enumerate(sections):
+            a=(sec+.5)*TAU/6
+            offset=[.48*math.sin(a),0,.48*math.cos(a)]
+            g.track(panel,'translation',[0,.3+sec*.25,3.3,16],[offset,offset,[0,0,0],[0,0,0]],'VEC3')
+        # The crown rests in the fork throughout the lift. A single pivot at
+        # ground level keeps the long bakan and shanyraq in contact.
+        g.track(lift,'rotation',[0,4,7.5,16],[quat([1,0,0],-math.pi/2),quat([1,0,0],-math.pi/2),quat([1,0,0],0),quat([1,0,0],0)],'VEC4')
+        g.track(supports,'scale',[0,15,16],[[1]*3,[.00001]*3,[.00001]*3],'VEC3','STEP')
+        for child in g.doc['nodes'][felt].get('children',[]):
+            if not g.doc['nodes'][child]['name'].startswith('felt-set-'):
+                stage_visibility(g,child,14.75)
     return structure
 
 # Load CC0 anatomical topology, helpers, morphs and vertex weights once.
@@ -356,35 +396,57 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
     pelvis=BONES.index('pelvis');headidx=BONES.index('head');chest=BONES.index('spine_03')
     def skinned_surface(label,fn,mat,bone,rows=20,cols=64):
         v,f,u=grid(rows,cols,fn);g.mesh(name+'-'+label,v,f,mat,root,u,[[bone,0,0,0]]*len(v),[[1,0,0,0]]*len(v),skin)
-    # Robe skirt: loose pleated cloth rather than anatomical trousers painted red.
+    def skinned_rail(label,path,mat,bone,w=.008):
+        v,f,u=sweep(path,w,w)
+        g.mesh(name+'-'+label,v,f,mat,root,u,[[bone,0,0,0]]*len(v),[[1,0,0,0]]*len(v),skin)
+    # Open-front outer garment and separate hem, with an actual loose silhouette
+    # rather than only scaling the anatomical torso texture.
     if age!='baby':
+        coat=m['red'] if gender=='female' else m['blue']
+        def coat_shell(u,v):
+            a=.13+u*(TAU-.26);y=height*(.48+.31*v)
+            pleat=.009*math.cos(a*11)*(1-v)
+            rx=height*(.13-.008*v)+pleat;rz=height*(.108-.006*v)+pleat
+            return [rx*math.sin(a),y,rz*math.cos(a)]
+        skinned_surface('open-chapan-shell',coat_shell,coat,chest,rows=24,cols=72)
+        for side,edge_u in [('left',0),('right',1)]:
+            skinned_rail('front-seam-'+side,[coat_shell(edge_u,t) for t in np.linspace(0,1,32)],m['darkcloth'],chest,w=.012)
         skinned_surface('chapan-hem',lambda u,v:[(height*(.135-.035*v)+.007*math.sin(u*TAU*14)*(1-v))*math.cos(u*TAU),height*(.29+.32*v),height*(.092-.009*v)*math.sin(u*TAU)],m['red'] if gender=='female' else m['blue'],pelvis)
-        skinned_surface('embroidered-hem',lambda u,v:[height*.136*math.cos(u*TAU),height*(.29+.023*v),height*.093*math.sin(u*TAU)],m['ornament'],pelvis,rows=3)
-    # Taqiya with sewn dome and brocade band; follows head joint.
+        skinned_surface('woven-hem-border',lambda u,v:[height*.136*math.cos(u*TAU),height*(.29+.012*v),height*.093*math.sin(u*TAU)],m['darkcloth'],pelvis,rows=2)
+    # Cap or practical headscarf. The latter is not ceremonial bridal dress.
     top=p[:13380,1].max();cz=np.median(p[:13380][p[:13380,1]>top-height*.05,2]);hatR=height*.060
-    skinned_surface('taqiya',lambda u,v:[hatR*math.cos(v*math.pi/2)*math.cos(u*TAU),top-height*.035+height*.045*math.sin(v*math.pi/2),cz+hatR*math.cos(v*math.pi/2)*math.sin(u*TAU)],m['ornament'],headidx,rows=16)
-    skinned_surface('taqiya-band',lambda u,v:[hatR*math.cos(u*TAU),top-height*.045+height*.024*v,cz+hatR*math.sin(u*TAU)],m['ornament'],headidx,rows=4)
+    if gender=='female' and age!='baby':
+        skinned_surface('working-headscarf',lambda u,v:[hatR*1.12*math.cos(v*math.pi/2)*math.cos(u*TAU),top-height*.032+height*.045*math.sin(v*math.pi/2),cz+hatR*1.12*math.cos(v*math.pi/2)*math.sin(u*TAU)],m['linen'],headidx,rows=16)
+        for side in [-1,1]:
+            skinned_surface('headscarf-tail-'+str(side),lambda u,v,side=side:[side*height*(.055+.025*u),top-height*(.045+.20*v),cz-height*(.012+.013*u)+.006*math.sin(v*15)],m['linen'],headidx,rows=25,cols=8)
+    else:
+        skinned_surface('taqiya',lambda u,v:[hatR*math.cos(v*math.pi/2)*math.cos(u*TAU),top-height*.035+height*.045*math.sin(v*math.pi/2),cz+hatR*math.cos(v*math.pi/2)*math.sin(u*TAU)],m['darkcloth'],headidx,rows=16)
+        skinned_surface('taqiya-band',lambda u,v:[hatR*math.cos(u*TAU),top-height*.045+height*.024*v,cz+hatR*math.sin(u*TAU)],m['ornament'],headidx,rows=4)
+    for grp in ['helper-l-eye','helper-r-eye']:
+        eye=p[list(GROUPS[grp])].mean(axis=0)
+        skinned_rail('eyebrow-'+grp,[[eye[0]+(t-.5)*height*.043,eye[1]+height*(.014+.003*math.cos(t*math.pi)),eye[2]+height*.008] for t in np.linspace(0,1,15)],m['hair'],headidx,w=.004)
     # Sash and paired embroidered front lapels.
-    skinned_surface('woven-sash',lambda u,v:[height*.105*math.cos(u*TAU),height*(.535+.028*v),height*.088*math.sin(u*TAU)],m['ornament'],pelvis,rows=3)
+    skinned_surface('woven-sash',lambda u,v:[height*.126*math.cos(u*TAU),height*(.535+.018*v),height*.102*math.sin(u*TAU)],m['darkcloth'],pelvis,rows=3)
     for side in [-1,1]:
-        skinned_surface('lapel-'+str(side),lambda u,v,side=side:[side*height*(.015+.085*v)+height*.017*u,height*(.55+.27*v),height*(.099-.03*v)],m['ornament'],chest,rows=20,cols=4)
+        skinned_surface('lapel-'+str(side),lambda u,v,side=side:[side*height*(.015+.062*v)+height*.012*u,height*(.55+.27*v),height*(.118-.019*v)],m['darkcloth'],chest,rows=20,cols=4)
     # Skeletal poses. Character hand positions still require manual artist review.
     for side,sign in [('l',1),('r',-1)]:
-        angle=.48*sign if pose=='relaxed' else -.36*sign
+        angle=(-1.12 if pose=='relaxed' else -.72)*sign
         g.doc['nodes'][bn['upperarm_'+side]]['rotation']=quat([0,0,1],angle)
-        g.doc['nodes'][bn['lowerarm_'+side]]['rotation']=quat([1,0,0],-.35 if pose=='relaxed' else -1.05)
+        g.doc['nodes'][bn['lowerarm_'+side]]['rotation']=quat([1,0,0],-.18 if pose=='relaxed' else -.65)
     if animated:
         for side,sign in [('l',1),('r',-1)]:
-            values=[quat([0,0,1],a*sign) for a in [.48,.28,-.38,-.45,-.18,.48]]
+            values=[quat([0,0,1],a*sign) for a in [-.72,-.62,-.35,-.55,-.7,-.9]]
             g.track(bn['upperarm_'+side],'rotation',[0,4,6,8,12,16],values,'VEC4')
-            g.track(bn['lowerarm_'+side],'rotation',[0,4,6,8,12,16],[quat([1,0,0],a) for a in [-.35,-.4,-1.2,-1.05,-.8,-.35]],'VEC4')
+            g.track(bn['lowerarm_'+side],'rotation',[0,4,6,8,12,16],[quat([1,0,0],a) for a in [-.65,-.7,-1.05,-.9,-.7,-.3]],'VEC4')
     return root,bn,height
 
 def asar():
     g=GLB('asar');m=mats(g);ground(g,m);yurt(g,m,animated=True)
-    person(g,m,'elder-helper',(0,0,.40),pose='working',animated=True,yaw=math.pi)
-    person(g,m,'west-helper',(-2.35,0,.15),pose='working',animated=True,yaw=math.pi/2)
-    person(g,m,'east-helper',(2.35,0,-.25),gender='female',pose='working',animated=True,yaw=-math.pi/2)
+    # At the lift endpoint the left hand reaches the bakan shaft near 1.13 m.
+    person(g,m,'elder-helper',(.42,0,.20),pose='working',animated=True,yaw=math.pi)
+    person(g,m,'west-helper',(-2.27,0,.15),pose='working',animated=True,yaw=math.pi/2)
+    person(g,m,'east-helper',(2.22,0,-.25),gender='female',pose='working',animated=True,yaw=-math.pi/2)
     # Spare rails, rolled felt and coils visually explain shared labour.
     for k in range(6):add_sweep(g,f'spare-uyk-{k}',[[-2.8+k*.06,.06,-1.2],[-2.7+k*.06,.12,.55]],m['wood'],w=.025)
     for k in range(2):lathe(g,f'rolled-felt-{k}',[(0,0),(.21,0),(.22,.58),(.19,.62),(0,.62)],m['felt'],centre=(2.7,0,-1.4+k*.6),warp=.03)
@@ -403,9 +465,25 @@ def bread(g,m,name,centre,seed,size=1,parent=0):
         off=len(v);v.extend(vv);f.extend([(a+off,b+off,c+off) if not bottom else (c+off,b+off,a+off) for a,b,c in ff]);uv.extend(uu)
     return g.mesh(name,v,f,m['food'],parent,uv=uv)
 
+def cushion(g,m,name,centre,mat):
+    cx,cz=centre
+    def surface(u,v,top=True):
+        x=(u-.5)*.49;z=(v-.5)*.37
+        puff=.045*math.sin(math.pi*u)*math.sin(math.pi*v)
+        return [cx+x,.072+(puff if top else -.027),cz+z]
+    cloth(g,name+'-top',lambda u,v:surface(u,v),mat,rows=12,cols=16)
+    cloth(g,name+'-underside',lambda u,v:surface(u,v,False),mat,rows=5,cols=8)
+    for side in [0,1]:
+        cloth(g,name+f'-side-x{side}',lambda u,v,side=side:[cx+(side-.5)*.49,.045+.027*v,cz+(u-.5)*.37],mat,rows=3,cols=12)
+        cloth(g,name+f'-side-z{side}',lambda u,v,side=side:[cx+(u-.5)*.49,.045+.027*v,cz+(side-.5)*.37],mat,rows=3,cols=12)
+    border=[surface(t,0) for t in np.linspace(0,1,12)]+[surface(1,t) for t in np.linspace(0,1,9)]+[surface(t,1) for t in np.linspace(1,0,12)]+[surface(0,t) for t in np.linspace(1,0,9)]
+    add_sweep(g,name+'-sewn-piping',border,m['darkcloth'],w=.008)
+
 def nauryz():
     g=GLB('nauryz');m=mats(g);ground(g,m);yurt(g,m,cutaway=True)
     cloth(g,'tekemet',lambda u,v:[-1.8+u*3.6,.021+.003*math.sin(u*60)*math.sin(v*49),-1.7+v*3.2],m['ornament'],rows=32,cols=48)
+    for i,centre in enumerate([(-1.14,-1.17),(1.14,-1.17),(-1.14,.96),(1.14,.96)]):
+        cushion(g,m,f'woven-cushion-{i}',centre,m['red'] if i%2 else m['blue'])
     table=g.node('dastarkhan',extras={'hotspot':'dastarkhan'})
     lathe(g,'carved-table-top',[(0,.32),(.91,.32),(.94,.34),(.94,.39),(.90,.41),(0,.41)],m['wood'],table,segments=96)
     for a in np.linspace(0,TAU,4,endpoint=False):

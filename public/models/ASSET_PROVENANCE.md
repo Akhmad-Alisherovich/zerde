@@ -11,3 +11,12 @@ These are editable educational reconstruction drafts, not scanned museum objects
 - The existing website's 2D reference illustrations are retained with explicit 2D labels. They do not count as newly created 3D models. No new Nano Banana image was generated.
 
 Import `tools/modeling/scenes/*.gltf` together with the adjacent `.bin` into Blender or another glTF editor to modify the full authoring scenes. The `.glb` files are the optimized runtime exports. No `.blend` file is available because Blender could not be installed in this execution environment.
+
+## Continuation, 2026-10-10
+
+- The added baked-dough base colour, normal and roughness maps (`baked_*`) are deterministic original procedural textures authored by `tools/modeling/build_scenes.py`. No external photograph or downloaded texture was added. Dark cloth reuses the authored linen maps with a separate PBR tint.
+- The revised doorway boards, felt hems, roof geometry, cushions, garment shell, headscarf and eyebrow meshes are original generated geometry in the same Python source. The anatomical core remains the attributed MPFB CC0 asset above.
+- The Asar assembly follows the visible sequence in [UNESCO's 2014 Mangistau photo series](https://ich.unesco.org/en/10-representative-list-00748?id=00998&include=slideshow_inc.php) as a contemporary educational interpretation. The source does not establish this model's dimensions, period, ornament placement or garment accuracy.
+- The Nauryz yurt deliberately omits a front wall and roof sector as an educational cutaway. It is not a finished intact dwelling. [Kazakhstan's Nauryz overview](https://www.gov.kz/memleket/entities/digital-nauryz/press/article/details/225645?lang=kk) notes regional variation in kozhe ingredients; this scene is one illustrative arrangement.
+- The tusaukeser cord and path are consistent with one version documented by [Kazakhstan's traditions portal](https://oq.gov.kz/abai/saltdasturler). The character handling and scissors motion remain unfinished and must not be interpreted as a procedure demonstration.
+- Browser captures and their limited measurements are recorded in `docs/validation/browser/`; the broader quality limitations are in `docs/3D_CONTINUATION_REPORT_KK.md`.

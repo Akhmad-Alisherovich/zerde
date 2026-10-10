@@ -24,10 +24,13 @@ const yurtHotspots = {
   kiiz: { name: 'Киіз жабын', meaning: 'Туырлық қабырғаны, үзік төбені жабады. Түндік шаңырақтың үстіне тартылады. Оқу үшін кейбір жабындар ашық көрсетілген.' },
   community: { name: 'Бірлескен еңбек', meaning: 'Асар — қауымның бір-біріне ерікті түрде көмектесуі. Кейіпкерлердің киімі мен қозғалысы суретші және этнограф тексеруін қажет етеді.' },
 };
+const cutawayYurtHotspots = Object.fromEntries(
+  Object.entries(yurtHotspots).filter(([key]) => key !== 'door' && key !== 'bakan'),
+);
 export const SCENE_ASSETS: Record<string, SceneAsset> = {
   'ar-asar': { url: '/models/asar.glb', title: 'Асар', duration: 16,
     stageLabels: ['Керегені құру', 'Шаңырақты көтеру', 'Уықтарды бекіту', 'Киізбен жабу'], hotspots: yurtHotspots },
-  'ar-nauryz': { url: '/models/nauryz.glb', title: 'Наурыз', duration: 0, stageLabels: [], hotspots: { ...yurtHotspots,
+  'ar-nauryz': { url: '/models/nauryz.glb', title: 'Наурыз', duration: 0, stageLabels: [], hotspots: { ...cutawayYurtHotspots,
     dastarkhan: { name: 'Дастарқан', meaning: 'Мерекелік ортақ дастарқан қонақжайлық пен бірлікті білдіреді. Ашық киіз үй оқу мақсатында ішкі көріністі көрсетеді.' },
     baursak: { name: 'Астау мен бауырсақ', meaning: 'Ойылған ағаш астау мен майға пісірілген бауырсақ. Тағам пішіндері өңір мен отбасыға қарай өзгереді.' },
     kozhe: { name: 'Наурыз көже', meaning: 'Наурыз көженің жеті дәмі туралы дәстүр бар. Нақты құрамы өңір мен отбасыға қарай өзгереді; жеті тостаған жеті міндетті рецептті білдірмейді.' },
@@ -68,7 +71,13 @@ export async function loadScene(id: string, progress?: (percentage: number) => v
     if (event.total) progress?.(Math.round(event.loaded / event.total * 100));
   });
   result.scene.traverse(object => {
-    if (object instanceof THREE.Mesh) { object.castShadow = true; object.receiveShadow = true; }
+    if (object instanceof THREE.Mesh) {
+      if (!object.geometry.boundingSphere) object.geometry.computeBoundingSphere();
+      // Tiny embroidery, lashings and facial details add a full shadow draw
+      // while changing no readable silhouette at the current scene scale.
+      object.castShadow = (object.geometry.boundingSphere?.radius ?? 0) >= .09;
+      object.receiveShadow = true;
+    }
   });
   return result;
 }

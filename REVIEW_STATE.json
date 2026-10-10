@@ -4,5 +4,13 @@
   "localBranch": "feat/cultural-3d-scenes",
   "localCommit": "1c2520601093b5a1b5f1defff689473c49247954",
   "pushed": false,
-  "status": "technical-draft; museum quality, screenshots and device AR incomplete"
+  "status": "technical-draft; museum quality, screenshots and device AR incomplete",
+  "continuation": {
+    "archiveBaselineCommit": "7c65f4e",
+    "localBranch": "feat/cultural-3d-continuation",
+    "pushed": false,
+    "report": "docs/3D_CONTINUATION_REPORT_KK.md",
+    "browserScreenshots": "docs/validation/browser/",
+    "status": "visual draft improved; museum quality, full character contact and device AR incomplete"
+  }
 }
