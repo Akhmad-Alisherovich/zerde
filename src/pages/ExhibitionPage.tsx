@@ -118,7 +118,7 @@ export const ExhibitionPage: React.FC = () => {
             <span className="text-xs uppercase text-[#00BFFF] font-bold">2-кезең: Жүйе архитектурасы</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Жобаның Цифрлық Оқу Логикасы</h2>
           </div>
-          <div className="grid grid-cols-4 gap-3 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
             <div className="p-4 rounded-2xl bg-[#062B65] border border-[#00BFFF]/30">
               <div className="text-xs font-bold text-[#00BFFF] mb-1">01. Дереккөз</div>
               <h4 className="text-sm font-bold text-white mb-2">6 Оқу карточкасы</h4>
@@ -153,7 +153,7 @@ export const ExhibitionPage: React.FC = () => {
             <span className="text-xs uppercase text-[#D49A35] font-bold">3-кезең: Этномәдени қор</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Тексерілген 6 Дәстүр Карточкасы</h2>
           </div>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {TRADITIONS_DATA.map((t) => (
               <div key={t.id} className="p-3.5 rounded-2xl bg-[#041535] border border-white/10 flex flex-col justify-between">
                 <div>
@@ -181,7 +181,7 @@ export const ExhibitionPage: React.FC = () => {
             <span className="text-xs uppercase text-[#00BFFF] font-bold">4-кезең: Дерекке негізделген ЖИ</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">ЖИ Жауабының 4 Бағалау Шарты</h2>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-2xl bg-[#062B65]/80 border border-[#00BFFF]/30">
               <h4 className="text-xs font-bold text-[#00E5FF] mb-1">1. Мағына дәлдігі (0-2 балл)</h4>
               <p className="text-xs text-slate-200">Дәстүрдің тәрбиелік мағынасы қатесіз әрі 7-сыныпқа сай беріледі.</p>
@@ -212,7 +212,7 @@ export const ExhibitionPage: React.FC = () => {
             <span className="text-xs uppercase text-[#D49A35] font-bold">5-кезең: Кеңістіктік визуалдау</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">3 AR.js Маркерлік Сценарийі</h2>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {AR_SCENARIOS_DATA.map((sc) => (
               <div key={sc.id} className="p-4 rounded-2xl bg-[#041535] border border-white/10">
                 <span className="text-[10px] font-bold text-[#D49A35] uppercase">{sc.markerType}</span>
@@ -239,7 +239,7 @@ export const ExhibitionPage: React.FC = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Салыстырмалы Тәжірибе Схемасы</h2>
           </div>
           <div className="p-6 rounded-2xl glass-panel border border-[#00BFFF]/30 text-center space-y-4">
-            <div className="flex justify-center items-center gap-4 text-xs font-bold">
+            <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-bold">
               <span className="px-3 py-1.5 rounded-xl bg-white/10 text-white">Бастапқы тест (10 ұпай)</span>
               <span>→</span>
               <span className="px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-300">Мәтіндік топ (15 мин)</span>
@@ -267,7 +267,7 @@ export const ExhibitionPage: React.FC = () => {
             <span className="text-xs uppercase text-emerald-400 font-bold">7-кезең: Этика мен Қауіпсіздік</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">2026–2027 «Зерде» Ережесіне Толық Сәйкестік</h2>
           </div>
-          <div className="grid grid-cols-3 gap-4 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
             <div className="p-4 rounded-2xl bg-[#041535] border border-white/10">
               <ShieldCheck className="w-6 h-6 text-emerald-400 mb-2" />
               <h4 className="font-bold text-white mb-1">Жалған деректер жоқ</h4>
@@ -319,24 +319,25 @@ export const ExhibitionPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#03112E] text-white flex flex-col justify-between overflow-hidden animate-fadeIn relative">
+    <div className="h-[100dvh] bg-[#03112E] text-white flex flex-col overflow-hidden animate-fadeIn relative">
       
       {/* Top Header Controls */}
-      <div className="p-4 sm:p-5 bg-[#051B44]/95 border-b border-[#00BFFF]/20 flex items-center justify-between z-20 shadow-xl">
-        <div className="flex items-center gap-3">
+      <div className="p-3 sm:p-5 bg-[#051B44]/95 border-b border-[#00BFFF]/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 z-20 shadow-xl">
+        <div className="flex items-center gap-2 min-w-0">
           <button
             onClick={() => navigate('/')}
-            className="p-2 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-semibold mr-2"
+            className="min-w-11 min-h-11 rounded-xl bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors flex items-center justify-center gap-1.5 text-xs font-semibold shrink-0"
             title="Басты бетке қайту"
+            aria-label="Басты бетке қайту"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="hidden sm:inline">Басты бет</span>
           </button>
 
-          <div className="w-9 h-9 rounded-xl bg-[#00BFFF]/20 text-[#00BFFF] flex items-center justify-center font-bold text-xs">
+          <div className="min-w-11 h-11 rounded-xl bg-[#00BFFF]/20 text-[#00BFFF] flex items-center justify-center font-bold text-xs shrink-0">
             {currentSlide + 1}/{slides.length}
           </div>
-          <div>
+          <div className="min-w-0">
             <h2 className="text-sm sm:text-base font-bold text-white">
               {slides[currentSlide].title}
             </h2>
@@ -346,16 +347,16 @@ export const ExhibitionPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between sm:justify-end gap-2 min-w-0">
           {/* Defense Timer */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#062B65] border border-white/10 text-xs font-mono text-[#00E5FF]">
+          <div className="min-h-11 flex items-center gap-1.5 px-3 rounded-xl bg-[#062B65] border border-white/10 text-xs font-mono text-[#00E5FF]">
             <Clock className="w-3.5 h-3.5 text-[#D49A35]" />
             <span>{formatTimer(seconds)}</span>
           </div>
 
           <button
             onClick={() => setShowNotes(!showNotes)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+            className={`min-h-11 px-3 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors ${
               showNotes ? 'bg-[#D49A35] text-[#051B44] font-bold' : 'bg-[#062B65] text-slate-300 hover:text-white'
             }`}
           >
@@ -366,8 +367,9 @@ export const ExhibitionPage: React.FC = () => {
 
           <button
             onClick={() => navigate('/')}
-            className="p-2 rounded-xl bg-white/10 hover:bg-rose-600/80 text-white transition-colors"
+            className="min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-white/10 hover:bg-rose-600/80 text-white transition-colors"
             title="Шығу (ESC)"
+            aria-label="Көрме режимінен шығу"
           >
             <X className="w-5 h-5" />
           </button>
@@ -375,7 +377,7 @@ export const ExhibitionPage: React.FC = () => {
       </div>
 
       {/* Main Slide Content Area */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 overflow-y-auto relative">
+      <div className="flex-1 min-h-0 flex items-start justify-center p-4 sm:p-12 overflow-y-auto relative">
         <div className="w-full">
           {slides[currentSlide].component}
         </div>
@@ -395,38 +397,44 @@ export const ExhibitionPage: React.FC = () => {
       )}
 
       {/* Bottom Navigation Bar */}
-      <div className="p-4 sm:p-5 bg-[#051B44]/95 border-t border-white/10 flex items-center justify-between z-20">
+      <div className="p-3 sm:p-5 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-[#051B44]/95 border-t border-white/10 flex items-center justify-between gap-2 z-20">
         <button
           onClick={() => setCurrentSlide(curr => Math.max(0, curr - 1))}
           disabled={currentSlide === 0}
-          className="px-4 py-2 rounded-xl bg-[#062B65] hover:bg-[#0B357A] disabled:opacity-30 disabled:cursor-not-allowed text-xs font-bold flex items-center gap-1.5 transition-colors"
+          className="min-w-11 min-h-11 px-2 sm:px-4 rounded-xl bg-[#062B65] hover:bg-[#0B357A] disabled:opacity-30 disabled:cursor-not-allowed text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
+          aria-label="Алдыңғы слайд"
         >
           <ChevronLeft className="w-4 h-4" />
-          <span>Алдыңғы слайд</span>
+          <span className="hidden sm:inline">Алдыңғы слайд</span>
         </button>
 
         {/* Slide Progress Dots */}
-        <div className="flex items-center gap-1.5 overflow-x-auto max-w-md px-2">
+        <div className="hidden sm:flex items-center gap-1.5 overflow-x-auto max-w-md px-2">
           {slides.map((s, idx) => (
             <button
               key={s.id}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-2 rounded-full transition-all ${
+              className={`min-w-11 min-h-11 flex items-center justify-center rounded-full transition-all ${
                 currentSlide === idx
-                  ? 'w-6 bg-[#00BFFF]'
-                  : 'w-2 bg-white/20 hover:bg-white/40'
+                  ? 'bg-[#00BFFF] text-[#051B44]'
+                  : 'bg-white/20 hover:bg-white/40'
               }`}
               title={s.title}
-            />
+              aria-label={`${idx + 1}-слайд: ${s.title}`}
+              aria-current={currentSlide === idx ? 'step' : undefined}
+            >{idx + 1}</button>
           ))}
         </div>
+
+        <span className="sm:hidden text-xs text-slate-300">{currentSlide + 1} / {slides.length}</span>
 
         <button
           onClick={() => setCurrentSlide(curr => Math.min(slides.length - 1, curr + 1))}
           disabled={currentSlide === slides.length - 1}
-          className="px-4 py-2 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] disabled:opacity-30 disabled:cursor-not-allowed text-xs font-bold flex items-center gap-1.5 shadow-cyan-glow transition-all"
+          className="min-w-11 min-h-11 px-2 sm:px-4 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] disabled:opacity-30 disabled:cursor-not-allowed text-xs font-bold flex items-center justify-center gap-1.5 shadow-cyan-glow transition-all"
+          aria-label="Келесі слайд"
         >
-          <span>Келесі слайд</span>
+          <span className="hidden sm:inline">Келесі слайд</span>
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>

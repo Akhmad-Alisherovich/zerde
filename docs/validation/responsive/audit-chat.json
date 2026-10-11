@@ -1,0 +1,50 @@
+[
+  {
+    "route": "/ai-assistant",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  }
+]

@@ -31,10 +31,23 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   const [additionalStage, setAdditionalStage] = useState<number>(1);
   const [cameraPreset, setCameraPreset] = useState<CameraPreset>('general');
   const [showMuseumPhoto, setShowMuseumPhoto] = useState<boolean>(false);
+  const photoTriggerRef = useRef<HTMLButtonElement>(null);
+  const photoCloseRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!showMuseumPhoto) return;
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    photoCloseRef.current?.focus();
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setShowMuseumPhoto(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => { window.removeEventListener('keydown', closeOnEscape); (photoTriggerRef.current ?? previousFocus)?.focus(); };
+  }, [showMuseumPhoto]);
 
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [loadProgress, setLoadProgress] = useState(0);
   const [loadError, setLoadError] = useState('');
+  const [retryCount, setRetryCount] = useState(0);
   const [replay, setReplay] = useState(0);
   const [timelineTime, setTimelineTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -69,6 +82,8 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   const controlsRef = useRef<OrbitControls | null>(null);
   const rootGroupRef = useRef<THREE.Group | null>(null);
   const pointerStartRef = useRef({ x: 0, y: 0 });
+  const activePointersRef = useRef(new Set<number>());
+  const pointerDraggedRef = useRef(false);
 
   // One renderer and owned GLB per mounted scenario; async loads are cancellation-safe.
   useEffect(() => {
@@ -85,11 +100,16 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
     const camera = new THREE.PerspectiveCamera(45, 1, .05, 80);
     if (scenarioId === 'ar-betashar') camera.position.set(2.8, 2.35, 4.0);
     else camera.position.set(5.3, 3.6, 6);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    const pixelRatio = () => Math.min(window.devicePixelRatio || 1, window.innerWidth < 900 ? 1.5 : 1.75);
+    renderer.setPixelRatio(pixelRatio());
     renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15;
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true; controls.target.set(0, 1, 0);
+    controls.touches.ONE = THREE.TOUCH.ROTATE;
+    controls.touches.TWO = THREE.TOUCH.DOLLY_PAN;
+    const stopAutoRotate = () => setIsAutoRotating(false);
+    controls.addEventListener('start', stopAutoRotate);
     controls.maxPolarAngle = Math.PI / 2 - .015;
     controls.minDistance = 1.8; controls.maxDistance = 14; controls.autoRotateSpeed = .65;
     scene.add(new THREE.HemisphereLight('#dceaff', '#7e704f', 2.0));
@@ -106,9 +126,15 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
     let previous = performance.now(), lastUI = 0;
     const resize = () => {
       const width = Math.max(1, container.clientWidth), height = Math.max(1, container.clientHeight);
-      renderer.setSize(width, height); camera.aspect = width / height; camera.updateProjectionMatrix();
+      const canvasHeight = canvas.getBoundingClientRect().height;
+      const actualHeight = Math.max(1, canvasHeight || height);
+      renderer.setPixelRatio(pixelRatio());
+      renderer.setSize(width, actualHeight, false); camera.aspect = width / actualHeight; camera.updateProjectionMatrix();
     };
     const observer = new ResizeObserver(resize); observer.observe(container); resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('orientationchange', resize);
+    window.addEventListener('fullscreenchange', resize);
     loadScene(scenarioId, percent => { if (!cancelled) setLoadProgress(percent); }).then(gltf => {
       if (cancelled) { disposeScene(gltf.scene); return; }
       root.add(gltf.scene);
@@ -136,14 +162,18 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
       controls.autoRotate = autoRotateRef.current && !reduceMotion; controls.update(); renderer.render(scene, camera);
     });
     return () => {
-      cancelled = true; observer.disconnect(); renderer.setAnimationLoop(null); controls.dispose();
+      cancelled = true; observer.disconnect();
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('orientationchange', resize);
+      window.removeEventListener('fullscreenchange', resize);
+      renderer.setAnimationLoop(null); controls.removeEventListener('start', stopAutoRotate); controls.dispose();
       if (mixer) { mixer.stopAllAction(); mixer.uncacheRoot(mixer.getRoot()); }
       disposeScene(root); sun.shadow.dispose();
       renderer.dispose();
       sceneRef.current = null; cameraRef.current = null; rendererRef.current = null;
       controlsRef.current = null; rootGroupRef.current = null;
     };
-  }, [scenarioId]);
+  }, [scenarioId, retryCount]);
 
   useEffect(() => {
     setIsAutoRotating(scenarioId !== 'ar-betashar');
@@ -157,7 +187,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   }, [scenarioId, asarStage, tusaukeserStage, additionalStage, replay]);
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (Math.hypot(e.clientX - pointerStartRef.current.x, e.clientY - pointerStartRef.current.y) > 6) return;
+    if (pointerDraggedRef.current || Math.hypot(e.clientX - pointerStartRef.current.x, e.clientY - pointerStartRef.current.y) > 8) return;
     if (!cameraRef.current || !rootGroupRef.current || !canvasRef.current) return;
     const rect = canvasRef.current.getBoundingClientRect();
     const ray = new THREE.Raycaster();
@@ -221,36 +251,56 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
       {/* 3D Canvas Viewport */}
       <div 
         ref={containerRef} 
-        className="w-full h-[540px] sm:h-[620px] relative cursor-grab active:cursor-grabbing"
+        className="w-full relative flex flex-col xl:block xl:h-[620px]"
       >
         <canvas 
           ref={canvasRef} 
-          onPointerDown={e => { pointerStartRef.current = { x: e.clientX, y: e.clientY }; }}
+          onPointerDown={e => {
+            if (e.isPrimary || activePointersRef.current.size === 0) {
+              activePointersRef.current.clear();
+              pointerStartRef.current = { x: e.clientX, y: e.clientY };
+              pointerDraggedRef.current = false;
+            }
+            activePointersRef.current.add(e.pointerId);
+            if (activePointersRef.current.size > 1) pointerDraggedRef.current = true;
+          }}
+          onPointerMove={e => {
+            if (activePointersRef.current.has(e.pointerId) && Math.hypot(e.clientX - pointerStartRef.current.x, e.clientY - pointerStartRef.current.y) > 8)
+              pointerDraggedRef.current = true;
+          }}
+          onPointerUp={e => { activePointersRef.current.delete(e.pointerId); }}
+          onPointerCancel={e => { activePointersRef.current.delete(e.pointerId); pointerDraggedRef.current = true; }}
           onClick={handleCanvasClick}
-          className="w-full h-full block" 
+          className="w-full h-[clamp(300px,58svh,500px)] xl:h-full block cursor-grab active:cursor-grabbing touch-none"
+          aria-label="3D үлгі: бір саусақпен бұрыңыз, екі саусақпен жақындатыңыз"
         />
 
         {loadState !== 'ready' && <div className="absolute inset-0 z-30 bg-[#051B44]/95 flex flex-col items-center justify-center p-6 text-center" role="status">
           <p className="text-white font-bold">{loadState === 'loading' ? `3D үлгі жүктелуде… ${loadProgress}%` : loadError}</p>
-          {loadState === 'error' && <a href={asset.url} className="text-cyan-300 mt-4" download>GLB файлын жүктеу</a>}
+          {loadState === 'error' && <>
+            <button onClick={() => setRetryCount(count => count + 1)} className="min-h-11 px-4 mt-4 rounded-xl bg-[#00BFFF] text-[#051B44] font-bold">Қайта жүктеу</button>
+            <a href={asset.url} className="text-cyan-300 mt-3 min-h-11 inline-flex items-center" download>GLB файлын жүктеу</a>
+          </>}
         </div>}
         {/* Top Left Badge & Educational Label */}
-        <div className="absolute top-4 left-4 z-10 flex flex-col gap-1 pointer-events-none">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#051B44]/90 backdrop-blur-md border border-[#D49A35]/50 text-[#D49A35] text-xs font-bold shadow-gold-glow">
+        <div className="absolute top-2 left-2 xl:top-4 xl:left-4 z-10 flex flex-col gap-1 pointer-events-none max-w-[calc(100%-1rem)]">
+          <div className="inline-flex items-center gap-1.5 px-2 xl:px-3 py-1 rounded-xl bg-[#051B44]/90 backdrop-blur-md border border-[#D49A35]/50 text-[#D49A35] text-[11px] xl:text-xs font-bold shadow-gold-glow">
             <Sparkles className="w-3.5 h-3.5 text-[#00E5FF]" />
             <span>3D оқу реконструкциясы • GLB</span>
           </div>
-          <span className="text-[11px] text-slate-300 drop-shadow pl-1">
+          <span className="sr-only">
             Кез келген бұрыштан 360° еркін айналдырыңыз, жақындатыңыз
           </span>
         </div>
 
         {/* Top Right Viewport Controls & Camera Presets */}
-        <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+        <div className="relative xl:absolute xl:top-4 xl:right-4 z-10 flex flex-wrap items-center justify-center gap-2 p-2 xl:p-0 bg-[#051B44] xl:bg-transparent">
+          <p className="w-full xl:hidden text-center text-xs text-slate-300">1 саусақпен бұрыңыз · 2 саусақпен жақындатыңыз</p>
           {/* Museum Photographic Reference Button */}
           {referencePhotos[scenarioId] && <button
+            ref={photoTriggerRef}
             onClick={() => setShowMuseumPhoto(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#051B44]/90 hover:bg-[#062B65] border border-[#D49A35]/60 text-[#D49A35] text-xs font-bold transition-all shadow-gold-glow backdrop-blur-md"
+            className="min-h-11 flex items-center gap-1.5 px-3 rounded-xl bg-[#051B44]/90 hover:bg-[#062B65] border border-[#D49A35]/60 text-[#D49A35] text-xs font-bold transition-all shadow-gold-glow backdrop-blur-md"
             title="2D референсті көру"
           >
             <Eye className="w-3.5 h-3.5 text-[#00E5FF]" />
@@ -258,7 +308,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           </button>}
 
           {/* Camera Presets Selector */}
-          <div className="hidden sm:flex items-center bg-[#051B44]/90 rounded-xl border border-white/15 p-1 backdrop-blur-md">
+          <div className="order-last xl:order-none flex items-center max-w-full overflow-x-auto bg-[#051B44]/90 rounded-xl border border-white/15 p-1 backdrop-blur-md" aria-label="Камера көріністері">
             {(scenarioId === 'ar-betashar' ? [
               { id: 'general', label: 'Рәсім' },
               { id: 'close', label: 'Жақын' },
@@ -273,7 +323,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
               <button
                 key={p.id}
                 onClick={() => applyCameraPreset(p.id as CameraPreset)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                className={`min-w-11 min-h-11 px-3 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                   cameraPreset === p.id && !isAutoRotating
                     ? 'bg-[#00BFFF] text-[#051B44] font-bold'
                     : 'text-slate-300 hover:text-white'
@@ -287,12 +337,13 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           {/* Auto-rotate toggle */}
           <button
             onClick={() => setIsAutoRotating(!isAutoRotating)}
-            className={`p-2.5 rounded-xl border backdrop-blur-md transition-all ${
+            className={`min-w-11 min-h-11 flex items-center justify-center rounded-xl border backdrop-blur-md transition-all ${
               isAutoRotating
                 ? 'bg-[#00BFFF] text-[#051B44] border-[#00BFFF] shadow-cyan-glow'
                 : 'bg-[#062B65]/80 text-slate-200 border-white/15 hover:bg-[#062B65]'
             }`}
             title={isAutoRotating ? 'Айналуды тоқтату' : '360° авто-айналуды қосу'}
+            aria-label={isAutoRotating ? 'Айналуды тоқтату' : '360° авто-айналуды қосу'}
           >
             <RotateCw className="w-4 h-4" />
           </button>
@@ -300,8 +351,9 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           {/* Zoom In */}
           <button
             onClick={() => handleZoom('in')}
-            className="p-2.5 rounded-xl bg-[#062B65]/80 hover:bg-[#062B65] text-slate-200 border border-white/15 backdrop-blur-md transition-colors"
+            className="min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-[#062B65]/80 hover:bg-[#062B65] text-slate-200 border border-white/15 backdrop-blur-md transition-colors"
             title="Жақындату"
+            aria-label="Жақындату"
           >
             <ZoomIn className="w-4 h-4" />
           </button>
@@ -309,8 +361,9 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           {/* Zoom Out */}
           <button
             onClick={() => handleZoom('out')}
-            className="p-2.5 rounded-xl bg-[#062B65]/80 hover:bg-[#062B65] text-slate-200 border border-white/15 backdrop-blur-md transition-colors"
+            className="min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-[#062B65]/80 hover:bg-[#062B65] text-slate-200 border border-white/15 backdrop-blur-md transition-colors"
             title="Алыстату"
+            aria-label="Алыстату"
           >
             <ZoomOut className="w-4 h-4" />
           </button>
@@ -318,8 +371,9 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           {/* Reset View */}
           <button
             onClick={() => applyCameraPreset('general')}
-            className="p-2.5 rounded-xl bg-[#062B65]/80 hover:bg-[#062B65] text-slate-200 border border-white/15 backdrop-blur-md transition-colors"
+            className="min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-[#062B65]/80 hover:bg-[#062B65] text-slate-200 border border-white/15 backdrop-blur-md transition-colors"
             title="Бастапқы күй"
+            aria-label="Бастапқы күй"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
@@ -327,10 +381,10 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
 
         {/* ASAR 4-STAGE INTERACTIVE ASSEMBLY CONTROLS */}
         {scenarioId === 'ar-asar' && (
-          <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-col items-center gap-2">
+          <div className="relative xl:absolute xl:bottom-4 xl:left-4 xl:right-4 z-10 flex flex-col items-center gap-2 p-2 xl:p-0 bg-[#051B44] xl:bg-transparent">
             
             {/* Stage title & info banner */}
-            <div className="px-4 py-1.5 rounded-full bg-[#051B44]/95 border border-[#00BFFF]/40 text-xs text-slate-200 backdrop-blur-md flex items-center gap-2 shadow-lg">
+            <div className="max-w-full px-3 py-2 rounded-xl bg-[#051B44]/95 border border-[#00BFFF]/40 text-xs text-slate-200 backdrop-blur-md flex flex-wrap items-center justify-center gap-1 shadow-lg text-center">
               <span className="font-bold text-[#00E5FF]">Асар кезеңі:</span>
               <span>
                 {asarStage === 1 && '1. Керегені құру — Дөңгелек қабырғаны ашып, сықырлауықты орнату'}
@@ -351,7 +405,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
                 <button
                   key={s.stage}
                   onClick={() => { setAsarStage(s.stage); setReplay(v => v + 1); }}
-                  className={`flex-1 min-w-[110px] py-2 px-2 rounded-xl text-xs font-bold transition-all text-center ${
+                  className={`flex-1 basis-[calc(50%-0.25rem)] xl:basis-auto min-w-0 min-h-11 px-2 rounded-xl text-xs font-bold transition-all text-center ${
                     asarStage === s.stage
                       ? 'bg-gradient-to-r from-[#D49A35] to-[#F3BE5E] text-[#051B44] shadow-gold-glow'
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -367,8 +421,8 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
 
         {/* TUSAUKESER 3-STAGE SWITCHER */}
         {scenarioId === 'ar-tusaukeser' && (
-          <div className="absolute bottom-4 left-4 right-4 z-10 flex justify-center">
-            <div className="p-1.5 rounded-2xl bg-[#051B44]/95 border border-[#D49A35]/50 backdrop-blur-md flex items-center gap-1 shadow-2xl max-w-lg w-full">
+          <div className="relative xl:absolute xl:bottom-4 xl:left-4 xl:right-4 z-10 flex justify-center p-2 xl:p-0 bg-[#051B44] xl:bg-transparent">
+            <div className="p-1.5 rounded-2xl bg-[#051B44]/95 border border-[#D49A35]/50 backdrop-blur-md flex flex-wrap items-center gap-1 shadow-2xl max-w-lg w-full">
               {[
                 { stage: 1, label: '1. Дайындық (Ала жіп)' },
                 { stage: 2, label: '2. Тұсауды кесу' },
@@ -377,7 +431,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
                 <button
                   key={s.stage}
                   onClick={() => { setTusaukeserStage(s.stage); setReplay(v => v + 1); }}
-                  className={`flex-1 py-2 px-2 rounded-xl text-xs font-bold transition-all text-center ${
+                  className={`flex-1 basis-[calc(50%-0.25rem)] xl:basis-auto min-w-0 min-h-11 px-2 rounded-xl text-xs font-bold transition-all text-center ${
                     tusaukeserStage === s.stage
                       ? 'bg-gradient-to-r from-[#D49A35] to-[#F3BE5E] text-[#051B44] shadow-gold-glow'
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -391,11 +445,11 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
         )}
 
         {asset.stageLabels.length > 0 && scenarioId !== 'ar-asar' && scenarioId !== 'ar-tusaukeser' && (
-          <div className="absolute bottom-4 left-4 right-4 z-10 flex justify-center">
+          <div className="relative xl:absolute xl:bottom-4 xl:left-4 xl:right-4 z-10 flex justify-center p-2 xl:p-0 bg-[#051B44] xl:bg-transparent">
             <div className="p-1.5 rounded-2xl bg-[#051B44]/95 border border-[#D49A35]/50 backdrop-blur-md flex flex-wrap items-center gap-1 shadow-2xl max-w-2xl w-full">
               {asset.stageLabels.map((label, index) => (
                 <button key={label} onClick={() => { setAdditionalStage(index + 1); setReplay(v => v + 1); }}
-                  className={`flex-1 min-w-[120px] py-2 px-2 rounded-xl text-xs font-bold text-center ${additionalStage === index + 1
+                  className={`flex-1 basis-[calc(50%-0.25rem)] xl:basis-auto min-w-0 min-h-11 px-2 rounded-xl text-xs font-bold text-center ${additionalStage === index + 1
                     ? 'bg-gradient-to-r from-[#D49A35] to-[#F3BE5E] text-[#051B44]'
                     : 'text-slate-300 hover:bg-white/5'}`}>
                   {index + 1}. {label}
@@ -407,11 +461,11 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
 
         {/* Selected 3D Hotspot / Mesh Detail Modal */}
         {selectedHotspot && (
-          <div className="absolute bottom-24 sm:bottom-28 left-4 right-4 max-w-md mx-auto z-20 animate-slideUp">
+          <div className="hidden xl:block xl:absolute xl:bottom-28 mx-2 xl:mx-auto xl:left-4 xl:right-4 max-w-md z-20 animate-slideUp">
             <div className="p-5 rounded-2xl bg-[#051E4E]/95 backdrop-blur-xl border border-[#00BFFF]/60 shadow-2xl text-white relative">
               <button
                 onClick={() => setSelectedHotspot(null)}
-                className="absolute top-3 right-3 text-slate-400 hover:text-white text-xs p-1"
+                className="absolute top-2 right-2 min-w-11 min-h-11 text-slate-400 hover:text-white text-xs flex items-center justify-center"
                 aria-label="Жабу"
               >
                 ✕
@@ -435,11 +489,11 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
       </div>
 
       {asset.duration > 0 && <div className="p-4 bg-[#051B44] flex flex-wrap gap-3 items-center text-xs text-slate-200 border-t border-white/10">
-        <button disabled={loadState !== 'ready'} className="px-3 py-2 bg-[#062B65] rounded-xl disabled:opacity-40" onClick={() => {
+        <button disabled={loadState !== 'ready'} className="px-3 min-h-11 bg-[#062B65] rounded-xl disabled:opacity-40" onClick={() => {
           if (isPlaying) { timelineRef.current.running = false; setIsPlaying(false); }
           else { const t = timelineRef.current; if (t.time >= asset.duration) t.time = 0; t.target = asset.duration; t.running = true; setIsPlaying(true); }
         }}>{isPlaying ? 'Кідірту' : 'Барлық кезеңді ойнату'}</button>
-        <input aria-label="Анимация уақыты" className="flex-1 min-w-[100px] accent-[#D49A35]" type="range" min="0" max={asset.duration} step="0.05" value={timelineTime} onChange={e => {
+        <input aria-label="Анимация уақыты" className="flex-1 min-w-[100px] min-h-11 accent-[#D49A35]" type="range" min="0" max={asset.duration} step="0.05" value={timelineTime} onChange={e => {
           const time = Number(e.target.value); timelineRef.current = { time, target: time, running: false }; setTimelineTime(time); setIsPlaying(false);
         }} />
         <span className="font-mono">{timelineTime.toFixed(1)} / {asset.duration} с</span>
@@ -450,11 +504,12 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
       </div>
       {/* Museum Photographic Reference Comparison Modal */}
       {showMuseumPhoto && referencePhotos[scenarioId] && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="glass-panel p-6 rounded-3xl max-w-2xl w-full border border-[#D49A35]/50 text-white animate-slideUp relative shadow-2xl">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4" role="dialog" aria-modal="true" aria-label="2D референс иллюстрациясы">
+          <div className="glass-panel p-4 sm:p-6 rounded-3xl max-w-2xl w-full max-h-[calc(100dvh-1.5rem)] overflow-y-auto border border-[#D49A35]/50 text-white animate-slideUp relative shadow-2xl">
             <button
+              ref={photoCloseRef}
               onClick={() => setShowMuseumPhoto(false)}
-              className="absolute top-4 right-4 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs transition-colors"
+              className="absolute top-2 right-2 min-h-11 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs transition-colors"
               aria-label="Жабу"
             >
               ✕ Жабу
@@ -494,7 +549,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
             <div className="mt-4 flex justify-end">
               <button
                 onClick={() => setShowMuseumPhoto(false)}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D49A35] to-[#F3BE5E] text-[#051B44] text-xs font-bold shadow-gold-glow"
+                className="min-h-11 px-5 rounded-xl bg-gradient-to-r from-[#D49A35] to-[#F3BE5E] text-[#051B44] text-xs font-bold shadow-gold-glow"
               >
                 Интерактивті 3D үлгіге оралу
               </button>
@@ -505,7 +560,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
 
       {/* Bottom Interactive Component Pills */}
       <div className="p-4 bg-[#051B44] border-t border-[#00BFFF]/20">
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
           <div className="flex items-center gap-2 text-xs font-bold text-[#D49A35] uppercase tracking-wider">
             <Info className="w-3.5 h-3.5 text-[#00BFFF]" />
             <span>3D Құрылымдық Бөлшектер (Таңдап зерттеңіз):</span>
@@ -523,7 +578,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
                 setSelectedHotspot(spot);
                 setIsAutoRotating(false);
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-medium border transition-all flex items-center gap-1.5 ${
+              className={`min-h-11 px-3 rounded-xl text-xs font-medium border transition-all flex items-center gap-1.5 ${
                 selectedHotspot?.id === spot.id
                   ? 'bg-[#00BFFF] text-[#051B44] border-[#00BFFF] font-bold shadow-cyan-glow'
                   : 'bg-[#062B65]/70 text-slate-200 border-white/10 hover:border-[#00BFFF]/50 hover:bg-[#0B357A]'
@@ -535,6 +590,19 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           ))}
         </div>
       </div>
+
+      {selectedHotspot && <div className="xl:hidden p-4 bg-[#08285c] border-t border-[#00BFFF]/40" role="status">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-xs font-bold text-[#00E5FF]">Архитектуралық және тәрбиелік мәні</p>
+            <h4 className="text-base font-bold text-white mt-1">{selectedHotspot.name}</h4>
+          </div>
+          <button onClick={() => setSelectedHotspot(null)} className="min-w-11 min-h-11 rounded-xl bg-white/10 text-white" aria-label="Бөлшек сипаттамасын жабу">✕</button>
+        </div>
+        <p className="text-sm text-slate-200 leading-relaxed mt-2">{selectedHotspot.meaning}</p>
+        {asset.sourceUrl && <a className="inline-flex min-h-11 items-center text-sm text-[#00E5FF] underline" href={asset.sourceUrl}
+          target="_blank" rel="noopener noreferrer">Дереккөз: {asset.sourceTitle}</a>}
+      </div>}
 
     </div>
   );

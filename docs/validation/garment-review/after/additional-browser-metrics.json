@@ -1,0 +1,15 @@
+[
+  {
+    "scene": "betashar",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.65,
+    "animationFrames": 8,
+    "rafPerSecond": 3,
+    "drawCallsPerRaf": 224,
+    "glbResource": {
+      "name": "betashar.glb",
+      "durationMs": 95.3,
+      "transferSize": 9425964
+    }
+  }
+]

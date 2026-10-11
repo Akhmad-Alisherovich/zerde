@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+/.tmp-fonttools/
 /.pnp
 .pnp.js
 

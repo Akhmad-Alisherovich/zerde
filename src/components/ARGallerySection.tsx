@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Box, 
   Maximize2, 
@@ -32,6 +32,18 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
   );
   const [viewMode, setViewMode] = useState<'3d-model' | 'webar-camera' | 'cultural-info'>('3d-model');
   const [showMarkerModal, setShowMarkerModal] = useState<boolean>(false);
+  const markerTriggerRef = useRef<HTMLButtonElement>(null);
+  const markerCloseRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!showMarkerModal) return;
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    markerCloseRef.current?.focus();
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setShowMarkerModal(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => { window.removeEventListener('keydown', closeOnEscape); (markerTriggerRef.current ?? previousFocus)?.focus(); };
+  }, [showMarkerModal]);
 
   useEffect(() => {
     if (initialScenarioId) {
@@ -59,13 +71,14 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
           </p>
         </div>
 
-        {/* 3 Scenario Switcher Tabs */}
-        <div className="flex items-center gap-3 mb-8 overflow-x-auto pb-3 snap-x snap-mandatory" aria-label="3D салт-дәстүр сахналары">
+        {/* Scene tabs intentionally scroll within this row on narrow screens. */}
+        <p className="sm:hidden text-xs text-slate-300 mb-2">Басқа сахналарды көру үшін қатарды көлденең сырғытыңыз →</p>
+        <div className="flex items-center gap-3 mb-8 overflow-x-auto pb-3 snap-x snap-mandatory" aria-label="3D салт-дәстүр сахналары" role="group" tabIndex={0}>
           {AR_SCENARIOS_DATA.map((sc) => (
             <button
               key={sc.id}
               onClick={() => setSelectedScenario(sc)}
-              className={`shrink-0 snap-start px-4 sm:px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2.5 border ${
+              className={`shrink-0 snap-start min-h-11 px-4 sm:px-5 py-3 rounded-2xl text-sm font-bold transition-all flex items-center gap-2.5 border ${
                 selectedScenario.id === sc.id
                   ? 'bg-gradient-to-r from-[#00BFFF] to-[#0090C8] text-[#051B44] border-[#00BFFF] shadow-cyan-glow scale-105'
                   : 'bg-[#062B65]/80 text-slate-300 border-white/10 hover:border-[#00BFFF]/40 hover:bg-[#0B357A]'
@@ -78,11 +91,11 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
         </div>
 
         {/* View Mode Tabs (3D Preview vs Real Camera WebAR vs Cultural Info) */}
-        <div className="flex justify-center mb-8">
-          <div className="p-1.5 rounded-2xl bg-[#051B44] border border-[#00BFFF]/30 inline-flex items-center gap-1 shadow-lg">
+        <div className="max-w-full overflow-x-auto mb-8" role="group" aria-label="Көрініс режимдері" tabIndex={0}>
+          <div className="p-1.5 rounded-2xl bg-[#051B44] border border-[#00BFFF]/30 flex sm:inline-flex items-center gap-1 shadow-lg min-w-max sm:mx-auto">
             <button
               onClick={() => setViewMode('3d-model')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`min-h-11 px-4 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                 viewMode === '3d-model'
                   ? 'bg-[#00BFFF] text-[#051B44] shadow-cyan-glow'
                   : 'text-slate-300 hover:text-white'
@@ -94,7 +107,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
 
             <button
               onClick={() => setViewMode('webar-camera')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`min-h-11 px-4 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                 viewMode === 'webar-camera'
                   ? 'bg-[#D49A35] text-[#051B44] shadow-gold-glow'
                   : 'text-slate-300 hover:text-white'
@@ -106,7 +119,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
 
             <button
               onClick={() => setViewMode('cultural-info')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`min-h-11 px-4 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                 viewMode === 'cultural-info'
                   ? 'bg-white/20 text-white'
                   : 'text-slate-300 hover:text-white'
@@ -122,7 +135,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Main Visual Display Area (Col 7 / 8) */}
-          <div className="lg:col-span-8 space-y-4">
+          <div className="lg:col-span-8 min-w-0 space-y-4">
             
             {/* View Mode 1: Interactive 3D Model with Three.js */}
             {viewMode === '3d-model' && (
@@ -174,8 +187,9 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
               </div>
 
               <button
+                ref={markerTriggerRef}
                 onClick={() => setShowMarkerModal(true)}
-                className="px-3 py-1.5 rounded-xl bg-[#062B65] hover:bg-[#0B357A] text-[#00E5FF] border border-[#00BFFF]/30 flex items-center gap-1.5 transition-colors font-medium text-xs ml-auto"
+                className="min-h-11 px-3 rounded-xl bg-[#062B65] hover:bg-[#0B357A] text-[#00E5FF] border border-[#00BFFF]/30 flex items-center gap-1.5 transition-colors font-medium text-xs ml-auto"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Бұрынғы Hiro үлгісі</span>
@@ -185,7 +199,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
           </div>
 
           {/* Educational Task & Criteria Sidebar (Col 4 / 5) */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 min-w-0 space-y-6">
             
             {/* Scenario Summary Card */}
             <div className="glass-panel p-6 rounded-3xl border border-[#00BFFF]/30 space-y-4">
@@ -295,11 +309,13 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
 
       {/* Hiro Marker Printable Modal */}
       {showMarkerModal && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
-          <div className="glass-panel p-6 sm:p-8 rounded-3xl max-w-lg w-full border border-[#00BFFF]/40 text-center relative">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fadeIn" role="dialog" aria-modal="true" aria-label="Hiro маркері">
+          <div className="glass-panel p-4 sm:p-8 rounded-3xl max-w-lg w-full max-h-[calc(100dvh-1.5rem)] overflow-y-auto border border-[#00BFFF]/40 text-center relative">
             <button
+              ref={markerCloseRef}
               onClick={() => setShowMarkerModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-2 right-2 min-w-11 min-h-11 flex items-center justify-center text-slate-400 hover:text-white"
+              aria-label="Терезені жабу"
             >
               <X className="w-5 h-5" />
             </button>
@@ -311,22 +327,22 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
               Бұл бұрынғы нұсқадан сақталған баспа үлгісі. Қазіргі WebXR режимі Hiro маркерін танымайды және қолданбайды.
             </p>
 
-            <div className="w-64 h-64 bg-white p-4 rounded-2xl mx-auto mb-6 flex items-center justify-center border-4 border-slate-300 shadow-xl">
-              <img src="/assets/hiro-marker.svg" alt="Hiro Marker" className="w-56 h-56" />
+            <div className="w-full max-w-64 aspect-square bg-white p-4 rounded-2xl mx-auto mb-6 flex items-center justify-center border-4 border-slate-300 shadow-xl">
+              <img src="/assets/hiro-marker.svg" alt="Hiro Marker" className="w-full h-full" />
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="/assets/hiro-marker.svg"
                 download="hiro-marker.svg"
-                className="flex-1 py-3 px-4 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] text-xs font-bold flex items-center justify-center gap-2 shadow-cyan-glow transition-all"
+                className="flex-1 min-h-11 px-4 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] text-xs font-bold flex items-center justify-center gap-2 shadow-cyan-glow transition-all"
               >
                 <Download className="w-4 h-4" />
                 <span>Маркерді SVG жүктеу</span>
               </a>
               <button
                 onClick={() => window.print()}
-                className="py-3 px-4 rounded-xl bg-[#D49A35] hover:bg-[#F3BE5E] text-[#051B44] text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-gold-glow"
+                className="min-h-11 px-4 rounded-xl bg-[#D49A35] hover:bg-[#F3BE5E] text-[#051B44] text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-gold-glow"
               >
                 <Printer className="w-4 h-4" />
                 <span>Басып шығару (A4)</span>

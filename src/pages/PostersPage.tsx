@@ -79,7 +79,7 @@ export const PostersPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActivePoster(tab.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                className={`min-h-11 px-3.5 rounded-xl text-xs font-bold transition-all ${
                   activePoster === tab.id
                     ? 'bg-[#00BFFF] text-[#051B44] shadow-cyan-glow'
                     : 'bg-[#062B65] text-slate-300 hover:text-white border border-white/10'
@@ -96,8 +96,9 @@ export const PostersPage: React.FC = () => {
             <div className="flex items-center bg-[#062B65] rounded-xl border border-white/10 p-1">
               <button
                 onClick={() => setZoomLevel(Math.max(0.6, Number((zoomLevel - 0.1).toFixed(1))))}
-                className="p-1.5 text-slate-300 hover:text-white"
+                className="min-w-11 min-h-11 flex items-center justify-center text-slate-300 hover:text-white"
                 title="Кішірейту"
+                aria-label="Плакатты кішірейту"
               >
                 <ZoomOut className="w-4 h-4" />
               </button>
@@ -106,8 +107,9 @@ export const PostersPage: React.FC = () => {
               </span>
               <button
                 onClick={() => setZoomLevel(Math.min(1.4, Number((zoomLevel + 0.1).toFixed(1))))}
-                className="p-1.5 text-slate-300 hover:text-white"
+                className="min-w-11 min-h-11 flex items-center justify-center text-slate-300 hover:text-white"
                 title="Үлкейту"
+                aria-label="Плакатты үлкейту"
               >
                 <ZoomIn className="w-4 h-4" />
               </button>
@@ -116,7 +118,7 @@ export const PostersPage: React.FC = () => {
             {/* Print Button */}
             <button
               onClick={handlePrint}
-              className="px-4 py-2 rounded-xl bg-[#D49A35] hover:bg-[#F3BE5E] text-[#051B44] text-xs font-bold flex items-center gap-2 shadow-gold-glow transition-all"
+              className="min-h-11 px-4 rounded-xl bg-[#D49A35] hover:bg-[#F3BE5E] text-[#051B44] text-xs font-bold flex items-center gap-2 shadow-gold-glow transition-all"
             >
               <Printer className="w-4 h-4" />
               <span>Басып шығару (Print / PDF)</span>
@@ -125,6 +127,7 @@ export const PostersPage: React.FC = () => {
         </div>
       </div>
 
+      <p className="sm:hidden px-4 pt-3 text-xs text-slate-300 no-print">Үлкен плакатты көру үшін төмендегі аумақты көлденең сырғытыңыз.</p>
       {/* Main Poster Viewing Canvas */}
       <div className="py-12 px-4 flex justify-center items-start overflow-x-auto min-h-screen">
         <div 

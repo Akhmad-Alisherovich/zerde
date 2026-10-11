@@ -2,16 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Zerde Sans';
+  src: url('/fonts/NotoSans.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zerde Serif';
+  src: url('/fonts/NotoSerif.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zerde Mono';
+  src: url('/fonts/NotoSansMono.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Zerde Sans', Arial, system-ui, sans-serif;
+    font-synthesis-weight: none;
   }
 
   body {
     background-color: #051B44;
     color: #F8FCFF;
-    overflow-x: hidden;
+    line-height: 1.55;
+  }
+
+  :focus-visible {
+    outline: 3px solid #F3BE5E;
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

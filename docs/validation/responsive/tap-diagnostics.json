@@ -1,0 +1,38 @@
+{
+  "rect": {
+    "x": 17,
+    "y": 176.75,
+    "w": 356,
+    "h": 489.515625
+  },
+  "selectedByTouch": {
+    "fx": 0.22,
+    "fy": 0.35,
+    "x": 95,
+    "y": 348
+  },
+  "selectedByMouse": null,
+  "events": [
+    {
+      "type": "pointerdown",
+      "x": 95,
+      "y": 348,
+      "pointerId": 2,
+      "isPrimary": true
+    },
+    {
+      "type": "pointerup",
+      "x": 95,
+      "y": 348,
+      "pointerId": 2,
+      "isPrimary": true
+    },
+    {
+      "type": "click",
+      "x": 95,
+      "y": 348,
+      "pointerId": 2,
+      "isPrimary": false
+    }
+  ]
+}

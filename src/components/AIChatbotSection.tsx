@@ -25,6 +25,17 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
   const [showRubric, setShowRubric] = useState(false);
   const [selectedTestQuestionId, setSelectedTestQuestionId] = useState<number | null>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
+  const chatMessagesRef = useRef<HTMLDivElement>(null);
+  const [chatHeight, setChatHeight] = useState(650);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    const updateHeight = () => setChatHeight(Math.min(650, Math.max(260, viewport.height - 112)));
+    updateHeight();
+    viewport.addEventListener('resize', updateHeight);
+    return () => viewport.removeEventListener('resize', updateHeight);
+  }, []);
 
   useEffect(() => {
     if (initialQuery) {
@@ -33,7 +44,8 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
   }, [initialQuery]);
 
   useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const messagesPane = chatMessagesRef.current;
+    if (messagesPane) messagesPane.scrollTop = messagesPane.scrollHeight;
   }, [messages]);
 
   const handleSendQuery = (textToSend: string) => {
@@ -83,11 +95,11 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Chat Window (Col 7) */}
-          <div className="lg:col-span-7 flex flex-col h-[650px] glass-panel rounded-3xl border border-[#00BFFF]/30 overflow-hidden shadow-2xl relative">
+          <div className="lg:col-span-7 min-w-0 flex flex-col glass-panel rounded-3xl border border-[#00BFFF]/30 overflow-hidden shadow-2xl relative scroll-mt-24" style={{ height: chatHeight }}>
             
             {/* Chat Header */}
-            <div className="p-4 sm:p-5 bg-[#051B44]/90 border-b border-[#00BFFF]/20 flex items-center justify-between">
-              <div className="flex items-center gap-3">
+            <div className="p-4 sm:p-5 bg-[#051B44]/90 border-b border-[#00BFFF]/20 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-3 min-w-0">
                 <div className="relative">
                   <img
                     src="/assets/ai_assistant_robot.jpg"
@@ -96,14 +108,14 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
                   />
                   <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#051B44] rounded-full" />
                 </div>
-                <div>
-                  <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h3 className="text-sm sm:text-base font-bold text-white flex flex-wrap items-center gap-1.5">
                     Этно-ЖИ Көмекші
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#00BFFF]/20 text-[#00E5FF]">
+                    <span className="hidden sm:inline text-[10px] font-semibold px-2 py-0.5 rounded bg-[#00BFFF]/20 text-[#00E5FF]">
                       Grounded AI
                     </span>
                   </h3>
-                  <div className="text-[11px] text-slate-300">
+                  <div className="text-xs text-slate-300 leading-snug">
                     Білім қоры: 6 карточка (N01–E01) • Академиялық қауіпсіздік
                   </div>
                 </div>
@@ -112,15 +124,16 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowRubric(!showRubric)}
-                  className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-[#062B65] text-[#00BFFF] border border-[#00BFFF]/30 hover:border-[#00BFFF] transition-colors"
+                  className="min-h-11 px-3 rounded-lg text-xs font-semibold bg-[#062B65] text-[#00BFFF] border border-[#00BFFF]/30 hover:border-[#00BFFF] transition-colors"
                   title="Бағалау рубрикасын көру"
                 >
                   Рубрика
                 </button>
                 <button
                   onClick={resetChat}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors"
+                  className="min-w-11 min-h-11 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors"
                   title="Чатты тазалау"
+                  aria-label="Чатты тазалау"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </button>
@@ -128,14 +141,14 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
             </div>
 
             {/* Messages Scroll Area */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+            <div ref={chatMessagesRef} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-4">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'} animate-fadeIn`}
                 >
                   <div
-                    className={`max-w-[85%] sm:max-w-[80%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
+                    className={`max-w-[95%] sm:max-w-[80%] rounded-2xl p-4 text-sm leading-relaxed ${
                       msg.sender === 'user'
                         ? 'bg-[#00BFFF] text-[#051B44] font-medium rounded-br-none shadow-md'
                         : msg.isOutOfScope
@@ -198,7 +211,7 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
                 <button
                   key={i}
                   onClick={() => handleSendQuery(sug)}
-                  className="px-2.5 py-1 rounded-lg text-xs bg-[#062B65] hover:bg-[#0B357A] text-slate-300 hover:text-[#00BFFF] border border-white/10 shrink-0 transition-colors"
+                  className="px-2.5 min-h-11 rounded-lg text-xs bg-[#062B65] hover:bg-[#0B357A] text-slate-300 hover:text-[#00BFFF] border border-white/10 shrink-0 transition-colors"
                 >
                   {sug}
                 </button>
@@ -217,13 +230,14 @@ export const AIChatbotSection: React.FC<AIChatbotSectionProps> = ({ initialQuery
                 type="text"
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
+                onFocus={(e) => window.setTimeout(() => e.target.scrollIntoView({ block: 'end' }), 150)}
                 placeholder="Сұрағыңызды жазыңыз (мыс: Асар деген не?)..."
-                className="flex-1 px-4 py-3 rounded-xl bg-[#041535] border border-white/15 text-white text-xs sm:text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#00BFFF] transition-colors"
+                className="flex-1 min-w-0 min-h-11 px-3 py-2 rounded-xl bg-[#041535] border border-white/15 text-white text-sm placeholder:text-slate-400 focus:outline-none focus:border-[#00BFFF] transition-colors"
               />
               <button
                 type="submit"
                 disabled={!inputVal.trim()}
-                className="p-3 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] font-bold disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-cyan-glow"
+                className="min-w-11 min-h-11 flex items-center justify-center rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] font-bold disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-cyan-glow"
                 aria-label="Сұрақты жіберу"
               >
                 <Send className="w-5 h-5" />

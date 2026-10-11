@@ -346,6 +346,13 @@ J=np.argsort(-JW,axis=1)[:,:4];W=np.take_along_axis(JW,J,axis=1);W/=np.maximum(W
 def quat(axis,angle):
     a=np.array(axis,dtype=float);a/=np.linalg.norm(a);return [*(a*math.sin(angle/2)),math.cos(angle/2)]
 
+def quat_mul(a,b):
+    ax,ay,az,aw=a;bx,by,bz,bw=b
+    return [aw*bx+ax*bw+ay*bz-az*by,
+            aw*by+ay*bw+az*bx-ax*bz,
+            aw*bz+az*bw+ax*by-ay*bx,
+            aw*bw-ax*bx-ay*by-az*bz]
+
 def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,animated=False,stature=None):
     p=BASE.copy();target=VENDOR/f'asian-{gender}-{age}.target.gz'
     with gzip.open(target,'rt') as stream:
@@ -366,7 +373,7 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
         p[cheek,1]-=span*.0025
     height=stature if stature is not None else (.82 if age=='baby' else (1.65 if gender=='female' else 1.76))
     bottom=p[:13380,1].min();factor=height/(p[:13380,1].max()-bottom);p[:,1]-=bottom;p*=factor
-    root=g.node(name,pos=position,extras={'hotspot':'community','anatomy':'MPFB CC0; individually varied face; fitted garment draft'})
+    root=g.node(name,pos=position,extras={'hotspot':'community','anatomy':'MPFB CC0 exposed face and hands; separately tailored garments'})
     g.doc['nodes'][root]['rotation']=quat([0,1,0],yaw)
     heads=[]
     for b in BONES:
@@ -391,7 +398,8 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
     garment_colour=palette[(identity//13)%len(palette)]
     if name=='bride':garment_colour=(.58,.18,.21)
     fabric=g.material(name+'-tailored-fabric',garment_colour,tex='linen',rough=.93)
-    # Garment shell follows actual body topology; collar, hem and sash added below.
+    # The MPFB body is an anatomy source, never the finished garment. Covered
+    # torso and arm faces are omitted; independent cloth panels cover them.
     buckets={};lookup={};verts={};uvs={};joints={};weights={}
     dominant=np.argmax(JW,axis=1)
     def category(vi):
@@ -418,7 +426,7 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
     tone=.93+(identity%9)*.008
     skin_mat=g.material(name+'-skin',(tone,1-.012*((identity//11)%3),.98),tex='skin',rough=.91)
     for cat in buckets:
-        if gender=='female' and cat=='blue':continue  # The long skirt conceals both legs.
+        if cat in ['outfit','blue']:continue
         g.mesh(name+'-'+cat,verts[cat],buckets[cat],skin_mat if cat=='skin' else fabric if cat=='outfit' else m[cat],root,uvs[cat],joints[cat],weights[cat],skin)
     # Follow the actual anatomical scalp topology to give each adult a hairline.
     # A small normal offset prevents z-fighting with the skin below.
@@ -458,8 +466,141 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
     def skinned_rail(label,path,mat,bone,w=.008):
         v,f,u=sweep(path,w,w)
         g.mesh(name+'-'+label,v,f,mat,root,u,[[bone,0,0,0]]*len(v),[[1,0,0,0]]*len(v),skin)
-    # A cut lower coat attaches at the fitted waist. The anatomical skinned
-    # torso supplies the upper garment, avoiding a hollow cylinder at shoulder.
+    # Patterned bodice: an elliptical, tapered cloth loft with shoulder slope,
+    # ease over the bust and a small finished neck opening. There is deliberately
+    # no breast or abdominal anatomy in this surface.
+    if age!='baby':
+        is_bride=name=='bride'
+        shirt=g.material(name+'-linen-underdress',(.77,.72,.62) if gender=='female' else (.55,.60,.58),tex='linen',rough=.98)
+        outer=g.material(name+'-velvet-kamzol' if gender=='female' else name+'-wool-shapan',
+                         garment_colour,tex='linen',rough=.98)
+        cuffmat=g.material(name+'-woven-edge',(.34,.21,.15),tex='linen',rough=.96)
+        def bodice_shape(t,a,ease=0):
+            # t is measured from waist to neckline. Shoulder width peaks just
+            # below the neck instead of following the anatomical chest.
+            y=height*(.50+.365*t)
+            sections=[(0,.099,.089),(.34,.103,.096),(.65,.111,.100),(.78,.120,.098),(.90,.101,.083),(1,.050,.057)]
+            for k in range(len(sections)-1):
+                if t<=sections[k+1][0]:
+                    lo,rx0,rz0=sections[k];hi,rx1,rz1=sections[k+1]
+                    q=(t-lo)/(hi-lo);rx=rx0+(rx1-rx0)*q;rz=rz0+(rz1-rz0)*q;break
+            fold=.0028*math.cos(10*a+5*t)*math.sin(math.pi*t)
+            return [(rx+ease+fold)*height*math.cos(a),y,
+                    height*.014+(rz+ease+fold)*height*math.sin(a)]
+        bv,bf,bu=grid(32,80,lambda u,v:bodice_shape(v,u*TAU))
+        bj=[];bw=[]
+        for xyz in bv:
+            blend=max(0,min(1,(xyz[1]/height-.50)/.13))
+            bj.append([chest,pelvis,0,0]);bw.append([blend,1-blend,0,0])
+        g.mesh(name+'-tailored-underdress-bodice',bv,bf,shirt,root,bu,bj,bw,skin)
+        skinned_rail('bound-neckline',[bodice_shape(1,t) for t in np.linspace(0,TAU,97)],cuffmat,chest,w=.008)
+        # Two articulated sleeve sections overlap at the elbow. Their axes
+        # follow the rig's rest joints, so cuffs remain connected in motion.
+        for side in ['l','r']:
+            shoulder=heads[BONES.index('upperarm_'+side)];elbow=heads[BONES.index('lowerarm_'+side)]
+            wrist=heads[BONES.index('hand_'+side)]
+            for section,start,end,bone,r0,r1 in [('upper',shoulder,elbow,BONES.index('upperarm_'+side),.052,.045),
+                                                  ('lower',elbow,wrist,BONES.index('lowerarm_'+side),.047,.035)]:
+                axis=end-start;axis/=np.linalg.norm(axis)
+                radial=np.cross(axis,[0,0,1]);radial/=np.linalg.norm(radial)
+                forward=np.cross(axis,radial)
+                def sleeve(u,v,start=start,end=end,radial=radial,forward=forward,r0=r0,r1=r1):
+                    centre=start*(1-v)+end*v
+                    radius=height*(r0*(1-v)+r1*v)
+                    radius*=1+.035*math.cos(u*TAU*8+v*11)
+                    return centre+radius*(math.cos(u*TAU)*radial+math.sin(u*TAU)*forward)
+                sv,sf,su=grid(18,32,sleeve)
+                g.mesh(name+'-'+section+'-cut-sleeve-'+side,sv,sf,outer if gender=='male' else shirt,root,su,
+                       [[bone,0,0,0]]*len(sv),[[1,0,0,0]]*len(sv),skin)
+                if section=='lower':
+                    skinned_rail('embroidered-cuff-'+side,
+                                 [sleeve(t,1) for t in np.linspace(0,1,41)],cuffmat,bone,w=.009)
+        if gender=='male':
+            trouser=g.material(name+'-cut-wool-trousers',(.22,.28,.32),tex='linen',rough=.98)
+            for side in ['l','r']:
+                hip=heads[BONES.index('thigh_'+side)]
+                knee=heads[BONES.index('calf_'+side)]
+                ankle=heads[BONES.index('foot_'+side)]
+                for section,start,end,bone,r0,r1 in [('thigh',hip,knee,BONES.index('thigh_'+side),.054,.049),
+                                                     ('calf',knee,ankle,BONES.index('calf_'+side),.052,.036)]:
+                    axis=end-start;axis/=np.linalg.norm(axis)
+                    radial=np.cross(axis,[0,0,1]);radial/=np.linalg.norm(radial)
+                    forward=np.cross(axis,radial)
+                    def trouser_leg(u,v,start=start,end=end,radial=radial,forward=forward,r0=r0,r1=r1):
+                        centre=start*(1-v)+end*v
+                        radius=height*(r0*(1-v)+r1*v)*(1+.025*math.cos(u*TAU*7+v*5))
+                        return centre+radius*(math.cos(u*TAU)*radial+math.sin(u*TAU)*forward)
+                    tv,tf,tu=grid(14,32,trouser_leg)
+                    g.mesh(name+'-'+section+'-tailored-trouser-'+side,tv,tf,trouser,root,tu,
+                           [[bone,0,0,0]]*len(tv),[[1,0,0,0]]*len(tv),skin)
+    else:
+        # A child's anatomical body is also hidden. The toddler and infant get
+        # a simple woven tunic and loose leggings under their scene props.
+        babycloth=g.material(name+'-woven-child-tunic',(.53,.61,.66),tex='linen',rough=.98)
+        babytrouser=g.material(name+'-woven-child-leggings',(.27,.37,.43),tex='linen',rough=.98)
+        def child_bodice(u,v):
+            a=u*TAU;y=height*(.37+.50*v)
+            rx=height*(.104+.014*math.sin(v*math.pi))*(1-.42*max(0,(v-.82)/.18))
+            rz=height*(.091+.008*math.sin(v*math.pi))*(1-.38*max(0,(v-.82)/.18))
+            return [rx*math.cos(a),y,height*.012+rz*math.sin(a)]
+        cv,cf,cu=grid(22,48,child_bodice)
+        g.mesh(name+'-separate-child-tunic',cv,cf,babycloth,root,cu,
+               [[chest,0,0,0]]*len(cv),[[1,0,0,0]]*len(cv),skin)
+        for side in ['l','r']:
+            for part,start,end,bone,radius,mat in [
+                ('upper-sleeve',heads[BONES.index('upperarm_'+side)],heads[BONES.index('lowerarm_'+side)],BONES.index('upperarm_'+side),.052,babycloth),
+                ('lower-sleeve',heads[BONES.index('lowerarm_'+side)],heads[BONES.index('hand_'+side)],BONES.index('lowerarm_'+side),.043,babycloth),
+                ('upper-legging',heads[BONES.index('thigh_'+side)],heads[BONES.index('calf_'+side)],BONES.index('thigh_'+side),.058,babytrouser),
+                ('lower-legging',heads[BONES.index('calf_'+side)],heads[BONES.index('foot_'+side)],BONES.index('calf_'+side),.047,babytrouser)]:
+                axis=end-start;axis/=np.linalg.norm(axis)
+                radial=np.cross(axis,[0,0,1]);radial/=np.linalg.norm(radial)
+                forward=np.cross(axis,radial)
+                def child_tube(u,v,start=start,end=end,radial=radial,forward=forward,radius=radius):
+                    centre=start*(1-v)+end*v
+                    r=height*radius*(1-.12*v)
+                    return centre+r*(math.cos(u*TAU)*radial+math.sin(u*TAU)*forward)
+                tv,tf,tu=grid(12,24,child_tube)
+                g.mesh(name+'-'+part+'-'+side,tv,tf,mat,root,tu,
+                       [[bone,0,0,0]]*len(tv),[[1,0,0,0]]*len(tv),skin)
+    if age!='baby':
+        # Distinct upper garment. The women's kamzol is sleeveless with a
+        # narrow open front; the men's shapan has wider overlapping fronts.
+        outer_bottom=.13
+        outer_top=.95 if gender=='female' else .93
+        open_angle=.20 if gender=='female' else .14
+        def coat_upper(u,v):
+            t=outer_bottom+(outer_top-outer_bottom)*v
+            a=math.pi/2+open_angle+u*(TAU-2*open_angle)
+            return bodice_shape(t,a,.012 if gender=='female' else .025)
+        ov,of,ou=grid(22,80,coat_upper)
+        oj=[];ow=[]
+        for xyz in ov:
+            blend=max(0,min(1,(xyz[1]/height-.53)/.12))
+            oj.append([chest,pelvis,0,0]);ow.append([blend,1-blend,0,0])
+        g.mesh(name+'-separate-'+('kamzol' if gender=='female' else 'shapan')+'-upper',ov,of,outer,root,ou,oj,ow,skin)
+        for edge in [0,1]:
+            skinned_rail('outer-front-binding-'+str(edge),[coat_upper(edge,t) for t in np.linspace(0,1,35)],
+                         cuffmat,chest,w=.009)
+        skinned_rail('outer-neck-binding',[coat_upper(t,1) for t in np.linspace(0,1,81)],
+                     cuffmat,chest,w=.008)
+        if gender=='female':
+            # A separate fastening, stitched rather than a painted repeat.
+            for level in [.18,.38,.58]:
+                for side in [-1,1]:
+                    pt=coat_upper(0 if side==1 else 1,level)
+                    skinned_rail('kamzol-fastener-'+str(side)+'-'+str(level),
+                                 [pt,np.asarray(pt)+[side*.022,0,.004]],m['brass'],chest,w=.004)
+    # The open kamzol must reveal another complete dress, not an empty torso.
+    if age!='baby' and gender=='female' and name!='bride':
+        def under_skirt(u,v):
+            a=u*TAU;flare=(1-v)**1.5
+            rx=height*(.083+.060*flare);rz=height*(.075+.052*flare)
+            ripple=height*.0028*math.cos(12*a+v*3)*flare
+            return [(rx+ripple)*math.sin(a),height*(.085+.47*v),(rz+ripple)*math.cos(a)]
+        sv,sf,su=grid(32,80,under_skirt)
+        g.mesh(name+'-complete-under-dress-skirt',sv,sf,shirt,root,su,
+               [[pelvis,0,0,0]]*len(sv),[[1,0,0,0]]*len(sv),skin)
+    # The lower skirt or shapan is a separate, flared pattern piece.
     if age!='baby' and name!='bride':
         coat=fabric
         def coat_shell(u,v):
@@ -501,9 +642,20 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
             skinned_surface('lapel-'+str(side),lambda u,v,side=side:[side*height*(.015+.062*v)+height*.012*u,height*(.55+.27*v),height*(.118-.019*v)],m['darkcloth'],chest,rows=20,cols=4)
     # Skeletal poses. Character hand positions still require manual artist review.
     for side,sign in [('l',1),('r',-1)]:
-        angle=(-1.12 if pose=='relaxed' else -.72)*sign
+        angle=(-.40 if pose=='relaxed' else -.72)*sign
         g.doc['nodes'][bn['upperarm_'+side]]['rotation']=quat([0,0,1],angle)
-        g.doc['nodes'][bn['lowerarm_'+side]]['rotation']=quat([1,0,0],-.18 if pose=='relaxed' else -.65)
+        g.doc['nodes'][bn['lowerarm_'+side]]['rotation']=(
+            quat_mul(quat([0,0,1],-1.0*sign),quat([1,0,0],-.35))
+            if pose=='relaxed' else quat([1,0,0],-.65))
+        # The source hand is an open anatomical rest hand. Curl finger joints
+        # around the palm axis for a relaxed adult gesture; the musician curls
+        # farther to touch the strings and neck rather than pointing rigidly.
+        if age!='baby':
+            curl=.65 if name=='akyn' else .24
+            for digit in ['index','middle','ring','pinky']:
+                for joint,amount in [('01',curl*.55),('02',curl),('03',curl*.55)]:
+                    g.doc['nodes'][bn[f'{digit}_{joint}_{side}']]['rotation']=quat([1,0,0],amount)
+            g.doc['nodes'][bn[f'thumb_02_{side}']]['rotation']=quat([1,0,0],curl*.28)
     if animated:
         for side,sign in [('l',1),('r',-1)]:
             values=[quat([0,0,1],a*sign) for a in [-.72,-.62,-.35,-.55,-.7,-.9]]

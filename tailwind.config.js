@@ -23,8 +23,10 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Cinzel', 'Merriweather', 'Georgia', 'serif'],
+        sans: ['Zerde Sans', 'Arial', 'system-ui', 'sans-serif'],
+        serif: ['Zerde Serif', 'Georgia', 'serif'],
+        mono: ['Zerde Mono', 'Consolas', 'monospace'],
+        display: ['Zerde Serif', 'Georgia', 'serif'],
       },
       boxShadow: {
         'cyan-glow': '0 0 25px rgba(0, 191, 255, 0.35)',

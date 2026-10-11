@@ -23,6 +23,26 @@ for (const [id, definition] of Object.entries(SCENE_ASSETS)) {
   let skinCount = 0;
   root.traverse(object => { if (object instanceof THREE.SkinnedMesh) { skinCount++; assert.equal(object.skeleton.bones.length, 53); } });
   assert(skinCount >= 2);
+  // The original defect was a recoloured anatomical torso. Keep the source
+  // garment split visible in every runtime export, including the older scenes.
+  const names = [];
+  root.traverse(object => { if (object instanceof THREE.SkinnedMesh) names.push(object.name); });
+  assert(!names.some(name => /-(outfit|blue)$/.test(name)),
+    `${id} still exports an anatomical clothing surface`);
+  assert(names.filter(name => name.endsWith('-tailored-underdress-bodice')).length >= 2,
+    `${id} is missing separate adult bodices`);
+  assert(names.filter(name => name.includes('-cut-sleeve-')).length >= 4,
+    `${id} is missing articulated garment sleeves`);
+  for (const child of ['toddler', 'infant']) {
+    if (root.getObjectByName(child)) assert(names.includes(`${child}-separate-child-tunic`));
+  }
+  if (id === 'ar-betashar') {
+    for (const prefix of ['bride', 'relative', 'akyn']) {
+      assert(names.includes(`${prefix}-tailored-underdress-bodice`));
+      assert(names.some(name => name.startsWith(`${prefix}-separate-`)));
+    }
+    assert(root.getObjectByName('bridal-veil-hanging-fold'));
+  }
   if (definition.duration) {
     const mixer = new THREE.AnimationMixer(root);
     const action = mixer.clipAction(gltf.animations[0]); action.setLoop(THREE.LoopOnce,1); action.clampWhenFinished = true; action.play();

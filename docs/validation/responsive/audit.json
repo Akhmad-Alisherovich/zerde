@@ -1,0 +1,5909 @@
+[
+  {
+    "route": "/",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/relevance",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/modules",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/besikke-salu",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/nauryz",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/korisu",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/tusaukeser",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/betashar",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/asar",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/erulik",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/syrga-salu",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/bata-beru",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/shashu",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/traditions/qymyzmuryndyq",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ai-assistant",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        286,
+        406
+      ],
+      "bitmap": [
+        286,
+        406
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        326,
+        452
+      ],
+      "bitmap": [
+        326,
+        452
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        356,
+        490
+      ],
+      "bitmap": [
+        356,
+        489
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        396,
+        500
+      ],
+      "bitmap": [
+        396,
+        500
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        710,
+        500
+      ],
+      "bitmap": [
+        710,
+        500
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        762,
+        500
+      ],
+      "bitmap": [
+        762,
+        500
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        622,
+        445
+      ],
+      "bitmap": [
+        622,
+        445
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        798,
+        620
+      ],
+      "bitmap": [
+        798,
+        620
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        786,
+        300
+      ],
+      "bitmap": [
+        786,
+        300
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        874,
+        300
+      ],
+      "bitmap": [
+        874,
+        300
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        726,
+        476
+      ],
+      "bitmap": [
+        726,
+        475
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/research",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ethics",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/posters",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 768,
+    "bodyWidth": 768,
+    "rootWidth": 768,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 820,
+    "bodyWidth": 820,
+    "rootWidth": 820,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1024,
+    "bodyWidth": 1024,
+    "rootWidth": 1024,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1440,
+    "bodyWidth": 1440,
+    "rootWidth": 1440,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 844,
+    "bodyWidth": 844,
+    "rootWidth": 844,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 932,
+    "bodyWidth": 932,
+    "rootWidth": 932,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1180,
+    "bodyWidth": 1180,
+    "rootWidth": 1180,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "320x700",
+    "width": 320,
+    "docWidth": 320,
+    "bodyWidth": 320,
+    "rootWidth": 320,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "360x780",
+    "width": 360,
+    "docWidth": 360,
+    "bodyWidth": 360,
+    "rootWidth": 360,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "390x844",
+    "width": 390,
+    "docWidth": 390,
+    "bodyWidth": 390,
+    "rootWidth": 390,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "430x932",
+    "width": 430,
+    "docWidth": 430,
+    "bodyWidth": 430,
+    "rootWidth": 430,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "768x1024",
+    "width": 768,
+    "docWidth": 760,
+    "bodyWidth": 760,
+    "rootWidth": 760,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "820x1180",
+    "width": 820,
+    "docWidth": 812,
+    "bodyWidth": 812,
+    "rootWidth": 812,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "932x430",
+    "width": 932,
+    "docWidth": 924,
+    "bodyWidth": 924,
+    "rootWidth": 924,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/missing",
+    "viewport": "1180x820",
+    "width": 1180,
+    "docWidth": 1172,
+    "bodyWidth": 1172,
+    "rootWidth": 1172,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  }
+]

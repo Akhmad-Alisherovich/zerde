@@ -60,10 +60,14 @@ export const WebARCameraViewer: React.FC<WebARCameraViewerProps> = ({ scenarioId
     const resize = () => {
       if (renderer.xr.isPresenting) return;
       const c = containerRef.current; if (!c) return;
-      renderer.setSize(Math.max(1, c.clientWidth), Math.max(1, c.clientHeight));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      renderer.setSize(Math.max(1, c.clientWidth), Math.max(1, c.clientHeight), false);
       camera.aspect = c.clientWidth / Math.max(1, c.clientHeight); camera.updateProjectionMatrix();
     };
     const observer = new ResizeObserver(resize); observer.observe(containerRef.current); resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('orientationchange', resize);
+    window.addEventListener('fullscreenchange', resize);
     const overlay = overlayRef.current;
     const preventXRSelect = (event: Event) => event.preventDefault();
     overlay?.addEventListener('beforexrselect', preventXRSelect);
@@ -120,7 +124,11 @@ export const WebARCameraViewer: React.FC<WebARCameraViewerProps> = ({ scenarioId
       renderer.render(scene, camera);
     });
     return () => {
-      cancelled = true; observer.disconnect(); overlay?.removeEventListener('beforexrselect', preventXRSelect); renderer.setAnimationLoop(null);
+      cancelled = true; observer.disconnect();
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('orientationchange', resize);
+      window.removeEventListener('fullscreenchange', resize);
+      overlay?.removeEventListener('beforexrselect', preventXRSelect); renderer.setAnimationLoop(null);
       renderer.xr.removeEventListener('sessionstart', onSessionStart);
       hitSource?.cancel(); const session = sessionRef.current; sessionRef.current = null;
       if (session) void session.end().catch(() => undefined);
@@ -167,30 +175,30 @@ export const WebARCameraViewer: React.FC<WebARCameraViewerProps> = ({ scenarioId
     return `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelURL)}&mode=ar_preferred&title=${encodeURIComponent(asset.title)}#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end;`;
   })();
   return <div className="rounded-3xl overflow-hidden border border-[#00BFFF]/30 bg-[#03112E]">
-    <div ref={containerRef} className="relative h-[540px] sm:h-[620px]">
+    <div ref={containerRef} className="relative h-[clamp(360px,62svh,540px)] sm:h-[620px]">
       <canvas ref={canvasRef} className="w-full h-full block" />
-      <div ref={overlayRef} className="absolute inset-0 pointer-events-none p-5 flex flex-col justify-between text-white">
+      <div ref={overlayRef} className="absolute inset-0 pointer-events-none p-2 sm:p-5 flex flex-col justify-between text-white">
         <div className="p-3 rounded-xl bg-[#051B44]/90 max-w-md pointer-events-auto" role="status">
           <strong className="text-[#00E5FF] text-sm">{asset.title} • WebXR</strong>
           <p className="text-xs mt-2 text-slate-200">{active ? (status === 'placed' ? 'Үлгі қойылды. Құрылғыны айналдырып зерттеңіз.' : 'Жарық бетке бағыттаңыз. Белгі пайда болғанда экранды түртіңіз.') : 'Камера AR бұл ортада тексерілмеген. Қолдау құрылғы мен шолушыға байланысты.'}</p>
         </div>
         {!active && <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center pointer-events-none">
-          <div className="max-w-sm p-6 rounded-2xl bg-[#051B44]/95 border border-[#00BFFF]/30 pointer-events-auto">
+          <div className="max-w-sm max-h-[calc(100dvh-8rem)] overflow-y-auto p-4 sm:p-6 rounded-2xl bg-[#051B44]/95 border border-[#00BFFF]/30 pointer-events-auto">
             {supported ? <Camera className="w-10 h-10 mx-auto text-cyan-300 mb-4" /> : <CameraOff className="w-10 h-10 mx-auto text-amber-300 mb-4" />}
             <p className="text-sm mb-4">{status === 'loading' ? 'GLB үлгісі жүктелуде…' : supported === null ? 'WebXR қолдауы тексерілуде…' : supported ? 'AR сессиясын іске қосу' : 'Бұл шолушыда WebXR AR қолжетімсіз. 3D режимінде үлгіні зерттеуге болады.'}</p>
-            {supported && <button onClick={startAR} disabled={status !== 'ready'} className="bg-[#00BFFF] text-[#051B44] px-4 py-2 rounded-xl font-bold text-sm disabled:opacity-40">{status === 'starting' ? 'Сессия ашылуда…' : 'AR іске қосу'}</button>}
+            {supported && <button onClick={startAR} disabled={status !== 'ready'} className="bg-[#00BFFF] text-[#051B44] px-4 min-h-11 rounded-xl font-bold text-sm disabled:opacity-40">{status === 'starting' ? 'Сессия ашылуда…' : 'AR іске қосу'}</button>}
             {nativeARLink && <a href={nativeARLink} className="block text-cyan-300 text-xs underline mt-4">Android Scene Viewer арқылы ашу (тексерілмеген)</a>}
-            <button onClick={onFallbackTo3D} className="block mx-auto mt-4 text-xs underline text-slate-200">3D көрініске өту</button>
+            <button onClick={onFallbackTo3D} className="block mx-auto mt-4 px-3 min-h-11 text-sm underline text-slate-200">3D көрініске өту</button>
             {message && <p role="alert" className="text-xs text-amber-200 mt-4 break-words">{message}</p>}
           </div>
         </div>}
         {active && <div className="pointer-events-auto bg-[#051B44]/90 rounded-xl p-3 text-xs flex flex-wrap gap-3 items-center" onClick={e => e.stopPropagation()}>
-          {status === 'scanning' && <button onClick={place} className="px-3 py-2 bg-cyan-500 rounded-lg text-slate-950 font-bold">Бетке қою</button>}
-          <button aria-label="Қайта орналастыру" onClick={() => { placementRef.current = false; if (modelRef.current) modelRef.current.visible = false; setStatus('scanning'); }}><RefreshCw className="w-4 h-4" /></button>
-          <label>Өлшем <input aria-label="AR өлшемі" type="range" min="0.05" max="0.5" step="0.01" value={scale} onChange={e => setScale(Number(e.target.value))} className="w-24 accent-cyan-400 ml-2" /></label>
-          <label>Бұру <input aria-label="AR бұрылуы" type="range" min="0" max={Math.PI*2} step="0.05" value={rotation} onChange={e => setRotation(Number(e.target.value))} className="w-24 accent-amber-400 ml-2" /></label>
-          {asset.duration > 0 && <button onClick={() => { replayRef.current = true; }} className="underline">Кезеңдерді ойнату</button>}
-          <button onClick={() => void sessionRef.current?.end()} className="ml-auto px-3 py-2 bg-white/10 rounded-lg">AR жабу</button>
+          {status === 'scanning' && <button onClick={place} className="px-3 min-h-11 bg-cyan-500 rounded-lg text-slate-950 font-bold">Бетке қою</button>}
+          <button className="min-w-11 min-h-11 flex items-center justify-center" aria-label="Қайта орналастыру" onClick={() => { placementRef.current = false; if (modelRef.current) modelRef.current.visible = false; setStatus('scanning'); }}><RefreshCw className="w-4 h-4" /></button>
+          <label className="flex items-center">Өлшем <input aria-label="AR өлшемі" type="range" min="0.05" max="0.5" step="0.01" value={scale} onChange={e => setScale(Number(e.target.value))} className="w-24 min-h-11 accent-cyan-400 ml-2" /></label>
+          <label className="flex items-center">Бұру <input aria-label="AR бұрылуы" type="range" min="0" max={Math.PI*2} step="0.05" value={rotation} onChange={e => setRotation(Number(e.target.value))} className="w-24 min-h-11 accent-amber-400 ml-2" /></label>
+          {asset.duration > 0 && <button onClick={() => { replayRef.current = true; }} className="min-h-11 underline">Кезеңдерді ойнату</button>}
+          <button onClick={() => void sessionRef.current?.end()} className="ml-auto px-3 min-h-11 bg-white/10 rounded-lg">AR жабу</button>
         </div>}
       </div>
     </div>

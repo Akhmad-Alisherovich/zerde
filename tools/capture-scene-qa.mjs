@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 
 const chromePath = process.env.ZERDE_CHROME ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const origin = process.env.ZERDE_ORIGIN ?? 'http://127.0.0.1:5173';
-const output = path.resolve('docs/validation/browser');
+const output = path.resolve(process.env.ZERDE_QA_OUTPUT ?? 'docs/validation/browser');
 await fs.mkdir(output, { recursive: true });
 const profile = await fs.mkdtemp(path.join(os.tmpdir(), 'zerde-3d-qa-'));
 const chrome = spawn(chromePath, [
@@ -48,7 +48,7 @@ try {
   function send(method, params = {}) {
     const id = ++sequence;
     return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => { if (pending.delete(id)) reject(new Error(`${method} timed out`)); }, 30000);
+      const timer = setTimeout(() => { if (pending.delete(id)) reject(new Error(`${method} timed out`)); }, method === 'Page.captureScreenshot' ? 90000 : 30000);
       pending.set(id, { method, resolve, reject, timer });
       socket.send(JSON.stringify({ id, method, params }));
     });
@@ -133,9 +133,18 @@ try {
   const measureOnly = process.argv.includes('--measure-only');
   const detailsOnly = process.argv.includes('--details');
   const characterDetails = process.argv.includes('--character-details');
+  const poseReview = process.argv.includes('--pose-review');
   const switchTest = process.argv.includes('--switch-test');
-  const requested = process.argv.slice(2).filter(arg => !['--previews','--measure-only','--details','--character-details','--switch-test'].includes(arg));
-  if (switchTest) {
+  const requested = process.argv.slice(2).filter(arg => !['--previews','--measure-only','--details','--character-details','--pose-review','--switch-test'].includes(arg));
+  if (poseReview) {
+    await navigate('ar-betashar');
+    for (const time of [0, 2, 5.5, 9.4, 11.8]) {
+      await scrub(time);
+      await screenshot(`betashar-pose-${String(time).replace('.', '-')}`);
+    }
+    await orbit(576);
+    await screenshot('betashar-rear-180');
+  } else if (switchTest) {
     await navigate('ar-besikke-salu');
     const cases = [
       ['Беташар','betashar'],['Сырға салу','syrga-salu'],['Бата беру','bata-beru'],

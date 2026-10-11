@@ -1,0 +1,245 @@
+[
+  {
+    "route": "/",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 836,
+    "bodyWidth": 836,
+    "rootWidth": 836,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        786,
+        300
+      ],
+      "bitmap": [
+        786,
+        300
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1016,
+    "bodyWidth": 1016,
+    "rootWidth": 1016,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        622,
+        445
+      ],
+      "bitmap": [
+        622,
+        445
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/ar-gallery",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1432,
+    "bodyWidth": 1432,
+    "rootWidth": 1432,
+    "offenders": [],
+    "canvas": {
+      "css": [
+        798,
+        620
+      ],
+      "bitmap": [
+        798,
+        620
+      ]
+    },
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "844x390",
+    "width": 844,
+    "docWidth": 844,
+    "bodyWidth": 844,
+    "rootWidth": 844,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "1024x768",
+    "width": 1024,
+    "docWidth": 1024,
+    "bodyWidth": 1024,
+    "rootWidth": 1024,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  },
+  {
+    "route": "/exhibition",
+    "viewport": "1440x900",
+    "width": 1440,
+    "docWidth": 1440,
+    "bodyWidth": 1440,
+    "rootWidth": 1440,
+    "offenders": [],
+    "canvas": null,
+    "fonts": [
+      [
+        "Zerde Sans",
+        true
+      ],
+      [
+        "Zerde Serif",
+        false
+      ],
+      [
+        "Zerde Mono",
+        false
+      ]
+    ]
+  }
+]

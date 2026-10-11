@@ -110,7 +110,9 @@ def besikke_salu():
 
 def instrument(g,m,parent):
     """Two-string dombra across the performer's torso, in performer coordinates."""
-    inst=g.node('dombyra',parent,extras={'hotspot':'dombyra'})
+    # The soundboard sits between the two anatomical hands in the akyn's
+    # animated rest pose; the right hand frets and the left reaches the strings.
+    inst=g.node('dombyra',parent,pos=(0,0,-.085),extras={'hotspot':'dombyra'})
     # The corpus is a closed, pear-profile shell with a distinct flat soundboard.
     # Long axis points toward the bride; local positive Z faces the viewer.
     def body(u,v):
@@ -136,7 +138,7 @@ def instrument(g,m,parent):
 
 def betashar():
     g=GLB('betashar');m=mats(g);room(g,m,3.3)
-    bride,bb,_=person(g,m,'bride',(-.55,0,0),gender='female',pose='working')
+    bride,bb,_=person(g,m,'bride',(-.55,0,0),gender='female',pose='relaxed')
     poet,pb,_=person(g,m,'akyn',(1.08,0,-.25),pose='working',yaw=-math.pi/3)
     person(g,m,'relative',(-1.67,0,-.48),gender='female',yaw=math.pi/3)
     # Contemporary ceremonial interpretation: fitted bodice, separately cut
@@ -189,31 +191,47 @@ def betashar():
     for side in [-1,1]:
         runner(g,f'saukele-side-pendant-{side}',[[side*.116,1.68,.02],
                [side*.135,1.50,.035],[side*.119,1.37,.05]],m,headdress,.006,'silver')
-    veilmat=g.material('light-woven-bridal-veil',(.93,.88,.80),tex='linen',rough=.97)
-    g.doc['materials'][veilmat]['pbrMetallicRoughness']['baseColorFactor'][3]=.68
+    veilmat=g.material('light-woven-bridal-veil',(.93,.88,.80),tex='linen',rough=.99)
+    g.doc['materials'][veilmat]['pbrMetallicRoughness']['baseColorFactor'][3]=.82
     g.doc['materials'][veilmat]['alphaMode']='BLEND'
     # Stationary back and shoulder drape. Separate front fold is lifted after
     # the song while the rest stays attached to the headdress.
     back=g.node('bridal-back-drape',bride,extras={'hotspot':'veil'})
     def back_veil(u,v):
         a=math.pi+u*math.pi
-        r=.11+.14*v
-        return [r*math.cos(a),1.79-.54*v+.012*math.sin(u*math.pi*10)*v,
-                r*math.sin(a)-.006*math.sin(v*22+u*9)]
+        r=.115+.19*math.sin(v*math.pi*.6)
+        return [r*math.cos(a)+.008*math.sin(9*a+v*7)*v,
+                1.80-.66*v+.012*math.sin(u*math.pi*10)*v,
+                r*math.sin(a)-.010*math.sin(v*17+u*9)*v]
     cloth(g,'woven-veil-over-shoulders',back_veil,veilmat,back,rows=36,cols=72)
     for u in [0,1]:
         runner(g,f'back-veil-finished-edge-{u}',[back_veil(u,t) for t in np.linspace(0,1,48)],m,back,.003,'linen')
-    veil=g.node('bridal-veil',bride,pos=(0,1.83,.11),extras={'hotspot':'veil'})
+    veil=g.node('bridal-veil',bride,pos=(0,1.82,.10),extras={'hotspot':'veil'})
     def front_veil(u,v):
-        width=.145+.085*v;x=(u*2-1)*width
-        return [x,-.47*v+.010*math.cos(u*TAU*4)*v,
-                .035+.13*v-.025*(u*2-1)**2+.009*math.sin(u*TAU*6)*v]
-    cloth(g,'front-veil-draped-folds',front_veil,veilmat,veil,rows=36,cols=48)
+        span=u*2-1
+        width=.125+.19*math.sin(v*math.pi*.62)
+        # Gravity makes the centre sink; vertical woven folds become stronger
+        # below the brow and the sides wrap over the shoulders.
+        x=span*width+.005*math.sin(u*TAU*7)*v
+        y=-.54*v-.028*(1-span*span)*math.sin(math.pi*v)
+        z=.045+.16*v-.11*span*span*v+.013*math.sin(u*TAU*5)*v
+        return [x,y,z]
+    cloth(g,'front-veil-crown-panel',lambda u,v:front_veil(u,v*.55),
+          veilmat,veil,rows=24,cols=48)
+    hinge=np.asarray(front_veil(.5,.55))
+    hanging=g.node('bridal-veil-hanging-fold',veil,pos=hinge.tolist())
+    def hanging_panel(u,v):
+        return np.asarray(front_veil(u,.55+.45*v))-hinge
+    cloth(g,'front-veil-hanging-panel',hanging_panel,veilmat,hanging,rows=22,cols=48)
     for u in [0,1]:
-        runner(g,f'front-veil-sewn-selvedge-{u}',[front_veil(u,t) for t in np.linspace(0,1,48)],
-               m,veil,.003,'linen')
+        runner(g,f'front-veil-upper-selvedge-{u}',
+               [front_veil(u,t) for t in np.linspace(0,.55,28)],m,veil,.003,'linen')
+        runner(g,f'front-veil-lower-selvedge-{u}',
+               [hanging_panel(u,t) for t in np.linspace(0,1,24)],m,hanging,.003,'linen')
     g.track(veil,'rotation',[0,7.7,8.6,9.6,11.5,12],
-            [quat([1,0,0],a) for a in [0,0,.55,1.65,2.50,2.50]],'VEC4')
+            [quat([1,0,0],a) for a in [0,0,.30,1.05,1.45,1.45]],'VEC4')
+    g.track(hanging,'rotation',[0,7.7,8.6,9.6,10.4,12],
+            [quat([1,0,0],a) for a in [0,0,-.10,-.50,-.22,0]],'VEC4')
     # At the end of the lift the front panel settles over the back of the
     # headdress. Keep a separate folded mesh so no rigid panel stays upright.
     folded=g.node('lifted-veil-resting-fold',bride,extras={'hotspot':'veil'})

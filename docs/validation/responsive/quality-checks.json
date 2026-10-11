@@ -1,0 +1,44 @@
+[
+  {
+    "check": "Mobile DPR 3 capped at 1.5",
+    "ratio": 1.5,
+    "size": {
+      "dpr": 3,
+      "css": [
+        356,
+        489.515625
+      ],
+      "bitmap": [
+        534,
+        734
+      ]
+    }
+  },
+  {
+    "check": "Desktop DPR 2 capped at 1.75",
+    "ratio": 1.75,
+    "size": {
+      "dpr": 2,
+      "css": [
+        798,
+        620
+      ],
+      "bitmap": [
+        1396,
+        1085
+      ]
+    }
+  },
+  {
+    "check": "Reduced motion switches smooth scrolling off",
+    "media": true,
+    "scroll": "auto"
+  },
+  {
+    "check": "All 3 local families loaded at weights 400–900",
+    "faces": 18
+  },
+  {
+    "check": "Dialog takes focus, Escape closes, focus returns to trigger"
+  }
+]
