@@ -120,7 +120,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
                 }`}
               >
                 <Film className="w-4 h-4" />
-                <span>2. Кинематикалық медиа (Nano Banana & Veo)</span>
+                <span>2. Этнографиялық медиа</span>
               </button>
             )}
 
@@ -283,7 +283,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
                   className="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
                 >
                   <Film className="w-4 h-4" />
-                  <span>Кинематикалық кадрлар мен жақын пландарды ашу</span>
+                  <span>Этнографиялық медиа мен жақын пландарды ашу</span>
                 </button>
               )}
             </div>

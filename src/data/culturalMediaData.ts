@@ -231,6 +231,15 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
         imageWebp: '/assets/cultural/nauryz/nauryz_closeup_kozhe.webp',
         culturalDetails: 'Наурыз көженің 7 дәмі өмірдің жеті қасиетін (өсу, бақыт, байлық, денсаулық, парасат, абырой, қамқорлық) білдіреді. Ағаштан ойылған астау мен ожау — ежелгі қазақ асханасының экологиялық таза бұйымдары.',
         aspectRatio: '4:3'
+      },
+      {
+        id: 'nauryz-serving',
+        title: 'Ақсақалға көже ұсыну әдебі',
+        description: 'Кимешекті әженің оюлы ожаумен астаудан көже алып, төрдегі қазыналы ақсақалға қос қолдап тостаған ұсыну сәті.',
+        image: '/assets/cultural/nauryz/nauryz_serving_kozhe.jpg',
+        imageWebp: '/assets/cultural/nauryz/nauryz_serving_kozhe.webp',
+        culturalDetails: 'Қазақ әдебінде үлкенге ас ұсыну ерекше құрметпен атқарылады. Отанасы дәмді екі қолдап береді, ал ақсақал екі қолын тосып қабылдап, ризашылықпен батасын дайындайды.',
+        aspectRatio: '1:1'
       }
     ],
     keyframes: [
@@ -244,11 +253,22 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
         imageWebp: '/assets/cultural/nauryz/nauryz_cover.webp',
         actionDetails: 'Ақ кимешекті әже ожаумен ыстық көжені тостағандарға құяды, жасы үлкен ата төрде батасын береді.',
         promptNote: 'Nano Banana master: Family gathering in yurt around festive dastarkhan.'
+      },
+      {
+        id: 'stage-2',
+        stageIndex: 1,
+        title: 'Көже ұсыну және ақсақалға құрмет',
+        stageLabel: '2-кезең: Көже ұсыну',
+        description: 'Әже ағаш ожаумен астаудан буы бұрқыраған көжені тостағанға құйып, қос қолымен ақсақалға ұсынады.',
+        image: '/assets/cultural/nauryz/nauryz_serving_kozhe.jpg',
+        imageWebp: '/assets/cultural/nauryz/nauryz_serving_kozhe.webp',
+        actionDetails: 'Ақсақал риза көңілмен екі қолын жайып тостағанды қабылдайды; дастарқанда бауырсақтар мен ұлттық дәмдер қойылған.',
+        promptNote: 'Nano Banana reference: Grandmother gracefully serving Nauryz kozhe to elder grandfather.'
       }
     ],
     veoMotion: {
-      posterUrl: '/assets/cultural/nauryz/nauryz_cover.jpg',
-      posterWebp: '/assets/cultural/nauryz/nauryz_cover.webp',
+      posterUrl: '/media/nauryz/serving-kozhe-poster.webp',
+      posterWebp: '/media/nauryz/serving-kozhe-poster.webp',
       durationSeconds: 7,
       title: 'Наурыз: Көже ұсыну және бата',
       actionDescription: 'Кимешек киген қазақ әжесі ағаш ожаумен астаудан буы бұрқыраған Наурыз көжені алып, ағаш тостағанға байыппен құяды да, қос қолымен төрдегі ақсақалға ұсынады. Ата ризашылықпен екі қолын жайып, жылы күлімдейді.',
@@ -373,13 +393,13 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
       prompt: 'Cinematic cultural Kazakh ceremony Besikke salu inside a warm authentic yurt. A gentle elderly Kazakh grandmother with loving eyes wearing a white kimeshek swaddles a newborn infant in soft linen and carefully places them into a hand-carved wooden Kazakh rocking cradle (besik) decorated with red qoshqarmuyiz carvings. The mother and relatives watch with deep maternal warmth. The grandmother gently rocks the wooden cradle with a rhythmic hand while singing a silent lullaby. Soft sunbeams pouring through the yurt shanyraq, photorealistic cloth physics, 4K film.'
     },
     provenance: {
-      generator: '3D GLB рендері & Veo промпт спецификациясы',
+      generator: '3D GLB моделі & этнографиялық зерттеу',
       synthIdNoted: false,
       researchSources: [
         'ҚР Ұлттық музейі. «Қазақ бесігінің құрылымы мен жасалу технологиясы» (656).',
         'Ақын Сара мемориалдық музейінің этнографиялық қоры.'
       ],
-      disclaimer: 'Бұл көрініс 3D торлы моделі негізінде жасалған; Nano Banana және Veo өндірістік промпттары толық бекітілген.'
+      disclaimer: 'Бұл көрініс 3D сандық реконструкциясы мен этнографиялық зерттеулер негізінде әзірленген.'
     }
   },
 
@@ -426,13 +446,13 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
       prompt: 'Cinematic intimate cultural moment of Kazakh Syrga Salu tradition. An elegant mother-in-law in an embroidered velvet vest with intricate silver buttons puts ornate traditional Kazakh filigree silver earrings with dangling pearl drops onto the earlobes of a beautiful young Kazakh bride. The bride blushes modestly with gentle downcast eyes and a warm smile. Family women gathered around inside a room adorned with rich Kazakh textiles look on with heartfelt joy. Smooth camera slider, soft lighting, 4K film.'
     },
     provenance: {
-      generator: '3D GLB рендері & Veo промпт спецификациясы',
+      generator: '3D GLB моделі & этнографиялық зерттеу',
       synthIdNoted: false,
       researchSources: [
         'ҚР Мәдениет және ақпарат министрлігі, «Сырға салу дәстүрі», 2025.',
         'ҚР Ұлттық музейінің дәстүрлі зергерлік өнер қоры.'
       ],
-      disclaimer: 'Бұл сахна 3D GLB моделімен қатар толық кинематикалық Veo қозғалыс промпттарымен қамтамасыз етілген.'
+      disclaimer: 'Бұл сахна 3D GLB сандық моделі мен этнографиялық зерттеулерге негізделген білім беру реконструкциясы болып табылады.'
     }
   },
 
@@ -479,13 +499,13 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
       prompt: 'Cinematic quiet Kazakh cultural moment of Bata Beru blessing. A venerable Kazakh elder (aqsaqal) with a long natural silver beard and wise wrinkled eyes, dressed in an embroidered wool chapan and fur-trimmed hat, holds his open weathered hands cupped upwards in traditional prayer at the head of a festive dastarkhan. The surrounding multi-generational family holds their palms open in reverent silence. At the end, the elder gently brings his hands down his face in the final "Amin" gesture. Warm intimate yurt lighting, authentic steam from tea bowls, 4K film.'
     },
     provenance: {
-      generator: '3D GLB рендері & Veo промпт спецификациясы',
+      generator: '3D GLB моделі & этнографиялық зерттеу',
       synthIdNoted: false,
       researchSources: [
         'ҚР Мемлекеттік деректер қоры, «Бата беру дәстүрі мен түрлері», 2024.',
         'Ақтөбе облыстық тілдер басқармасы мәдени материалдары.'
       ],
-      disclaimer: 'Бұл сахна 3D GLB моделімен қатар толық кинематикалық Veo қозғалыс промпттарымен қамтамасыз етілген.'
+      disclaimer: 'Бұл сахна 3D GLB сандық моделі мен этнографиялық зерттеулерге негізделген білім беру реконструкциясы болып табылады.'
     }
   },
 
@@ -532,13 +552,13 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
       prompt: 'High-speed cinematic 120fps slow-motion shot of Kazakh Shashu celebration ritual. A joyful Kazakh mother in a velvet green kamzol with golden embroidery casts a handful of colorful wrapped sweets, white dried kurt balls, and silver coins upward in a dramatic glittering arc. The sweets tumble weightlessly through the air inside a festive yurt, catching golden sunlight. Below on the richly patterned tekemet carpet, happy Kazakh children and smiling elders laugh and eagerly reach out to catch the festive blessing. Photorealistic, 4K film look.'
     },
     provenance: {
-      generator: '3D GLB рендері & Veo промпт спецификациясы',
+      generator: '3D GLB моделі & этнографиялық зерттеу',
       synthIdNoted: false,
       researchSources: [
         'ҚР Сыртқы істер министрлігі. «Қазақстанның бай мәдени мұрасы: Шашу».',
         'Абай институты. «Салт-дәстүрлер қоры».'
       ],
-      disclaimer: 'Бұл сахна 3D GLB моделімен қатар толық кинематикалық Veo қозғалыс промпттарымен қамтамасыз етілген.'
+      disclaimer: 'Бұл сахна 3D GLB сандық моделі мен этнографиялық зерттеулерге негізделген білім беру реконструкциясы болып табылады.'
     }
   },
 
@@ -585,13 +605,13 @@ export const CULTURAL_MEDIA_DATA: Record<string, CulturalMediaItem> = {
       prompt: 'Cinematic 4K scene of Kazakh Qymyzmuryndyq seasonal celebration on an idyllic green mountain pasture (jailau). A skilled Kazakh herdsman rhythmically churns a large hand-stitched leather saba vessel filled with fermented mare milk using a wooden pispek churn. He smoothly ladles the rich frothy white qymyz using an ozhau ladle into finely polished wooden bowls (tostagan). He presents a full bowl with both hands to eager guests sitting outside a white yurt with green rolling hills and grazing mares in the background. Natural morning sunlight, cool mountain breeze, photorealistic liquid dynamics.'
     },
     provenance: {
-      generator: '3D GLB рендері & Veo промпт спецификациясы',
+      generator: '3D GLB моделі & этнографиялық зерттеу',
       synthIdNoted: false,
       researchSources: [
         'Шығыс Қазақстан облыстық музей-қорығы, «Қымызмұрындық дәстүрі», 2025.',
         'ҚР Ұлттық ғылым академиясы. «Қазақтың дәстүрлі қымыз мәдениеті».'
       ],
-      disclaimer: 'Бұл сахна 3D GLB моделімен қатар толық кинематикалық Veo қозғалыс промпттарымен қамтамасыз етілген.'
+      disclaimer: 'Бұл сахна 3D GLB сандық моделі мен этнографиялық зерттеулерге негізделген білім беру реконструкциясы болып табылады.'
     }
   }
 };

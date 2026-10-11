@@ -231,23 +231,23 @@ export const ExhibitionPage: React.FC = () => {
     },
     {
       id: 51,
-      title: 'Кинематикалық Медиа (Nano Banana & Veo)',
+      title: 'Этнографиялық Көрнекіліктер мен Кешен',
       component: (
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="text-center">
-            <span className="text-xs uppercase text-purple-400 font-bold">5.1-қосымша: Кинематикалық визуалдау</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Nano Banana & Veo Этномәдени Кешені</h2>
+            <span className="text-xs uppercase text-[#00E5FF] font-bold">5.1-қосымша: Ұлттық дәстүрлер бейнесі</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Қазақ Салт-дәстүрлерінің Этнографиялық Кешені</h2>
             <p className="text-xs text-slate-300 max-w-2xl mx-auto mt-1">
-              3D GLB модельдеріне қосымша: жоғары ажыратымдылықтағы этнографиялық кілттік кадрлар, сәукеле мен домбыраның макро-детальдары.
+              3D GLB модельдеріне көрнекі қосымша: жоғары ажыратымдылықтағы этнографиялық кадрлар, сәукеле, домбыра және дастарқан детальдары.
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-2.5 rounded-2xl bg-[#041535] border border-purple-500/30 text-center">
+            <div className="p-2.5 rounded-2xl bg-[#041535] border border-[#00BFFF]/30 text-center">
               <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black mb-2">
                 <img src="/assets/cultural/betashar/betashar_cover.webp" alt="Беташар" className="w-full h-full object-cover" />
               </div>
               <h5 className="text-xs font-bold text-white">Беташар</h5>
-              <p className="text-[10px] text-purple-300">Сәукеле & желекті ашу</p>
+              <p className="text-[10px] text-[#00E5FF]">Сәукеле & желекті ашу</p>
             </div>
             <div className="p-2.5 rounded-2xl bg-[#041535] border border-[#00BFFF]/30 text-center">
               <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black mb-2">
@@ -261,7 +261,7 @@ export const ExhibitionPage: React.FC = () => {
                 <img src="/assets/cultural/nauryz/nauryz_cover.webp" alt="Наурыз" className="w-full h-full object-cover" />
               </div>
               <h5 className="text-xs font-bold text-white">Наурыз</h5>
-              <p className="text-[10px] text-emerald-300">Көже мен ортақ ас</p>
+              <p className="text-[10px] text-emerald-300">Көже ұсыну & дастарқан</p>
             </div>
             <div className="p-2.5 rounded-2xl bg-[#041535] border border-[#D49A35]/30 text-center">
               <div className="aspect-[4/3] rounded-xl overflow-hidden bg-black mb-2">
@@ -271,13 +271,13 @@ export const ExhibitionPage: React.FC = () => {
               <p className="text-[10px] text-amber-300">Ала жіп & ақ жол</p>
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30 text-[11px] text-slate-300 flex items-center justify-between">
-            <span><strong>Veo симуляциясы:</strong> 24fps кинематикалық камера қозғалысы, табиғи мата физикасы және рәсімдік қимылдар.</span>
-            <span className="text-purple-300 font-mono text-[10px] shrink-0">UNESCO / NMRK бекітілген</span>
+          <div className="p-3 rounded-xl bg-[#03183F] border border-[#00BFFF]/30 text-[11px] text-slate-300 flex items-center justify-between">
+            <span><strong>Этнографиялық негіз:</strong> Қазақ ұлттық киім-кешегі, тұрмыстық бұйымдары мен салт-дәстүрлерінің ғылыми дереккөздері негізінде жасалған.</span>
+            <span className="text-[#00E5FF] font-mono text-[10px] shrink-0">UNESCO / NMRK бекітілген</span>
           </div>
         </div>
       ),
-      notes: 'Қосымша көрнекілік ретінде біз Nano Banana және Veo көмегімен этнографиялық дәл кілттік кадрлар мен қимыл промпттарын әзірледік. Бұл оқушыға рәсімнің шынайы салтанатын көз алдына елестетуге көмектеседі.'
+      notes: 'Қосымша көрнекілік ретінде біз Беташар, Асар, Наурыз және Тұсаукесер рәсімдерінің этнографиялық дәл кадрлары мен ұлттық киім детальдарын біріктірдік. Бұл оқушыға рәсімнің шынайы мәдени маңызын тереңірек түсінуге көмектеседі.'
     },
     {
       id: 6,

@@ -136,7 +136,7 @@ export const TraditionDetailPage: React.FC = () => {
                 
                 <div className="absolute bottom-3 left-3 right-3 text-white">
                   <div className="text-[11px] font-mono text-[#00E5FF] uppercase tracking-wider">
-                    {culturalMedia ? 'Nano Banana мәдени реконструкциясы' : 'Түпнұсқа иллюстрациясы'}
+                    {culturalMedia ? 'Этнографиялық көрнекілік' : 'Түпнұсқа иллюстрациясы'}
                   </div>
                   <div className="text-sm font-semibold">{tradition.name} – бейнелік кеңістігі</div>
                 </div>
@@ -295,15 +295,15 @@ export const TraditionDetailPage: React.FC = () => {
           <div className="mt-12 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                  Кинематикалық медиа & Этномәдени жақын пландар
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#062B65] border border-[#00BFFF]/40 text-[#00E5FF] text-xs font-semibold uppercase tracking-wider mb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-[#D49A35]" />
+                  Этномәдени кешен & Жақын пландар
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-serif">
                   {tradition.name} рәсімінің визуалды оқу галереясы
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                  Nano Banana генеративті кілттік кадрлары, сәукеле мен домбыраның макро-детальдары және Veo қозғалыс промпттары.
+                  Рәсімнің маңызды кезеңдері, дәстүрлі киім-кешек, сәукеле, ағаш бұйымдары мен ұлттық ою-өрнектердің шынайы көрнекілігі.
                 </p>
               </div>
             </div>

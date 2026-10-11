@@ -99,7 +99,7 @@ try {
   // 2. AR Gallery Betashar Cinematic Media Tab
   await snap('/ar-gallery?scenario=ar-betashar', '02-ar-gallery-cinematic-betashar.png', async () => {
     await evaluate(`(() => {
-      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Кинематикалық медиа'));
+      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Этнографиялық медиа'));
       if (btn) btn.click();
     })()`);
   });
@@ -107,12 +107,12 @@ try {
   // 3. AR Gallery Betashar Closeups Tab
   await snap('/ar-gallery?scenario=ar-betashar', '03-ar-gallery-closeups-betashar.png', async () => {
     await evaluate(`(() => {
-      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Кинематикалық медиа'));
+      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Этнографиялық медиа'));
       if (btn) btn.click();
     })()`);
     await pause(400);
     await evaluate(`(() => {
-      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Жақын пландар'));
+      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Мәдени детальдар'));
       if (btn) btn.click();
     })()`);
   });
@@ -145,7 +145,23 @@ try {
     await pause(500);
   });
 
-  // 8. Mobile viewport check (390x844)
+  // 8. Nauryz AR Gallery Ethnographic Media Tab (with new serving kozhe visual)
+  await snap('/ar-gallery?scenario=ar-nauryz', '09-ar-gallery-cinematic-nauryz.png', async () => {
+    await evaluate(`(() => {
+      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Этнографиялық медиа'));
+      if (btn) btn.click();
+    })()`);
+  });
+
+  // 9. Nauryz Tradition Detail Page
+  await snap('/traditions/nauryz', '10-tradition-detail-nauryz.png', async () => {
+    await evaluate(`(() => {
+      const el = document.querySelector('h3.font-serif');
+      if (el) el.scrollIntoView({ behavior: 'instant', block: 'center' });
+    })()`);
+  });
+
+  // 10. Mobile viewport check (390x844)
   console.log('Switching to mobile viewport (390x844)...');
   await send('Emulation.setDeviceMetricsOverride', {
     width: 390,
@@ -155,7 +171,7 @@ try {
   });
   await snap('/ar-gallery?scenario=ar-betashar', '08-mobile-ar-gallery-cinematic.png', async () => {
     await evaluate(`(() => {
-      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Кинематикалық медиа'));
+      const btn = [...document.querySelectorAll('button')].find(b => b.innerText.includes('Этнографиялық медиа'));
       if (btn) btn.click();
       window.scrollTo(0, 500);
     })()`);
