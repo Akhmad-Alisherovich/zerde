@@ -28,7 +28,7 @@ def textile(g, name, x0, x1, z0, z1, y, mat, parent=0, sag=.008):
 
 def room(g, m, radius=2.6):
     ground(g, m, radius)
-    textile(g, 'woven-domestic-floor', -1.55, 1.55, -1.55, 1.55, .012, m['felt'], sag=0)
+    textile(g, 'woven-domestic-floor', -1.55, 1.55, -1.55, 1.55, .012, m['rug'], sag=0)
     # Three nested weave borders make the rug readable from above without
     # asserting a named ornamental pattern or a specific historic provenance.
     for k in range(3):
@@ -108,21 +108,29 @@ def besikke_salu():
     return g.write(12)
 
 
-def instrument(g,m):
-    inst=g.node('dombyra',extras={'hotspot':'dombyra'})
-    # Hollow pear-shaped corpus, soundboard edge, narrow neck, two strings and
-    # discrete frets. A generic contemporary dombra, not a named maker's work.
-    lathe(g,'dombyra-corpus',[(0,0),(.085,.02),(.165,.13),(.16,.27),(.10,.38),(.045,.43)],
-          m['wood'],inst,centre=(1.06,.77,.22),segments=48)
-    runner(g,'dombyra-neck',[[1.06,1.19,.22],[1.06,1.83,.22]],m,inst,.050)
-    runner(g,'dombyra-head',[[1.06,1.83,.22],[1.09,1.95,.22]],m,inst,.078)
-    for y in np.linspace(1.25,1.75,11):
-        runner(g,f'dombyra-fret-{y:.2f}',[[1.03,y,.254],[1.09,y,.254]],m,inst,.004,'darkcloth')
+def instrument(g,m,parent):
+    """Two-string dombra across the performer's torso, in performer coordinates."""
+    inst=g.node('dombyra',parent,extras={'hotspot':'dombyra'})
+    # The corpus is a closed, pear-profile shell with a distinct flat soundboard.
+    # Long axis points toward the bride; local positive Z faces the viewer.
+    def body(u,v):
+        a=u*TAU;x=.02+.48*v
+        ry=(.13+.075*v)*math.sin(math.pi*v)**.68
+        return [x,1.02+ry*math.cos(a),.31+.082*math.sin(a)*math.sin(math.pi*v)]
+    cloth(g,'dombyra-pear-corpus',body,m['wood'],inst,rows=38,cols=64)
+    def soundboard(u,v):
+        x=.025+.47*v;ry=(.13+.075*v)*math.sin(math.pi*v)**.68
+        return [x,1.02+(u*2-1)*ry,.395-.012*abs(u*2-1)]
+    cloth(g,'dombyra-soundboard',soundboard,m['wood'],inst,rows=36,cols=16)
+    runner(g,'dombyra-carved-edge',[body(.25,t) for t in np.linspace(0,1,64)],m,inst,.007,'darkcloth')
+    runner(g,'dombyra-neck',[[-.75,1.085,.31],[.03,1.025,.31]],m,inst,.058)
+    runner(g,'dombyra-head',[[-.86,1.09,.31],[-.75,1.085,.31]],m,inst,.08)
+    for x in np.linspace(-.70,-.05,11):
+        runner(g,f'dombyra-fret-{x:.2f}',[[x,1.051,.356],[x,1.105,.356]],m,inst,.004,'darkcloth')
     for side in [-1,1]:
-        runner(g,f'dombyra-string-{side}',[[1.06+side*.012,.86,.384],
-               [1.06+side*.012,1.85,.257]],m,inst,.0025,'silver')
-    lathe(g,'dombyra-bridge',[(0,0),(.027,0),(.027,.013),(0,.013)],
-          m['darkcloth'],inst,centre=(1.06,.92,.366),segments=16)
+        y=1.02+side*.018
+        runner(g,f'dombyra-string-{side}',[[-.84,y+.06,.375],[.36,y,.408]],m,inst,.002,'silver')
+    runner(g,'dombyra-bridge',[[.34,.985,.414],[.34,1.055,.414]],m,inst,.009,'darkcloth')
     return inst
 
 
@@ -131,31 +139,90 @@ def betashar():
     bride,bb,_=person(g,m,'bride',(-.55,0,0),gender='female',pose='working')
     poet,pb,_=person(g,m,'akyn',(1.08,0,-.25),pose='working',yaw=-math.pi/3)
     person(g,m,'relative',(-1.67,0,-.48),gender='female',yaw=math.pi/3)
-    dress=g.node('bridal-garment',extras={'hotspot':'dress'})
-    cloth(g,'layered-wedding-skirt',lambda u,v:[-.55+(.43-.20*v)*math.cos(u*TAU),
-          .18+1.0*v+.014*math.sin(u*TAU*13)*(1-v),(.40-.18*v)*math.sin(u*TAU)],
-          m['red'],dress,rows=30,cols=96)
-    for h in [.20,.28,.36]:
-        runner(g,f'wedding-hem-{h}',[[-.55+(.43-.20*h)*math.cos(t),.18+h,
-               (.40-.18*h)*math.sin(t)] for t in np.linspace(0,TAU,97)],m,dress,.009,'brass')
-    headdress=g.node('bridal-headdress',extras={'hotspot':'headdress'})
-    lathe(g,'bridal-conical-headpiece',[(0,0),(.125,0),(.118,.12),(.065,.38),(.015,.44)],
-          m['red'],headdress,centre=(-.55,1.66,0),segments=48)
-    for h,r in [(.03,.125),(.11,.118),(.29,.077)]:
-        runner(g,f'headpiece-band-{h}',[[-.55+r*math.cos(t),1.66+h,r*math.sin(t)]
-               for t in np.linspace(0,TAU,65)],m,headdress,.008,'brass')
-    veilmat=g.material('translucent-bridal-veil',(0.95,.91,.82),tex='linen',rough=.9)
-    g.doc['materials'][veilmat]['pbrMetallicRoughness']['baseColorFactor'][3]=.74
+    # Contemporary ceremonial interpretation: fitted bodice, separately cut
+    # skirt panels, stitched hem, and fabric suspended from a saukele-inspired
+    # headdress. These are authored meshes, not a historical object replica.
+    m['thread']=g.material('warm-embroidered-thread',(.68,.43,.19),rough=.84,metal=.06)
+    gown=g.material('deep-ceremonial-velvet',(.55,.16,.18),tex='linen',rough=.94)
+    lining=g.material('gown-lining',(.30,.085,.10),tex='linen',rough=.96)
+    dress=g.node('bridal-garment',bride,extras={'hotspot':'dress'})
+    def skirt(u,v):
+        a=u*TAU;flare=(1-v)**1.65
+        rx=.177+.158*flare;rz=.147+.145*flare
+        pleat=(.010*math.sin(12*a+v*2)+.004*math.sin(24*a-v*4))*flare
+        return [(rx+pleat)*math.cos(a),.105+.995*v+.006*math.cos(8*a)*flare,
+                (rz+pleat)*math.sin(a)]
+    # Twelve visible sewn gores share the waist, with relief concentrated at
+    # their lower edges. The top transitions into the anatomical fitted torso.
+    cloth(g,'twelve-gore-wedding-skirt',skirt,gown,dress,rows=48,cols=144)
+    cloth(g,'skirt-bottom-facing',lambda u,v:[skirt(u,.005+v*.025)[0]*.985,
+          .108+.025*v,skirt(u,.005+v*.025)[2]*.985],lining,dress,rows=4,cols=144)
+    for seam in range(12):
+        u=(seam+.5)/12
+        runner(g,f'sewn-skirt-gore-{seam}',[skirt(u,t) for t in np.linspace(.02,.985,42)],m,dress,.003,'darkcloth')
+    for level in [.018,.052,.085]:
+        runner(g,f'embroidered-gown-hem-{level}',[skirt(t,level) for t in np.linspace(0,1,145)],
+               m,dress,.0035,'thread')
+    # Narrow front placket, waist fastening and two rows of short thread stitches.
+    for side in [-1,1]:
+        runner(g,f'bodice-front-placket-{side}',[[side*.043,1.08,.184],[side*.047,1.28,.173],
+               [side*.068,1.44,.145]],m,dress,.012,'darkcloth')
+        for k in range(14):
+            y=.22+k*.059;p=skirt(.25,y/.995-.105/.995)
+            runner(g,f'gown-front-stitch-{side}-{k}',[[side*.055,y,p[2]+.006],
+                   [side*.069,y+.008,p[2]+.006]],m,dress,.0025,'thread')
+    runner(g,'gown-waist-cord',[skirt(t,.985) for t in np.linspace(0,1,129)],m,dress,.010,'darkcloth')
+    headdress=g.node('bridal-headdress',bride,extras={'hotspot':'headdress'})
+    headmat=g.material('saukele-velvet',(.48,.13,.16),tex='linen',rough=.93)
+    # The tall cone is specific to saukele; panel ridges and metal plaques give
+    # it sewn construction rather than a smooth decorative cone.
+    lathe(g,'saukele-fitted-base',[(0,0),(.125,0),(.126,.055),(.113,.12),(.087,.24),
+          (.061,.34),(.024,.43),(.006,.445)],headmat,headdress,centre=(0,1.66,0),segments=72)
+    for k in range(8):
+        a=k*TAU/8
+        runner(g,f'saukele-panel-seam-{k}',[[r*math.cos(a),1.66+h,r*math.sin(a)]
+               for h,r in [(.02,.125),(.12,.113),(.24,.087),(.34,.061),(.43,.024)]],
+               m,headdress,.003,'brass')
+    for h,r in [(.018,.126),(.105,.116),(.255,.083)]:
+        runner(g,f'saukele-edge-band-{h}',[[r*math.cos(t),1.66+h,r*math.sin(t)]
+               for t in np.linspace(0,TAU,97)],m,headdress,.008,'brass')
+    for side in [-1,1]:
+        runner(g,f'saukele-side-pendant-{side}',[[side*.116,1.68,.02],
+               [side*.135,1.50,.035],[side*.119,1.37,.05]],m,headdress,.006,'silver')
+    veilmat=g.material('light-woven-bridal-veil',(.93,.88,.80),tex='linen',rough=.97)
+    g.doc['materials'][veilmat]['pbrMetallicRoughness']['baseColorFactor'][3]=.68
     g.doc['materials'][veilmat]['alphaMode']='BLEND'
-    veil=g.node('bridal-veil',pos=(-.55,1.85,.08),extras={'hotspot':'veil'})
-    cloth(g,'front-veil',lambda u,v:[(u-.5)*(.34+.12*v),
-          -.46*v+.012*math.sin(u*TAU*3)*v,.15+.018*math.sin(math.pi*u)*v],
-          veilmat,veil,rows=30,cols=30)
-    cloth(g,'veil-reverse',lambda u,v:[(u-.5)*(.34+.12*v),
-          -.46*v+.012*math.sin(u*TAU*3)*v,.145+.018*math.sin(math.pi*u)*v],
-          veilmat,veil,rows=30,cols=30)
-    g.track(veil,'rotation',[0,7.7,9,11.5,12],
-            [quat([1,0,0],a) for a in [0,0,.7,1.55,1.55]],'VEC4')
+    # Stationary back and shoulder drape. Separate front fold is lifted after
+    # the song while the rest stays attached to the headdress.
+    back=g.node('bridal-back-drape',bride,extras={'hotspot':'veil'})
+    def back_veil(u,v):
+        a=math.pi+u*math.pi
+        r=.11+.14*v
+        return [r*math.cos(a),1.79-.54*v+.012*math.sin(u*math.pi*10)*v,
+                r*math.sin(a)-.006*math.sin(v*22+u*9)]
+    cloth(g,'woven-veil-over-shoulders',back_veil,veilmat,back,rows=36,cols=72)
+    for u in [0,1]:
+        runner(g,f'back-veil-finished-edge-{u}',[back_veil(u,t) for t in np.linspace(0,1,48)],m,back,.003,'linen')
+    veil=g.node('bridal-veil',bride,pos=(0,1.83,.11),extras={'hotspot':'veil'})
+    def front_veil(u,v):
+        width=.145+.085*v;x=(u*2-1)*width
+        return [x,-.47*v+.010*math.cos(u*TAU*4)*v,
+                .035+.13*v-.025*(u*2-1)**2+.009*math.sin(u*TAU*6)*v]
+    cloth(g,'front-veil-draped-folds',front_veil,veilmat,veil,rows=36,cols=48)
+    for u in [0,1]:
+        runner(g,f'front-veil-sewn-selvedge-{u}',[front_veil(u,t) for t in np.linspace(0,1,48)],
+               m,veil,.003,'linen')
+    g.track(veil,'rotation',[0,7.7,8.6,9.6,11.5,12],
+            [quat([1,0,0],a) for a in [0,0,.55,1.65,2.50,2.50]],'VEC4')
+    # At the end of the lift the front panel settles over the back of the
+    # headdress. Keep a separate folded mesh so no rigid panel stays upright.
+    folded=g.node('lifted-veil-resting-fold',bride,extras={'hotspot':'veil'})
+    cloth(g,'lifted-woven-fold',lambda u,v:[(u-.5)*(.30+.10*v),
+          1.91-.24*v+.008*math.sin(u*TAU*5)*v,
+          -.055-.15*v-.018*math.cos(u*TAU*3)*v],veilmat,folded,rows=20,cols=36)
+    g.doc['nodes'][folded]['scale']=[.00001]*3
+    g.track(folded,'scale',[0,9.6,10.4,12],[[.00001]*3,[.00001]*3,[1]*3,[1]*3],'VEC3','STEP')
+    g.track(veil,'scale',[0,10.3,10.4,12],[[1]*3,[1]*3,[.00001]*3,[.00001]*3],'VEC3','STEP')
     g.track(bb['head'],'rotation',[0,4,5.5,7.8,9,12],
             [quat([1,0,0],a) for a in [0,0,.17,.17,0,0]],'VEC4')
     g.track(bb['spine_03'],'rotation',[0,4,5.5,7.8,9,12],
@@ -163,7 +230,7 @@ def betashar():
     for side in ['l','r']:
         g.track(pb['lowerarm_'+side],'rotation',[0,4,6,8,12],
                 [quat([1,0,0],a) for a in [-.65,-.77,-.57,-.72,-.65]],'VEC4')
-    instrument(g,m)
+    instrument(g,m,poet)
     return g.write(12)
 
 

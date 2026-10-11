@@ -16,6 +16,8 @@ interface Interactive3DViewerProps {
   scenarioId: string;
 }
 
+type CameraPreset = 'general' | 'top' | 'close' | 'faces' | 'clothing' | 'hands' | 'orbit';
+
 export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenarioId }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -27,7 +29,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   const [tusaukeserStage, setTusaukeserStage] = useState<number>(1);
   const [asarStage, setAsarStage] = useState<number>(1);
   const [additionalStage, setAdditionalStage] = useState<number>(1);
-  const [cameraPreset, setCameraPreset] = useState<'general' | 'top' | 'close' | 'orbit'>('general');
+  const [cameraPreset, setCameraPreset] = useState<CameraPreset>('general');
   const [showMuseumPhoto, setShowMuseumPhoto] = useState<boolean>(false);
 
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -81,7 +83,8 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
     catch { setLoadState('error'); setLoadError('WebGL қолжетімсіз. Басқа қолдайтын шолушыны қолданыңыз.'); return; }
     const scene = new THREE.Scene(); scene.background = new THREE.Color('#24333d');
     const camera = new THREE.PerspectiveCamera(45, 1, .05, 80);
-    camera.position.set(5.3, 3.6, 6);
+    if (scenarioId === 'ar-betashar') camera.position.set(2.8, 2.35, 4.0);
+    else camera.position.set(5.3, 3.6, 6);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
     renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15;
@@ -143,6 +146,11 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   }, [scenarioId]);
 
   useEffect(() => {
+    setIsAutoRotating(scenarioId !== 'ar-betashar');
+    setCameraPreset('general');
+  }, [scenarioId]);
+
+  useEffect(() => {
     const stage = scenarioId === 'ar-asar' ? asarStage : scenarioId === 'ar-tusaukeser' ? tusaukeserStage : additionalStage;
     timelineRef.current = { time: (stage - 1) * 4, target: stage * 4, running: asset.duration > 0 };
     setIsPlaying(asset.duration > 0);
@@ -163,14 +171,15 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   };
 
   // Camera Presets
-  const applyCameraPreset = (preset: 'general' | 'top' | 'close' | 'orbit') => {
+  const applyCameraPreset = (preset: CameraPreset) => {
     setCameraPreset(preset);
     if (!cameraRef.current || !controlsRef.current) return;
 
     if (preset === 'general') {
       setIsAutoRotating(false);
-      cameraRef.current.position.set(5.3, 3.6, 6);
-      controlsRef.current.target.set(0, 0.7, 0);
+      if (scenarioId === 'ar-betashar') cameraRef.current.position.set(2.8, 2.35, 4.0);
+      else cameraRef.current.position.set(5.3, 3.6, 6);
+      controlsRef.current.target.set(0, scenarioId === 'ar-betashar' ? 1.0 : 0.7, 0);
     } else if (preset === 'top') {
       setIsAutoRotating(false);
       cameraRef.current.position.set(0.1, 7.5, 0.1);
@@ -179,6 +188,18 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
       setIsAutoRotating(false);
       cameraRef.current.position.set(1.4, 1.4, 1.6);
       controlsRef.current.target.set(0, 1.0, 0);
+    } else if (preset === 'faces') {
+      setIsAutoRotating(false);
+      cameraRef.current.position.set(-.20, 1.65, 2.35);
+      controlsRef.current.target.set(-.20, 1.53, -.08);
+    } else if (preset === 'clothing') {
+      setIsAutoRotating(false);
+      cameraRef.current.position.set(-.58, 1.25, 2.35);
+      controlsRef.current.target.set(-.58, .90, 0);
+    } else if (preset === 'hands') {
+      setIsAutoRotating(false);
+      cameraRef.current.position.set(1.28, 1.37, 2.05);
+      controlsRef.current.target.set(.98, 1.07, -.16);
     } else if (preset === 'orbit') {
       setIsAutoRotating(true);
     }
@@ -238,14 +259,20 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
 
           {/* Camera Presets Selector */}
           <div className="hidden sm:flex items-center bg-[#051B44]/90 rounded-xl border border-white/15 p-1 backdrop-blur-md">
-            {[
+            {(scenarioId === 'ar-betashar' ? [
+              { id: 'general', label: 'Рәсім' },
+              { id: 'close', label: 'Жақын' },
+              { id: 'faces', label: 'Бет' },
+              { id: 'clothing', label: 'Киім' },
+              { id: 'hands', label: 'Қол' },
+            ] : [
               { id: 'general', label: 'Жалпы' },
               { id: 'top', label: 'Төбеден' },
               { id: 'close', label: 'Жақын' },
-            ].map((p) => (
+            ]).map((p) => (
               <button
                 key={p.id}
-                onClick={() => applyCameraPreset(p.id as any)}
+                onClick={() => applyCameraPreset(p.id as CameraPreset)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
                   cameraPreset === p.id && !isAutoRotating
                     ? 'bg-[#00BFFF] text-[#051B44] font-bold'

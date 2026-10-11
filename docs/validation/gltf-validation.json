@@ -4,7 +4,7 @@
     "uri": "asar.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:53.994Z",
+    "validatedAt": "2026-10-11T07:07:05.034Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -21,7 +21,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 9466648
+          "byteLength": 10784064
         },
         {
           "pointer": "/images/0",
@@ -206,14 +206,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 15,
+      "materialCount": 19,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 145,
-      "totalVertexCount": 131662,
-      "totalTriangleCount": 216788,
+      "drawCallCount": 159,
+      "totalVertexCount": 148283,
+      "totalTriangleCount": 245746,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -224,7 +224,7 @@
     "uri": "nauryz.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:54.297Z",
+    "validatedAt": "2026-10-11T07:07:05.355Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -241,7 +241,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 12184656
+          "byteLength": 12335624
         },
         {
           "pointer": "/images/0",
@@ -463,14 +463,14 @@
         }
       ],
       "animationCount": 0,
-      "materialCount": 17,
+      "materialCount": 20,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 154,
-      "totalVertexCount": 176311,
-      "totalTriangleCount": 291748,
+      "drawCallCount": 158,
+      "totalVertexCount": 178508,
+      "totalTriangleCount": 294358,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -481,7 +481,7 @@
     "uri": "tusaukeser.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:54.510Z",
+    "validatedAt": "2026-10-11T07:07:05.533Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -498,7 +498,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 6177160
+          "byteLength": 6336264
         },
         {
           "pointer": "/images/0",
@@ -635,14 +635,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 14,
+      "materialCount": 19,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 62,
-      "totalVertexCount": 75306,
-      "totalTriangleCount": 131972,
+      "drawCallCount": 68,
+      "totalVertexCount": 77616,
+      "totalTriangleCount": 134582,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -653,7 +653,7 @@
     "uri": "besikke-salu.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:54.630Z",
+    "validatedAt": "2026-10-11T07:07:05.674Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -670,7 +670,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 4330632
+          "byteLength": 5732672
         },
         {
           "pointer": "/images/0",
@@ -852,17 +852,54 @@
             "transfer": "srgb",
             "bits": 8
           }
+        },
+        {
+          "pointer": "/images/15",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/16",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/17",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
         }
       ],
       "animationCount": 1,
-      "materialCount": 14,
+      "materialCount": 21,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 47,
-      "totalVertexCount": 44171,
-      "totalTriangleCount": 77916,
+      "drawCallCount": 60,
+      "totalVertexCount": 59063,
+      "totalTriangleCount": 104322,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -873,7 +910,7 @@
     "uri": "betashar.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:54.761Z",
+    "validatedAt": "2026-10-11T07:07:05.848Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -890,7 +927,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 4941344
+          "byteLength": 7546984
         },
         {
           "pointer": "/images/0",
@@ -931,12 +968,14 @@
         },
         {
           "pointer": "/images/3",
-          "mimeType": "image/jpeg",
+          "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
-            "width": 512,
-            "height": 512,
+            "width": 256,
+            "height": 256,
             "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
             "bits": 8
           }
         },
@@ -955,6 +994,17 @@
         },
         {
           "pointer": "/images/5",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/6",
           "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
@@ -963,17 +1013,6 @@
             "format": "rgb",
             "primaries": "srgb",
             "transfer": "srgb",
-            "bits": 8
-          }
-        },
-        {
-          "pointer": "/images/6",
-          "mimeType": "image/jpeg",
-          "storage": "buffer-view",
-          "image": {
-            "width": 512,
-            "height": 512,
-            "format": "rgb",
             "bits": 8
           }
         },
@@ -992,14 +1031,12 @@
         },
         {
           "pointer": "/images/8",
-          "mimeType": "image/png",
+          "mimeType": "image/jpeg",
           "storage": "buffer-view",
           "image": {
-            "width": 256,
-            "height": 256,
+            "width": 512,
+            "height": 512,
             "format": "rgb",
-            "primaries": "srgb",
-            "transfer": "srgb",
             "bits": 8
           }
         },
@@ -1038,12 +1075,14 @@
         },
         {
           "pointer": "/images/12",
-          "mimeType": "image/jpeg",
+          "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
-            "width": 512,
-            "height": 512,
+            "width": 256,
+            "height": 256,
             "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
             "bits": 8
           }
         },
@@ -1062,6 +1101,30 @@
         },
         {
           "pointer": "/images/14",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/15",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/16",
           "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
@@ -1075,14 +1138,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 16,
+      "materialCount": 25,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 52,
-      "totalVertexCount": 54927,
-      "totalTriangleCount": 97036,
+      "drawCallCount": 72,
+      "totalVertexCount": 92862,
+      "totalTriangleCount": 162706,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -1093,7 +1156,7 @@
     "uri": "syrga-salu.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:54.879Z",
+    "validatedAt": "2026-10-11T07:07:05.981Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -1110,7 +1173,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 4479368
+          "byteLength": 5976808
         },
         {
           "pointer": "/images/0",
@@ -1151,12 +1214,14 @@
         },
         {
           "pointer": "/images/3",
-          "mimeType": "image/jpeg",
+          "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
-            "width": 512,
-            "height": 512,
+            "width": 256,
+            "height": 256,
             "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
             "bits": 8
           }
         },
@@ -1175,6 +1240,17 @@
         },
         {
           "pointer": "/images/5",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/6",
           "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
@@ -1183,17 +1259,6 @@
             "format": "rgb",
             "primaries": "srgb",
             "transfer": "srgb",
-            "bits": 8
-          }
-        },
-        {
-          "pointer": "/images/6",
-          "mimeType": "image/jpeg",
-          "storage": "buffer-view",
-          "image": {
-            "width": 512,
-            "height": 512,
-            "format": "rgb",
             "bits": 8
           }
         },
@@ -1212,14 +1277,12 @@
         },
         {
           "pointer": "/images/8",
-          "mimeType": "image/png",
+          "mimeType": "image/jpeg",
           "storage": "buffer-view",
           "image": {
-            "width": 256,
-            "height": 256,
+            "width": 512,
+            "height": 512,
             "format": "rgb",
-            "primaries": "srgb",
-            "transfer": "srgb",
             "bits": 8
           }
         },
@@ -1258,12 +1321,14 @@
         },
         {
           "pointer": "/images/12",
-          "mimeType": "image/jpeg",
+          "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
-            "width": 512,
-            "height": 512,
+            "width": 256,
+            "height": 256,
             "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
             "bits": 8
           }
         },
@@ -1282,6 +1347,30 @@
         },
         {
           "pointer": "/images/14",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/15",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/16",
           "mimeType": "image/png",
           "storage": "buffer-view",
           "image": {
@@ -1295,14 +1384,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 15,
+      "materialCount": 21,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 48,
-      "totalVertexCount": 45369,
-      "totalTriangleCount": 80348,
+      "drawCallCount": 62,
+      "totalVertexCount": 61945,
+      "totalTriangleCount": 109222,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -1313,7 +1402,7 @@
     "uri": "bata-beru.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:55.031Z",
+    "validatedAt": "2026-10-11T07:07:06.118Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -1330,7 +1419,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 4507608
+          "byteLength": 5840448
         },
         {
           "pointer": "/images/0",
@@ -1512,17 +1601,54 @@
             "transfer": "srgb",
             "bits": 8
           }
+        },
+        {
+          "pointer": "/images/15",
+          "mimeType": "image/jpeg",
+          "storage": "buffer-view",
+          "image": {
+            "width": 512,
+            "height": 512,
+            "format": "rgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/16",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
+        },
+        {
+          "pointer": "/images/17",
+          "mimeType": "image/png",
+          "storage": "buffer-view",
+          "image": {
+            "width": 256,
+            "height": 256,
+            "format": "rgb",
+            "primaries": "srgb",
+            "transfer": "srgb",
+            "bits": 8
+          }
         }
       ],
       "animationCount": 1,
-      "materialCount": 13,
+      "materialCount": 19,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 51,
-      "totalVertexCount": 45512,
-      "totalTriangleCount": 80352,
+      "drawCallCount": 64,
+      "totalVertexCount": 59785,
+      "totalTriangleCount": 104830,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -1533,7 +1659,7 @@
     "uri": "shashu.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:55.158Z",
+    "validatedAt": "2026-10-11T07:07:06.262Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -1550,7 +1676,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 4406712
+          "byteLength": 5721472
         },
         {
           "pointer": "/images/0",
@@ -1724,14 +1850,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 15,
+      "materialCount": 19,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 45,
-      "totalVertexCount": 44284,
-      "totalTriangleCount": 78672,
+      "drawCallCount": 59,
+      "totalVertexCount": 60860,
+      "totalTriangleCount": 107546,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6
@@ -1742,7 +1868,7 @@
     "uri": "qymyzmuryndyq.glb",
     "mimeType": "model/gltf-binary",
     "validatorVersion": "2.0.0-dev.3.10",
-    "validatedAt": "2026-10-11T06:24:55.270Z",
+    "validatedAt": "2026-10-11T07:07:06.394Z",
     "issues": {
       "numErrors": 0,
       "numWarnings": 0,
@@ -1759,7 +1885,7 @@
           "pointer": "/buffers/0",
           "mimeType": "application/gltf-buffer",
           "storage": "glb",
-          "byteLength": 4690624
+          "byteLength": 6005376
         },
         {
           "pointer": "/images/0",
@@ -1944,14 +2070,14 @@
         }
       ],
       "animationCount": 1,
-      "materialCount": 15,
+      "materialCount": 19,
       "hasMorphTargets": false,
       "hasSkins": true,
       "hasTextures": true,
       "hasDefaultScene": true,
-      "drawCallCount": 52,
-      "totalVertexCount": 49156,
-      "totalTriangleCount": 85988,
+      "drawCallCount": 66,
+      "totalVertexCount": 65732,
+      "totalTriangleCount": 114862,
       "maxUVs": 1,
       "maxInfluences": 4,
       "maxAttributes": 6

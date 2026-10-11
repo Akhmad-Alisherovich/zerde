@@ -132,8 +132,9 @@ try {
   const previewOnly = process.argv.includes('--previews');
   const measureOnly = process.argv.includes('--measure-only');
   const detailsOnly = process.argv.includes('--details');
+  const characterDetails = process.argv.includes('--character-details');
   const switchTest = process.argv.includes('--switch-test');
-  const requested = process.argv.slice(2).filter(arg => !['--previews','--measure-only','--details','--switch-test'].includes(arg));
+  const requested = process.argv.slice(2).filter(arg => !['--previews','--measure-only','--details','--character-details','--switch-test'].includes(arg));
   if (switchTest) {
     await navigate('ar-besikke-salu');
     const cases = [
@@ -154,12 +155,20 @@ try {
     for (const scene of requested) {
       const id = `ar-${scene}`;
       await navigate(id);
-      if (previewOnly) { await scrub(11.8); await preview(scene); continue; }
+      if (previewOnly) { if (scene !== 'nauryz') await scrub(11.8); await preview(scene); continue; }
       if (measureOnly) { await measure(scene); continue; }
+      if (characterDetails) {
+        for (const [label, time] of [['Рәсім',11.8],['Бет',11.8],['Киім',11.8],['Қол',7.8]]) {
+          await scrub(time);
+          await clickLabel(label);
+          await screenshot(`${scene}-${label === 'Рәсім' ? 'ceremony' : label === 'Бет' ? 'faces' : label === 'Киім' ? 'garment' : 'hands'}`);
+        }
+        continue;
+      }
       if (detailsOnly) {
-        await scrub(11.8);
+        if (scene !== 'nauryz') await scrub(11.8);
         await clickLabel('Жақын'); await screenshot(`${scene}-close`);
-        await clickLabel('Жалпы'); await orbit(288); await screenshot(`${scene}-rear`);
+        await clickLabel(scene === 'betashar' ? 'Рәсім' : 'Жалпы'); await orbit(288); await screenshot(`${scene}-rear`);
         continue;
       }
       for (const [stage, time] of [[1,3.8],[2,7.8],[3,11.8]]) {
@@ -173,7 +182,7 @@ try {
       await orbit(144);
       await screenshot(`${scene}-stage-3-side`);
     }
-    if (!previewOnly && !detailsOnly) await fs.writeFile(path.join(output, 'additional-browser-metrics.json'), JSON.stringify(measurements, null, 2));
+    if (!previewOnly && !detailsOnly && !characterDetails) await fs.writeFile(path.join(output, 'additional-browser-metrics.json'), JSON.stringify(measurements, null, 2));
   } else {
   await navigate('ar-asar');
   await scrub(3.8); await screenshot('asar-stage-1-front');

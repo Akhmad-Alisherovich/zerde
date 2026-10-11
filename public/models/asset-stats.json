@@ -1,83 +1,83 @@
 [
   {
     "file": "asar.glb",
-    "bytes": 9669368,
-    "meshes": 145,
-    "triangles": 216788,
+    "bytes": 11000960,
+    "meshes": 159,
+    "triangles": 245746,
     "skins": 3,
     "bones": 159,
     "animationChannels": 160
   },
   {
     "file": "nauryz.glb",
-    "bytes": 12346984,
-    "meshes": 154,
-    "triangles": 291748,
+    "bytes": 12502840,
+    "meshes": 158,
+    "triangles": 294358,
     "skins": 2,
     "bones": 106,
     "animationChannels": 0
   },
   {
     "file": "tusaukeser.glb",
-    "bytes": 6267832,
-    "meshes": 62,
-    "triangles": 131972,
+    "bytes": 6434504,
+    "meshes": 68,
+    "triangles": 134582,
     "skins": 3,
     "bones": 159,
     "animationChannels": 12
   },
   {
     "file": "besikke-salu.glb",
-    "bytes": 4406444,
-    "meshes": 47,
-    "triangles": 77916,
+    "bytes": 5822420,
+    "meshes": 60,
+    "triangles": 104322,
     "skins": 3,
     "bones": 159,
     "animationChannels": 7
   },
   {
     "file": "betashar.glb",
-    "bytes": 5021268,
-    "meshes": 52,
-    "triangles": 97036,
+    "bytes": 7646796,
+    "meshes": 72,
+    "triangles": 162706,
     "skins": 3,
     "bones": 159,
-    "animationChannels": 5
+    "animationChannels": 7
   },
   {
     "file": "syrga-salu.glb",
-    "bytes": 4557240,
-    "meshes": 48,
-    "triangles": 80348,
+    "bytes": 6069372,
+    "meshes": 62,
+    "triangles": 109222,
     "skins": 3,
     "bones": 159,
     "animationChannels": 2
   },
   {
-    "file": "qymyzmuryndyq.glb",
-    "bytes": 4770480,
-    "meshes": 52,
-    "triangles": 85988,
+    "file": "bata-beru.glb",
+    "bytes": 5935652,
+    "meshes": 64,
+    "triangles": 104830,
     "skins": 3,
     "bones": 159,
-    "animationChannels": 5
+    "animationChannels": 4
   },
   {
     "file": "shashu.glb",
-    "bytes": 4486612,
-    "meshes": 45,
-    "triangles": 78672,
+    "bytes": 5815328,
+    "meshes": 59,
+    "triangles": 107546,
     "skins": 3,
     "bones": 159,
     "animationChannels": 19
   },
   {
-    "file": "bata-beru.glb",
-    "bytes": 4588868,
-    "meshes": 51,
-    "triangles": 80352,
+    "file": "qymyzmuryndyq.glb",
+    "bytes": 6099044,
+    "meshes": 66,
+    "triangles": 114862,
     "skins": 3,
     "bones": 159,
-    "animationChannels": 4
+    "animationChannels": 5
   }
 ]

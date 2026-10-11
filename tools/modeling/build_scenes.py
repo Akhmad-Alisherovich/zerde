@@ -5,7 +5,7 @@ The result is an authored reconstruction draft, NOT an ethnographic measurement.
 """
 from pathlib import Path
 from io import BytesIO
-import gzip, json, math, struct
+import gzip, hashlib, json, math, struct
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 ROOT = Path(__file__).resolve().parents[2]
@@ -34,6 +34,24 @@ def texture_set(name, base, kind):
                         r=2+t*1.8;points.append((cx+sign*(10+r*math.cos(t)),cy+r*math.sin(t)))
                     draw.line(points,fill=(204,167,89),width=3)
         rgb=np.asarray(image)
+    if name=='rug':
+        # Original paired-scroll design informed by documented qoshqarmuyiz
+        # carpets; it is not traced from a collection object.
+        draw=ImageDraw.Draw(image)
+        relief=Image.new('L',(n,n)); relief_draw=ImageDraw.Draw(relief)
+        for inset in [17,31,43]:
+            draw.rectangle((inset,inset,n-inset,n-inset),outline=(115,34,37),width=5)
+            relief_draw.rectangle((inset,inset,n-inset,n-inset),outline=158,width=5)
+        for cx,cy in [(130,130),(382,130),(130,382),(382,382),(256,256)]:
+            for sign in [-1,1]:
+                points=[]
+                for t in np.linspace(.25,math.pi*2.5,105):
+                    radius=3+5*t
+                    points.append((cx+sign*(17+radius*math.cos(t)),cy+radius*math.sin(t)))
+                draw.line(points,fill=(131,43,42),width=7,joint='curve')
+                relief_draw.line(points,fill=185,width=7,joint='curve')
+        image=image.filter(ImageFilter.GaussianBlur(.35))
+        height+=np.asarray(relief,dtype=float)/255*.035
     gy,gx=np.gradient(height); normal=np.stack([-gx*2,-gy*2,np.ones_like(gx)],axis=-1);normal/=np.linalg.norm(normal,axis=-1)[...,None]
     normal=((normal*.5+.5)*255).astype('uint8')
     rough=np.clip(.78+(height-.5)*.18,0,1)
@@ -51,7 +69,7 @@ TEXTURES={name:texture_set(name,base,kind) for name,base,kind in [
     ('wood',(124,68,32),'wood'),('felt',(218,210,190),'felt'),
     ('ornament',(77,29,30),'cloth'),('linen',(227,222,207),'cloth'),
     ('leather',(42,28,23),'felt'),('skin',(184,129,98),'felt'),('earth',(113,100,72),'soil'),
-    ('baked',(195,125,47),'baked')]}
+    ('baked',(195,125,47),'baked'),('rug',(207,196,170),'cloth')]}
 
 class GLB:
     def __init__(self,name):
@@ -98,7 +116,11 @@ class GLB:
         normals/=np.maximum(np.linalg.norm(normals,axis=1)[:,None],1e-12)
         if uv is None:uv=v[:,[0,1]]
         attr={'POSITION':self.acc(v,'VEC3',target=34962),'NORMAL':self.acc(normals,'VEC3',target=34962),'TEXCOORD_0':self.acc(uv,'VEC2',target=34962)}
-        if joints is not None:attr['JOINTS_0']=self.acc(joints,'VEC4',5123,34962);attr['WEIGHTS_0']=self.acc(weights,'VEC4',target=34962)
+        if joints is not None:
+            joints=np.asarray(joints).copy();weights=np.asarray(weights)
+            joints[weights<=1e-8]=0
+            attr['JOINTS_0']=self.acc(joints,'VEC4',5123,34962)
+            attr['WEIGHTS_0']=self.acc(weights,'VEC4',target=34962)
         mid=len(self.doc['meshes']);self.doc['meshes'].append({'name':name,'primitives':[{'attributes':attr,'indices':self.acc(f.ravel(),'SCALAR',5125,34963),'material':material}]})
         node=self.node(name,parent,extras=extras);self.doc['nodes'][node]['mesh']=mid
         if skin is not None:self.doc['nodes'][node]['skin']=skin
@@ -330,9 +352,21 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
         for l in stream:
             s=l.split()
             if len(s)==4 and not s[0].startswith('#'):p[int(s[0])]+=np.array([float(x) for x in s[1:]])
+    # Preserve MPFB's sculpted facial topology and individual fingers. Small
+    # stable morphs change facial breadth and jaw shape without added primitives.
+    identity=int.from_bytes(hashlib.sha256(name.encode()).digest()[:4],'little')
+    elder=any(word in name for word in ['elder','senior','grandmother','grandfather'])
+    upper=p[:13380,1].max();lower=p[:13380,1].min();span=upper-lower
+    facial=(p[:,1]>upper-span*.18)&(np.abs(p[:,0])<span*.09)
+    jaw=(p[:,1]>upper-span*.18)&(p[:,1]<upper-span*.115)&(np.abs(p[:,0])<span*.085)
+    p[facial,0]*=1+(((identity%9)-4)*.009)
+    p[jaw,0]*=1+((((identity//9)%9)-4)*.008)
+    if elder:
+        cheek=facial&(p[:,1]<upper-span*.085)&(p[:,1]>upper-span*.145)&(p[:,2]>span*.040)
+        p[cheek,1]-=span*.0025
     height=stature if stature is not None else (.82 if age=='baby' else (1.65 if gender=='female' else 1.76))
     bottom=p[:13380,1].min();factor=height/(p[:13380,1].max()-bottom);p[:,1]-=bottom;p*=factor
-    root=g.node(name,pos=position,extras={'hotspot':'community','anatomy':'MPFB CC0; culturally adapted garment draft'})
+    root=g.node(name,pos=position,extras={'hotspot':'community','anatomy':'MPFB CC0; individually varied face; fitted garment draft'})
     g.doc['nodes'][root]['rotation']=quat([0,1,0],yaw)
     heads=[]
     for b in BONES:
@@ -352,6 +386,11 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
     for h in heads:
         mm=np.eye(4);mm[:3,3]=-h;ib.append(mm.T.ravel())
     skin=len(g.doc['skins']);g.doc['skins'].append({'name':name+'-53-bone-rig','joints':[bn[b] for b in BONES],'skeleton':bn['Root'],'inverseBindMatrices':g.acc(ib,'MAT4')})
+    palette=([(0.50,.14,.18),(.35,.18,.27),(.21,.34,.32),(.48,.29,.15)] if gender=='female'
+             else [(.16,.31,.44),(.25,.28,.39),(.31,.30,.24),(.20,.37,.36)])
+    garment_colour=palette[(identity//13)%len(palette)]
+    if name=='bride':garment_colour=(.58,.18,.21)
+    fabric=g.material(name+'-tailored-fabric',garment_colour,tex='linen',rough=.93)
     # Garment shell follows actual body topology; collar, hem and sash added below.
     buckets={};lookup={};verts={};uvs={};joints={};weights={}
     dominant=np.argmax(JW,axis=1)
@@ -359,8 +398,9 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
         b=BONES[dominant[vi]]
         if b in ['head','neck_01'] or 'hand' in b or any(k in b for k in ['thumb','index','middle','ring','pinky']):return 'skin'
         if any(k in b for k in ['ball','foot']):return 'leather'
+        if 'lowerarm_' in b and np.linalg.norm(p[vi]-heads[BONES.index('hand_'+b[-1])])<.065:return 'ornament'
         if any(k in b for k in ['thigh','calf']):return 'blue'
-        return 'red' if gender=='female' else 'blue'
+        return 'outfit'
     for grp,corners in OBJ:
         if grp!='body':continue
         cat=category(corners[0][0]);buckets.setdefault(cat,[]);lookup.setdefault(cat,{});verts.setdefault(cat,[]);uvs.setdefault(cat,[]);joints.setdefault(cat,[]);weights.setdefault(cat,[])
@@ -375,7 +415,26 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
                 lookup[cat][key]=len(verts[cat]);verts[cat].append(q);uvs[cat].append(UV[ui]);joints[cat].append(J[vi]);weights[cat].append(W[vi])
             indices.append(lookup[cat][key])
         for k in range(1,len(indices)-1):buckets[cat].append((indices[0],indices[k],indices[k+1]))
-    for cat in buckets:g.mesh(name+'-'+cat,verts[cat],buckets[cat],m[cat],root,uvs[cat],joints[cat],weights[cat],skin)
+    tone=.93+(identity%9)*.008
+    skin_mat=g.material(name+'-skin',(tone,1-.012*((identity//11)%3),.98),tex='skin',rough=.91)
+    for cat in buckets:
+        if gender=='female' and cat=='blue':continue  # The long skirt conceals both legs.
+        g.mesh(name+'-'+cat,verts[cat],buckets[cat],skin_mat if cat=='skin' else fabric if cat=='outfit' else m[cat],root,uvs[cat],joints[cat],weights[cat],skin)
+    # Follow the actual anatomical scalp topology to give each adult a hairline.
+    # A small normal offset prevents z-fighting with the skin below.
+    if age!='baby':
+        hv=[];hf=[];hu=[];hj=[];hw=[];hlookup={}
+        for grp,corners in OBJ:
+            if grp!='body' or not all(p[vi,1]>height*.935 and p[vi,2]<height*.072 for vi,_ in corners):continue
+            tri=[]
+            for vi,ui in corners:
+                if (vi,ui) not in hlookup:
+                    hlookup[vi,ui]=len(hv);q=p[vi].copy();q[0]*=1.018;q[2]=q[2]*1.02-.003;q[1]+=.002
+                    hv.append(q);hu.append(UV[ui]);hj.append([BONES.index('head'),0,0,0]);hw.append([1,0,0,0])
+                tri.append(hlookup[vi,ui])
+            for k in range(1,len(tri)-1):hf.append((tri[0],tri[k],tri[k+1]))
+        hair=g.material(name+'-hair',(.31,.29,.27) if elder else (.10,.07,.055),rough=.96)
+        if hf:g.mesh(name+'-anatomical-hairline',hv,hf,hair,root,hu,hj,hw,skin)
     # Anatomical eye helper meshes, not sphere heads or painted facial features.
     for grp in ['helper-l-eye','helper-r-eye']:
         v=[];f=[];u=[];js=[];ws=[];lookup_eye={}
@@ -399,23 +458,33 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
     def skinned_rail(label,path,mat,bone,w=.008):
         v,f,u=sweep(path,w,w)
         g.mesh(name+'-'+label,v,f,mat,root,u,[[bone,0,0,0]]*len(v),[[1,0,0,0]]*len(v),skin)
-    # Open-front outer garment and separate hem, with an actual loose silhouette
-    # rather than only scaling the anatomical torso texture.
-    if age!='baby':
-        coat=m['red'] if gender=='female' else m['blue']
+    # A cut lower coat attaches at the fitted waist. The anatomical skinned
+    # torso supplies the upper garment, avoiding a hollow cylinder at shoulder.
+    if age!='baby' and name!='bride':
+        coat=fabric
         def coat_shell(u,v):
-            a=.13+u*(TAU-.26);y=height*(.48+.31*v)
-            pleat=.009*math.cos(a*11)*(1-v)
-            rx=height*(.13-.008*v)+pleat;rz=height*(.108-.006*v)+pleat
-            return [rx*math.sin(a),y,rz*math.cos(a)]
-        skinned_surface('open-chapan-shell',coat_shell,coat,chest,rows=24,cols=72)
+            a=.19+u*(TAU-.38)
+            y=height*((.09+.46*v) if gender=='female' else (.27+.28*v))
+            flare=(1-v)**1.7
+            rx=height*(.105+(.09 if gender=='female' else .083)*flare)
+            rz=height*(.086+(.075 if gender=='female' else .066)*flare)
+            fold=height*.005*math.sin(a*12+v*2.7)*flare
+            return [(rx+fold)*math.sin(a),y,(rz+fold)*math.cos(a)]
+        v,f,u=grid(28,80,coat_shell)
+        js=[];ws=[]
+        for vertex in v:
+            blend=max(0,min(1,(vertex[1]/height-.48)/.08))
+            js.append([chest,pelvis,0,0]);ws.append([blend,1-blend,0,0])
+        g.mesh(name+'-tailored-open-chapan',v,f,coat,root,u,js,ws,skin)
         for side,edge_u in [('left',0),('right',1)]:
-            skinned_rail('front-seam-'+side,[coat_shell(edge_u,t) for t in np.linspace(0,1,32)],m['darkcloth'],chest,w=.012)
-        skinned_surface('chapan-hem',lambda u,v:[(height*(.135-.035*v)+.007*math.sin(u*TAU*14)*(1-v))*math.cos(u*TAU),height*(.29+.32*v),height*(.092-.009*v)*math.sin(u*TAU)],m['red'] if gender=='female' else m['blue'],pelvis)
-        skinned_surface('woven-hem-border',lambda u,v:[height*.136*math.cos(u*TAU),height*(.29+.012*v),height*.093*math.sin(u*TAU)],m['darkcloth'],pelvis,rows=2)
+            skinned_rail('front-seam-'+side,[coat_shell(edge_u,t) for t in np.linspace(0,1,40)],m['darkcloth'],chest,w=.006)
+        for level in [.025,.055]:
+            skinned_rail('stitched-lower-hem-'+str(level),[coat_shell(t,level) for t in np.linspace(0,1,100)],m['ornament'],pelvis,w=.004)
     # Cap or practical headscarf. The latter is not ceremonial bridal dress.
     top=p[:13380,1].max();cz=np.median(p[:13380][p[:13380,1]>top-height*.05,2]);hatR=height*.060
-    if gender=='female' and age!='baby':
+    if name=='bride':
+        pass  # Betashar supplies the ceremonial headdress and its own veil.
+    elif gender=='female' and age!='baby':
         skinned_surface('working-headscarf',lambda u,v:[hatR*1.12*math.cos(v*math.pi/2)*math.cos(u*TAU),top-height*.032+height*.045*math.sin(v*math.pi/2),cz+hatR*1.12*math.cos(v*math.pi/2)*math.sin(u*TAU)],m['linen'],headidx,rows=16)
         for side in [-1,1]:
             skinned_surface('headscarf-tail-'+str(side),lambda u,v,side=side:[side*height*(.055+.025*u),top-height*(.045+.20*v),cz-height*(.012+.013*u)+.006*math.sin(v*15)],m['linen'],headidx,rows=25,cols=8)
@@ -426,9 +495,10 @@ def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,anim
         eye=p[list(GROUPS[grp])].mean(axis=0)
         skinned_rail('eyebrow-'+grp,[[eye[0]+(t-.5)*height*.043,eye[1]+height*(.014+.003*math.cos(t*math.pi)),eye[2]+height*.008] for t in np.linspace(0,1,15)],m['hair'],headidx,w=.004)
     # Sash and paired embroidered front lapels.
-    skinned_surface('woven-sash',lambda u,v:[height*.126*math.cos(u*TAU),height*(.535+.018*v),height*.102*math.sin(u*TAU)],m['darkcloth'],pelvis,rows=3)
-    for side in [-1,1]:
-        skinned_surface('lapel-'+str(side),lambda u,v,side=side:[side*height*(.015+.062*v)+height*.012*u,height*(.55+.27*v),height*(.118-.019*v)],m['darkcloth'],chest,rows=20,cols=4)
+    if name!='bride':
+        skinned_surface('woven-sash',lambda u,v:[height*.108*math.cos(u*TAU),height*(.535+.018*v),height*.092*math.sin(u*TAU)],m['darkcloth'],pelvis,rows=3)
+        for side in [-1,1]:
+            skinned_surface('lapel-'+str(side),lambda u,v,side=side:[side*height*(.015+.062*v)+height*.012*u,height*(.55+.27*v),height*(.118-.019*v)],m['darkcloth'],chest,rows=20,cols=4)
     # Skeletal poses. Character hand positions still require manual artist review.
     for side,sign in [('l',1),('r',-1)]:
         angle=(-1.12 if pose=='relaxed' else -.72)*sign
