@@ -15,12 +15,15 @@ import {
   X,
   HelpCircle,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  Film
 } from 'lucide-react';
 import { AR_SCENARIOS_DATA } from '../data/traditionsData';
 import { ARScenario } from '../types';
 import { Interactive3DViewer } from './ar/Interactive3DViewer';
 import { WebARCameraViewer } from './ar/WebARCameraViewer';
+import { CeremonyCinematicViewer } from './media/CeremonyCinematicViewer';
+import { getCulturalMedia } from '../data/culturalMediaData';
 
 interface ARGallerySectionProps {
   initialScenarioId?: string;
@@ -30,10 +33,12 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
   const [selectedScenario, setSelectedScenario] = useState<ARScenario>(
     AR_SCENARIOS_DATA.find(s => s.id === initialScenarioId) || AR_SCENARIOS_DATA[0]
   );
-  const [viewMode, setViewMode] = useState<'3d-model' | 'webar-camera' | 'cultural-info'>('3d-model');
+  const [viewMode, setViewMode] = useState<'3d-model' | 'cinematic-media' | 'webar-camera' | 'cultural-info'>('3d-model');
   const [showMarkerModal, setShowMarkerModal] = useState<boolean>(false);
   const markerTriggerRef = useRef<HTMLButtonElement>(null);
   const markerCloseRef = useRef<HTMLButtonElement>(null);
+
+  const culturalMedia = getCulturalMedia(selectedScenario.traditionId);
   useEffect(() => {
     if (!showMarkerModal) return;
     const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -105,6 +110,20 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
               <span>1. 3D Интерактивті Үлгі</span>
             </button>
 
+            {culturalMedia && (
+              <button
+                onClick={() => setViewMode('cinematic-media')}
+                className={`min-h-11 px-4 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+                  viewMode === 'cinematic-media'
+                    ? 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-purple-glow'
+                    : 'text-purple-300 hover:text-white hover:bg-purple-900/30'
+                }`}
+              >
+                <Film className="w-4 h-4" />
+                <span>2. Кинематикалық медиа (Nano Banana & Veo)</span>
+              </button>
+            )}
+
             <button
               onClick={() => setViewMode('webar-camera')}
               className={`min-h-11 px-4 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
@@ -114,7 +133,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
               }`}
             >
               <Camera className="w-4 h-4" />
-              <span>2. WebAR (WebXR)</span>
+              <span>3. WebAR (WebXR)</span>
             </button>
 
             <button
@@ -126,7 +145,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
               }`}
             >
               <Eye className="w-4 h-4" />
-              <span>3. Мәдени Талдау</span>
+              <span>4. Мәдени Талдау</span>
             </button>
           </div>
         </div>
@@ -150,7 +169,12 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
               />
             )}
 
-            {/* View Mode 3: Detailed Cultural Reference Artwork */}
+            {/* View Mode: Cinematic Media with Keyframes & Closeups */}
+            {viewMode === 'cinematic-media' && culturalMedia && (
+              <CeremonyCinematicViewer key={selectedScenario.id} media={culturalMedia} />
+            )}
+
+            {/* View Mode 4: Detailed Cultural Reference Artwork */}
             {viewMode === 'cultural-info' && (
               <div className="glass-panel rounded-3xl overflow-hidden border border-[#00BFFF]/30 p-6 space-y-4">
                 <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/10">
@@ -252,6 +276,16 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
                   {selectedScenario.acceptanceCriteria}
                 </p>
               </div>
+
+              {culturalMedia && viewMode !== 'cinematic-media' && (
+                <button
+                  onClick={() => setViewMode('cinematic-media')}
+                  className="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all"
+                >
+                  <Film className="w-4 h-4" />
+                  <span>Кинематикалық кадрлар мен жақын пландарды ашу</span>
+                </button>
+              )}
             </div>
 
             {/* Cultural Objects in this scene */}

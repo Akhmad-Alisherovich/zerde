@@ -18,6 +18,8 @@ import {
 } from 'lucide-react';
 import { TRADITIONS_DATA, AR_SCENARIOS_DATA } from '../data/traditionsData';
 import { useChatbot } from '../context/ChatbotContext';
+import { getCulturalMedia } from '../data/culturalMediaData';
+import { CeremonyCinematicViewer } from '../components/media/CeremonyCinematicViewer';
 
 export const TraditionDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -50,6 +52,7 @@ export const TraditionDetailPage: React.FC = () => {
   const prevTradition = traditionIndex > 0 ? TRADITIONS_DATA[traditionIndex - 1] : null;
   const nextTradition = traditionIndex < TRADITIONS_DATA.length - 1 ? TRADITIONS_DATA[traditionIndex + 1] : null;
   const arScenario = tradition.arScenarioId ? AR_SCENARIOS_DATA.find(s => s.id === tradition.arScenarioId) : null;
+  const culturalMedia = getCulturalMedia(tradition.id);
 
   const handleAskAI = () => {
     const prompt = `${tradition.name} дәстүрінің тәрбиелік мәні мен мағынасы қандай?`;
@@ -121,16 +124,19 @@ export const TraditionDetailPage: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="glass-panel p-3 rounded-3xl border border-[#00BFFF]/30 overflow-hidden shadow-2xl relative group">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900">
-                <img
-                  src={tradition.image}
-                  alt={tradition.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+                <picture>
+                  {culturalMedia?.coverImageWebp && <source srcSet={culturalMedia.coverImageWebp} type="image/webp" />}
+                  <img
+                    src={culturalMedia?.coverImage || tradition.image}
+                    alt={tradition.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 
                 <div className="absolute bottom-3 left-3 right-3 text-white">
                   <div className="text-[11px] font-mono text-[#00E5FF] uppercase tracking-wider">
-                    Nano Banana Түпнұсқа Иллюстрациясы
+                    {culturalMedia ? 'Nano Banana мәдени реконструкциясы' : 'Түпнұсқа иллюстрациясы'}
                   </div>
                   <div className="text-sm font-semibold">{tradition.name} – бейнелік кеңістігі</div>
                 </div>
@@ -283,6 +289,27 @@ export const TraditionDetailPage: React.FC = () => {
           </div>
 
         </div>
+
+        {/* Cultural Cinematic Media & Macro Closeups */}
+        {culturalMedia && (
+          <div className="mt-12 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                  Кинематикалық медиа & Этномәдени жақын пландар
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-serif">
+                  {tradition.name} рәсімінің визуалды оқу галереясы
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                  Nano Banana генеративті кілттік кадрлары, сәукеле мен домбыраның макро-детальдары және Veo қозғалыс промпттары.
+                </p>
+              </div>
+            </div>
+            <CeremonyCinematicViewer media={culturalMedia} />
+          </div>
+        )}
 
         {/* Previous & Next Tradition Navigation */}
         <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4">

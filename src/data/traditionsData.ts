@@ -22,7 +22,7 @@ export const TRADITIONS_DATA: Tradition[] = [
     reflectionQuestion: 'Мерекедегі қандай әрекет татулықты нығайтады?',
     source: 'UNESCO. Nawrouz Representative List of the Intangible Cultural Heritage of Humanity, 2024.',
     sourceRef: 2,
-    image: '/assets/tradition_nauryz.jpg',
+    image: '/assets/cultural/nauryz/nauryz_cover.webp',
     hasArScenario: true,
     arScenarioId: 'ar-nauryz',
     tags: ['Мереке', 'Көктем', 'Татулық', 'Дастарқан', 'UNESCO']
@@ -53,7 +53,7 @@ export const TRADITIONS_DATA: Tradition[] = [
     reflectionQuestion: '«Біреудің ала жібін аттамау» ұстанымын мектеп өмірінде қалай қолдануға болады?',
     source: 'Туребаева А. Қазақ халқының ежелгі мерекелері мен салт-дәстүрлері. Теміртау, 2026.',
     sourceRef: 1,
-    image: '/assets/tradition_tusaukeser.jpg',
+    image: '/assets/cultural/tusaukeser/tusaukeser_cover.webp',
     hasArScenario: true,
     arScenarioId: 'ar-tusaukeser',
     tags: ['Бала тәрбиесі', 'Ала жіп', 'Ақ жол', 'Адалдық', 'Бата']
@@ -69,7 +69,7 @@ export const TRADITIONS_DATA: Tradition[] = [
     reflectionQuestion: 'Бұл дәстүр танысу мен сыйластықты қалай байланыстырады?',
     source: 'UNESCO. Betashar, traditional wedding ritual. Representative List, 2024.',
     sourceRef: 3,
-    image: '/assets/tradition_betashar.jpg',
+    image: '/assets/cultural/betashar/betashar_cover.webp',
     hasArScenario: true,
     arScenarioId: 'ar-betashar',
     tags: ['Отбасы', 'Келін', 'Домбыра', 'Өсиет', 'UNESCO']
@@ -85,7 +85,7 @@ export const TRADITIONS_DATA: Tradition[] = [
     reflectionQuestion: 'Мектепте асардың мәніне сай қандай іс ұйымдастыруға болады?',
     source: 'Туребаева А. Қазақ халқының ежелгі мерекелері мен салт-дәстүрлері. Теміртау, 2026.',
     sourceRef: 1,
-    image: '/assets/tradition_asar.jpg',
+    image: '/assets/cultural/asar/asar_cover.webp',
     hasArScenario: true,
     arScenarioId: 'ar-asar',
     tags: ['Ынтымақ', 'Ерікті еңбек', 'Қолдау', 'Бірлік', 'Қоғам']
