@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "models:build": "python tools/modeling/build_scenes.py && node tools/modeling/optimize_scenes.mjs",
+    "models:build": "python tools/modeling/build_scenes.py && python tools/modeling/build_additional_scenes.py && node tools/modeling/optimize_scenes.mjs",
     "models:validate": "node tools/validate-scenes.mjs && node tools/test-scene-integration.mjs"
   },
   "dependencies": {

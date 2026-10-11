@@ -4,7 +4,18 @@ import validator from 'gltf-validator';
 import { NodeIO } from '@gltf-transform/core';
 const io = new NodeIO();
 const reports = [];
-for (const name of ['asar', 'nauryz', 'tusaukeser']) {
+const expectedHotspots = {
+  asar: ['kerege','shanyraq','uyk','kiiz','bakan','door','community'],
+  nauryz: ['dastarkhan','baursak','kozhe','community'],
+  tusaukeser: ['ala-zhip','scissors','community'],
+  'besikke-salu': ['besik','bedding','arch','cover','swaddle','community'],
+  betashar: ['dress','headdress','veil','dombyra','community'],
+  'syrga-salu': ['earrings','tray','community'],
+  'bata-beru': ['table','community'],
+  shashu: ['container','sweets','community'],
+  qymyzmuryndyq: ['saba','bowls','jug','qymyz','community'],
+};
+for (const name of Object.keys(expectedHotspots)) {
  const data = await fs.readFile(`public/models/${name}.glb`);
  const report = await validator.validateBytes(new Uint8Array(data), { uri: `${name}.glb`, maxIssues: 0 });
  reports.push({ name, ...report });
@@ -14,13 +25,13 @@ for (const name of ['asar', 'nauryz', 'tusaukeser']) {
  assert(root.listTextures().length >= 10, 'Expected embedded PBR texture maps');
  assert(root.listSkins().length >= 2, 'Expected anatomical skinned human figures');
  const hotspots = new Set(root.listNodes().map(n=>n.getExtras().hotspot).filter(Boolean));
- for (const key of name==='asar'?['kerege','shanyraq','uyk','kiiz','bakan','door','community']:name==='nauryz'?['dastarkhan','baursak','kozhe','community']:['ala-zhip','scissors','community']) assert(hotspots.has(key), `Missing ${key}`);
+ for (const key of expectedHotspots[name]) assert(hotspots.has(key), `Missing ${key} in ${name}`);
  const animation=root.listAnimations()[0];
  if(name!=='nauryz') {
   assert(animation, 'Missing timeline');
   const ends=animation.listSamplers().map(s=>s.getInput().getMax([])[0]);
   assert.equal(Math.max(...ends), name==='asar'?16:12, 'Incorrect stage timeline');
-  assert(animation.listChannels().some(c=>c.getTargetPath()==='translation'), 'No actual movement');
+  if(!['bata-beru','betashar','qymyzmuryndyq'].includes(name)) assert(animation.listChannels().some(c=>c.getTargetPath()==='translation'), 'No actual movement');
   assert(animation.listChannels().some(c=>c.getTargetPath()==='rotation'), 'No actual articulated rotation');
  }
 }

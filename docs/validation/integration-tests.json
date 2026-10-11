@@ -1,5 +1,65 @@
 [
   {
+    "scenario": "ar-besikke-salu",
+    "gltfLoader": "passed",
+    "selectableHotspots": 6,
+    "skinnedMeshes": 56,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-betashar",
+    "gltfLoader": "passed",
+    "selectableHotspots": 5,
+    "skinnedMeshes": 61,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-syrga-salu",
+    "gltfLoader": "passed",
+    "selectableHotspots": 3,
+    "skinnedMeshes": 61,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-bata-beru",
+    "gltfLoader": "passed",
+    "selectableHotspots": 2,
+    "skinnedMeshes": 59,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-shashu",
+    "gltfLoader": "passed",
+    "selectableHotspots": 3,
+    "skinnedMeshes": 61,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
+    "scenario": "ar-qymyzmuryndyq",
+    "gltfLoader": "passed",
+    "selectableHotspots": 6,
+    "skinnedMeshes": 61,
+    "animation": "movement, stage endpoints and rewind passed",
+    "disposal": "passed",
+    "bitmapDecode": "stubbed",
+    "rendering": "not tested"
+  },
+  {
     "scenario": "ar-asar",
     "gltfLoader": "passed",
     "selectableHotspots": 7,

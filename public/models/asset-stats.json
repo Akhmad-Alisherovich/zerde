@@ -25,5 +25,59 @@
     "skins": 3,
     "bones": 159,
     "animationChannels": 12
+  },
+  {
+    "file": "besikke-salu.glb",
+    "bytes": 4406444,
+    "meshes": 47,
+    "triangles": 77916,
+    "skins": 3,
+    "bones": 159,
+    "animationChannels": 7
+  },
+  {
+    "file": "betashar.glb",
+    "bytes": 5021268,
+    "meshes": 52,
+    "triangles": 97036,
+    "skins": 3,
+    "bones": 159,
+    "animationChannels": 5
+  },
+  {
+    "file": "syrga-salu.glb",
+    "bytes": 4557240,
+    "meshes": 48,
+    "triangles": 80348,
+    "skins": 3,
+    "bones": 159,
+    "animationChannels": 2
+  },
+  {
+    "file": "qymyzmuryndyq.glb",
+    "bytes": 4770480,
+    "meshes": 52,
+    "triangles": 85988,
+    "skins": 3,
+    "bones": 159,
+    "animationChannels": 5
+  },
+  {
+    "file": "shashu.glb",
+    "bytes": 4486612,
+    "meshes": 45,
+    "triangles": 78672,
+    "skins": 3,
+    "bones": 159,
+    "animationChannels": 19
+  },
+  {
+    "file": "bata-beru.glb",
+    "bytes": 4588868,
+    "meshes": 51,
+    "triangles": 80352,
+    "skins": 3,
+    "bones": 159,
+    "animationChannels": 4
   }
 ]

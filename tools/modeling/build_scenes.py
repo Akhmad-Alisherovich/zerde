@@ -324,13 +324,13 @@ J=np.argsort(-JW,axis=1)[:,:4];W=np.take_along_axis(JW,J,axis=1);W/=np.maximum(W
 def quat(axis,angle):
     a=np.array(axis,dtype=float);a/=np.linalg.norm(a);return [*(a*math.sin(angle/2)),math.cos(angle/2)]
 
-def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,animated=False):
+def person(g,m,name,position,gender='male',age='young',pose='relaxed',yaw=0,animated=False,stature=None):
     p=BASE.copy();target=VENDOR/f'asian-{gender}-{age}.target.gz'
     with gzip.open(target,'rt') as stream:
         for l in stream:
             s=l.split()
             if len(s)==4 and not s[0].startswith('#'):p[int(s[0])]+=np.array([float(x) for x in s[1:]])
-    height=.82 if age=='baby' else (1.65 if gender=='female' else 1.76)
+    height=stature if stature is not None else (.82 if age=='baby' else (1.65 if gender=='female' else 1.76))
     bottom=p[:13380,1].min();factor=height/(p[:13380,1].max()-bottom);p[:,1]-=bottom;p*=factor
     root=g.node(name,pos=position,extras={'hotspot':'community','anatomy':'MPFB CC0; culturally adapted garment draft'})
     g.doc['nodes'][root]['rotation']=quat([0,1,0],yaw)

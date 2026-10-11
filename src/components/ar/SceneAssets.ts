@@ -11,6 +11,8 @@ export interface HotspotData {
 export interface SceneAsset {
   url: string;
   title: string;
+  sourceUrl?: string;
+  sourceTitle?: string;
   stageLabels: string[];
   duration: number;
   hotspots: Record<string, { name: string; meaning: string }>;
@@ -28,6 +30,55 @@ const cutawayYurtHotspots = Object.fromEntries(
   Object.entries(yurtHotspots).filter(([key]) => key !== 'door' && key !== 'bakan'),
 );
 export const SCENE_ASSETS: Record<string, SceneAsset> = {
+  'ar-besikke-salu': { url: '/models/besikke-salu.glb', title: 'Бесікке салу', duration: 12,
+    sourceUrl: 'https://www.nmrk.kz/en/structure/scientific-activity/national-list/656/', sourceTitle: 'ҚР Ұлттық музейі',
+    stageLabels: ['Бесікті жабдықтау', 'Сәбиді бөлеу', 'Отбасының ақ тілегі'], hotspots: {
+      besik: { name: 'Бесік', meaning: 'Ағаш бесік — нәрестені бөлеуге арналған дәстүрлі орын. Бұл үлгінің өлшемі мен өрнегі нақты тарихи жәдігерден алынбаған.' },
+      bedding: { name: 'Бесік төсеніштері', meaning: 'Сәбиді бөлеу алдында бесік жабдықталады. Мата мен қабаттардың осы орналасуы — авторлық оқу түсіндірмесі.' },
+      arch: { name: 'Бесік доғасы', meaning: 'Бесіктің үстіңгі ағаш доғасы жабынды ұстауға арналған. Көрсетілген пішін белгілі бір музей бұйымының дәл көшірмесі емес.' },
+      cover: { name: 'Жабынды', meaning: 'Жұқа мата сәбидің үстіне жабылады. Ою мен мата түрі өңірге және отбасына қарай өзгереді.' },
+      swaddle: { name: 'Сәбидің орауы', meaning: 'Сәбиді бөлеу сахнадағы екінші кезеңде көрсетілген. Қозғалыс медициналық нұсқаулық ретінде қолданылмайды.' },
+      community: { name: 'Отбасы мүшелері', meaning: 'Бесікке салу туыстар мен жақындарды жинайды; рәсімді сыйлы, тәжірибелі әйел жүргізетін нұсқалар сипатталған.' },
+    } },
+  'ar-betashar': { url: '/models/betashar.glb', title: 'Беташар', duration: 12,
+    sourceUrl: 'https://ich.unesco.org/en/RL/betashar-traditional-wedding-ritual-01746', sourceTitle: 'UNESCO',
+    stageLabels: ['Келінді қарсы алу', 'Ақын жыры мен сәлем', 'Бетті ашу'], hotspots: {
+      dress: { name: 'Қалыңдық киімі', meaning: 'Қабатталған мерекелік киімнің оқу үлгісі. Өңірлік және тарихи пішіндері әртүрлі.' },
+      headdress: { name: 'Бас киім', meaning: 'Салтанатты бас киімнің авторлық түсіндірмесі; нақты экспонат көшірмесі емес.' },
+      veil: { name: 'Жабынды', meaning: 'UNESCO сипаттамасында келіннің беті жабылып, рәсім соңында ашылатыны көрсетілген.' },
+      dombyra: { name: 'Домбыра', meaning: 'Ақын жыр айтуы мүмкін. Мұнда екі ішекті ағаш аспаптың оқу моделі берілген.' },
+      community: { name: 'Туыстар', meaning: 'Беташар жаңа әулетпен таныстыруға және сыйластық білдіруге арналған.' },
+    } },
+  'ar-syrga-salu': { url: '/models/syrga-salu.glb', title: 'Сырға салу', duration: 12,
+    sourceUrl: 'https://www.gov.kz/memleket/entities/digital-nauryz/press/news/details/1186602', sourceTitle: 'ҚР мемлекеттік материалы',
+    stageLabels: ['Отбасылар кездесуі', 'Сырғаны ұсыну', 'Сырға тағу'], hotspots: {
+      earrings: { name: 'Сырға', meaning: 'Құдалық келісімін білдіретін сый. Бұл металл пішіні авторлық, музей бұйымының көшірмесі емес.' },
+      tray: { name: 'Ұсыну табағы', meaning: 'Сахнаны түсіндіру үшін қосылған ағаш ыдыс; рәсімнің міндетті белгісі ретінде ұсынылмайды.' },
+      community: { name: 'Отбасы өкілдері', meaning: 'Сырға салуға жігіт жағы мен қыздың отбасы қатысатын нұсқа құжатталған.' },
+    } },
+  'ar-bata-beru': { url: '/models/bata-beru.glb', title: 'Бата беру', duration: 12,
+    sourceUrl: 'https://www.gov.kz/memleket/entities/aktobe-til/press/news/details/867725', sourceTitle: 'ҚР мемлекеттік материалы',
+    stageLabels: ['Жиналу', 'Ізгі тілек', 'Батаны аяқтау'], hotspots: {
+      table: { name: 'Дастарқан', meaning: 'Отбасылық жиынның оқу кеңістігі. Бата әртүрлі жағдайда беріледі.' },
+      community: { name: 'Бата беруші және тыңдаушылар', meaning: 'Бата сөзінің мазмұны мен орындалуы жағдайға қарай өзгереді. Авторлық үлгі тілек: «Ынтымақтарың артып, еңбектерің жемісті болсын!» Бұл сөз тарихи тұлғаға телінбейді.' },
+    } },
+  'ar-shashu': { url: '/models/shashu.glb', title: 'Шашу', duration: 12,
+    sourceUrl: 'https://www.gov.kz/memleket/entities/mfa-prague/press/article/details/113244?lang=kk', sourceTitle: 'ҚР СІМ материалы',
+    stageLabels: ['Тәттілерді дайындау', 'Шашу шашу', 'Қуанышқа ортақтасу'], hotspots: {
+      container: { name: 'Тәтті ыдысы', meaning: 'Мерекеде шашылатын тәттілерге арналған ағаш ыдыс.' },
+      sweets: { name: 'Шашу тәттілері', meaning: 'Шашу қуанышты бөлісуді білдіреді. Мұнда жеке 3D нысандар ұшады және жерге қонады.' },
+      community: { name: 'Қарсы алушылар', meaning: 'Шашу үйлену және басқа қуаныш рәсімдерінде де кездеседі.' },
+    } },
+  'ar-qymyzmuryndyq': { url: '/models/qymyzmuryndyq.glb', title: 'Қымызмұрындық', duration: 12,
+    sourceUrl: 'https://www.gov.kz/memleket/entities/vko-cultura-arhiv/press/news/details/1019876', sourceTitle: 'ШҚО музей-қорығы',
+    stageLabels: ['Ыдыстарды әзірлеу', 'Қымыз құю', 'Дәм тату'], hotspots: {
+      saba: { name: 'Саба үлгісі', meaning: 'Қымыз сақтайтын былғары ыдыс. Көрсетілген пішін мен тігіс белгілі бір экспонаттан көшірілмеген.' },
+      bowls: { name: 'Ағаш тостағандар', meaning: 'Қымыз ұсынуға арналған шағын ағаш ыдыстардың оқу үлгісі.' },
+      jug: { name: 'Құю ыдысы', meaning: 'Қымызды тостағанға ұсыну қозғалысын түсіндіретін ыдыс.' },
+      qymyz: { name: 'Қымыз', meaning: 'Маусымның алғашқы қымызынан дәм тату дәстүрдің негізгі мазмұны.' },
+      vessels: { name: 'Дастарқан', meaning: 'Қауымның жиналуын көрсететін шағын үстел; барлық жергілікті рәсімде бірдей болмайды.' },
+      community: { name: 'Үй иесі мен қонақтар', meaning: 'Қымызмұрындықта жұрт алғашқы қымыздан дәм татып, бір-біріне тілек айтады.' },
+    } },
   'ar-asar': { url: '/models/asar.glb', title: 'Асар', duration: 16,
     stageLabels: ['Керегені құру', 'Шаңырақты көтеру', 'Уықтарды бекіту', 'Киізбен жабу'], hotspots: yurtHotspots },
   'ar-nauryz': { url: '/models/nauryz.glb', title: 'Наурыз', duration: 0, stageLabels: [], hotspots: { ...cutawayYurtHotspots,

@@ -60,12 +60,12 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
         </div>
 
         {/* 3 Scenario Switcher Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8 overflow-x-auto pb-3 snap-x snap-mandatory" aria-label="3D салт-дәстүр сахналары">
           {AR_SCENARIOS_DATA.map((sc) => (
             <button
               key={sc.id}
               onClick={() => setSelectedScenario(sc)}
-              className={`px-4 sm:px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2.5 border ${
+              className={`shrink-0 snap-start px-4 sm:px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2.5 border ${
                 selectedScenario.id === sc.id
                   ? 'bg-gradient-to-r from-[#00BFFF] to-[#0090C8] text-[#051B44] border-[#00BFFF] shadow-cyan-glow scale-105'
                   : 'bg-[#062B65]/80 text-slate-300 border-white/10 hover:border-[#00BFFF]/40 hover:bg-[#0B357A]'
@@ -149,7 +149,7 @@ export const ARGallerySection: React.FC<ARGallerySectionProps> = ({ initialScena
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
                     <div>
                       <span className="text-[11px] font-mono text-[#00E5FF] uppercase tracking-wider block">
-                        Референс иллюстрациясы (2D)
+                         {selectedScenario.imagePreview.startsWith('/assets/scene_') ? 'Қолданбадағы 3D сахна кадры' : 'Референс иллюстрациясы (2D)'}
                       </span>
                       <h3 className="text-xl font-bold text-white font-serif">{selectedScenario.name}</h3>
                       <p className="text-xs text-amber-200 mt-1">{selectedScenario.subtitle}</p>

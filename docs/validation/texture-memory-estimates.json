@@ -1,0 +1,47 @@
+[
+  {
+    "scene": "asar",
+    "embeddedImages": 15,
+    "estimatedRgbaMipBytes": 12582907
+  },
+  {
+    "scene": "bata-beru",
+    "embeddedImages": 15,
+    "estimatedRgbaMipBytes": 12582907
+  },
+  {
+    "scene": "besikke-salu",
+    "embeddedImages": 15,
+    "estimatedRgbaMipBytes": 12582907
+  },
+  {
+    "scene": "betashar",
+    "embeddedImages": 15,
+    "estimatedRgbaMipBytes": 12582907
+  },
+  {
+    "scene": "nauryz",
+    "embeddedImages": 18,
+    "estimatedRgbaMipBytes": 14680058
+  },
+  {
+    "scene": "qymyzmuryndyq",
+    "embeddedImages": 15,
+    "estimatedRgbaMipBytes": 12582907
+  },
+  {
+    "scene": "shashu",
+    "embeddedImages": 14,
+    "estimatedRgbaMipBytes": 11184806
+  },
+  {
+    "scene": "syrga-salu",
+    "embeddedImages": 15,
+    "estimatedRgbaMipBytes": 12582907
+  },
+  {
+    "scene": "tusaukeser",
+    "embeddedImages": 11,
+    "estimatedRgbaMipBytes": 9087655
+  }
+]

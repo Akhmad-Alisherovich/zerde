@@ -2,6 +2,16 @@ import { Tradition, ARScenario } from '../types';
 
 export const TRADITIONS_DATA: Tradition[] = [
   {
+    id: 'besikke-salu', code: 'BS01', name: 'Бесікке салу', subtitle: 'Сәбиді алғаш бесікке бөлеу',
+    coreValue: 'Қамқорлық пен отбасы сабақтастығы',
+    description: 'Бесік дайындалып, сәби үлкендердің ақ тілегімен алғаш бөлінеді. Орындалуы отбасына және өңірге қарай өзгеруі мүмкін.',
+    deepMeaning: 'Бұл рәсімде туыстар мен жақындар жиналып, баланың амандығын тілейді. Бесікті әкелу мен бөлеу жөнінде әртүрлі отбасылық нұсқалар бар.',
+    reflectionQuestion: 'Жас балаға қамқорлық отбасын қалай біріктіреді?',
+    source: 'Абай институты, «Салт-дәстүрлер: Бесікке салу»; ҚР мемлекеттік мәдениет материалдары.',
+    sourceRef: 5, image: '/assets/scene_besikke_salu.png', hasArScenario: true, arScenarioId: 'ar-besikke-salu',
+    tags: ['Бесік', 'Сәби', 'Отбасы', 'Қамқорлық']
+  },
+  {
     id: 'nauryz',
     code: 'N01',
     name: 'Наурыз',
@@ -60,7 +70,8 @@ export const TRADITIONS_DATA: Tradition[] = [
     source: 'UNESCO. Betashar, traditional wedding ritual. Representative List, 2024.',
     sourceRef: 3,
     image: '/assets/tradition_betashar.jpg',
-    hasArScenario: false,
+    hasArScenario: true,
+    arScenarioId: 'ar-betashar',
     tags: ['Отбасы', 'Келін', 'Домбыра', 'Өсиет', 'UNESCO']
   },
   {
@@ -93,10 +104,68 @@ export const TRADITIONS_DATA: Tradition[] = [
     image: '/assets/tradition_erulik.jpg',
     hasArScenario: false,
     tags: ['Көршілік', 'Қонақжайлық', 'Бейімделу', 'Бауырмалдық', 'Қамқорлық']
-  }
+  },
+  { id: 'syrga-salu', code: 'S01', name: 'Сырға салу', subtitle: 'Отбасылар келісімінің белгісі',
+    coreValue: 'Сыйластық пен келісім', description: 'Құдалықтан кейін қызға сырға тағудың отбасылық нұсқасы.',
+    deepMeaning: 'Сырға сыйлау екі отбасының ниетін білдіреді. Кім тағатыны және рәсім реті жергілікті тәжірибеге байланысты.',
+    reflectionQuestion: 'Отбасылар арасындағы келісім қалай білдіріледі?',
+    source: 'ҚР мемлекеттік мәдениет материалдары, «Сырға салу», 2025.', sourceRef: 6,
+    image: '/assets/scene_syrga_salu.png', hasArScenario: true, arScenarioId: 'ar-syrga-salu', tags: ['Сырға', 'Отбасы'] },
+  { id: 'bata-beru', code: 'BB01', name: 'Бата беру', subtitle: 'Ізгі тілек пен үлкенді құрметтеу',
+    coreValue: 'Ізгі тілек', description: 'Үлкен кісі жиналғандарға ақ тілек білдіретін отбасылық көрініс.',
+    deepMeaning: 'Бата әртүрлі жағдайда айтылатындықтан, бір ғана мәтін не қол қимылы барлық нұсқаға ортақ деп берілмейді.',
+    reflectionQuestion: 'Ізгі тілек адамның көңіл күйіне қалай әсер етеді?',
+    source: 'ҚР мемлекеттік «Бата беру» айдары, 2024.', sourceRef: 7,
+    image: '/assets/scene_bata_beru.png', hasArScenario: true, arScenarioId: 'ar-bata-beru', tags: ['Бата', 'Үлкенді құрметтеу'] },
+  { id: 'shashu', code: 'SH01', name: 'Шашу', subtitle: 'Қуанышты бөлісу',
+    coreValue: 'Қуаныш пен қонақжайлық', description: 'Қонақты қуанышпен қарсы алып, тәтті шашудың бір қазіргі көрінісі.',
+    deepMeaning: 'Шашу үйлену және басқа қуанышты оқиғаларда кездеседі. Бұл оқу сахнасында жеке тәттілер көрсетілген.',
+    reflectionQuestion: 'Ортақ қуаныш адамдарды қалай жақындастырады?',
+    source: 'ҚР СІМ, «Қазақстан мәдениеті»; Абай институты, «Салт-дәстүрлер».', sourceRef: 8,
+    image: '/assets/scene_shashu.png', hasArScenario: true, arScenarioId: 'ar-shashu', tags: ['Шашу', 'Қонақ'] },
+  { id: 'qymyzmuryndyq', code: 'Q01', name: 'Қымызмұрындық', subtitle: 'Маусымның алғашқы қымызынан дәм тату',
+    coreValue: 'Қонақжайлық пен қауымдастық', description: 'Жазғы басқосуда алғашқы қымызды ұсынудың оқу реконструкциясы.',
+    deepMeaning: 'Қымызмұрындық көрші мен туысты жинап, алғашқы қымыздан дәм татқызуға байланысты. Жергілікті орындалуы әртүрлі.',
+    reflectionQuestion: 'Ортақ дәм тату қауым байланысын қалай нығайтады?',
+    source: 'Шығыс Қазақстан музей-қорығы, «Қымызмұрындық», 2025.', sourceRef: 9,
+    image: '/assets/scene_qymyzmuryndyq.png', hasArScenario: true, arScenarioId: 'ar-qymyzmuryndyq', tags: ['Қымыз', 'Жайлау'] }
 ];
 
 export const AR_SCENARIOS_DATA: ARScenario[] = [
+  ...([
+    ['betashar','Беташар','Келіннің бетін ашу','Қалыңдық, ақын, домбыра және отбасы өкілдері қатысатын үш кезеңдік оқу реконструкциясы.','/assets/scene_betashar.png'],
+    ['syrga-salu','Сырға салу','Келісімнің белгісі','Сырға сыйлау және тағу кезеңдерін түсіндіретін отбасылық сахна.','/assets/scene_syrga_salu.png'],
+    ['bata-beru','Бата беру','Ізгі тілек','Бата беруші үлкен кісі мен тыңдаушылар көрсетілген ықшам отбасылық сахна.','/assets/scene_bata_beru.png'],
+    ['shashu','Шашу','Қуанышты бөлісу','Мерекеде жеке 3D тәттілерді шашу және олардың жерге қонуы.','/assets/scene_shashu.png'],
+    ['qymyzmuryndyq','Қымызмұрындық','Алғашқы қымыз','Саба, ағаш тостағандар мен қымыз ұсыну көрсетілген маусымдық басқосу.','/assets/scene_qymyzmuryndyq.png'],
+  ] as const).map(([id,name,subtitle,sceneDescription,imagePreview]) => ({
+    id: `ar-${id}`, traditionId: id, name, subtitle, sceneDescription,
+    keyAction: 'Дайындық – рәсім – ортақтасу', studentTask: 'Нысандарды таңдап, рәсім кезеңдерін салыстырыңыз.',
+    acceptanceCriteria: 'Модель жүктеледі; нысандар мен кезеңдер қаралады.',
+    markerType: 'GLB / WebXR (құрылғыда тексеру қажет)', imagePreview, hologramColor: '#D49A35',
+    interactiveObjects: {
+      betashar: [{ name: 'Келін жамылғысы', description: 'Рәсім соңында ашылатын бет жабыны' }, { name: 'Домбыра', description: 'Ақын жырына қатысты аспап' }],
+      'syrga-salu': [{ name: 'Сырға', description: 'Екі отбасының келісімін білдіретін сый' }],
+      'bata-beru': [{ name: 'Отбасы жиыны', description: 'Бата тыңдаушыларды біріктіреді' }],
+      shashu: [{ name: 'Шашу тәттілері', description: 'Қуанышта шашылатын жеке 3D нысандар' }],
+      qymyzmuryndyq: [{ name: 'Саба', description: 'Қымыз сақтайтын былғары ыдыстың үлгісі' }, { name: 'Ағаш тостаған', description: 'Қымыз ішуге арналған ыдыс' }]
+    }[id]
+  })),
+  {
+    id: 'ar-besikke-salu', traditionId: 'besikke-salu', name: 'Бесікке салу',
+    subtitle: 'Бесік, төсеніш және отбасы',
+    sceneDescription: 'Қазіргі отбасылық рәсімнің авторлық 3D оқу реконструкциясы. Бесікті жабдықтау, сәбиді бөлеу және ақ тілек кезеңдері көрсетіледі.',
+    keyAction: 'Жабдықтау – бөлеу – ақ тілек',
+    studentTask: 'Бесіктің құрылымын қарап, үлкендердің рөлін түсіндіріңіз.',
+    acceptanceCriteria: 'Үш кезеңді, 360° көріністі және бесік бөлшектерін зерттеу.',
+    markerType: 'GLB / WebXR (құрылғыда тексеру қажет)',
+    imagePreview: '/assets/scene_besikke_salu.png', hologramColor: '#D49A35',
+    interactiveObjects: [
+      { name: 'Ағаш бесік', description: 'Сәбиге арналған тербелмелі орын' },
+      { name: 'Төсеніш', description: 'Бесікті жабдықтайтын мата қабаттары' },
+      { name: 'Жабынды', description: 'Рәсім соңында көрінетін мата' }
+    ]
+  },
   {
     id: 'ar-nauryz',
     traditionId: 'nauryz',

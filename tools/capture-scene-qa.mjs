@@ -70,6 +70,16 @@ try {
     await fs.writeFile(file, Buffer.from(result.data, 'base64'));
     console.log(file);
   }
+  async function preview(scene) {
+    await evaluate(`(() => { const canvas=document.querySelector('canvas'); canvas.scrollIntoView({block:'center'}); [...canvas.parentElement.children].filter(el=>el!==canvas).forEach(el=>el.style.display='none'); })()`);
+    await pause(500);
+    const rect = await evaluate(`(() => {const r=document.querySelector('canvas').getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height};})()`);
+    const result = await send('Page.captureScreenshot', { format:'png', captureBeyondViewport:true,
+      clip:{x:rect.x,y:rect.y,width:rect.width,height:rect.height,scale:1} });
+    const file = path.resolve('public/assets', `scene_${scene.replaceAll('-', '_')}.png`);
+    await fs.writeFile(file, Buffer.from(result.data, 'base64'));
+    console.log(file);
+  }
   async function navigate(scenario) {
     await send('Page.navigate', { url: `${origin}/ar-gallery?scenario=${scenario}` });
     await waitForModel();
@@ -119,6 +129,52 @@ try {
     const beat=() => { window.__zerdeQa.frames++; requestAnimationFrame(beat); };
     requestAnimationFrame(beat);
   })();` });
+  const previewOnly = process.argv.includes('--previews');
+  const measureOnly = process.argv.includes('--measure-only');
+  const detailsOnly = process.argv.includes('--details');
+  const switchTest = process.argv.includes('--switch-test');
+  const requested = process.argv.slice(2).filter(arg => !['--previews','--measure-only','--details','--switch-test'].includes(arg));
+  if (switchTest) {
+    await navigate('ar-besikke-salu');
+    const cases = [
+      ['Беташар','betashar'],['Сырға салу','syrga-salu'],['Бата беру','bata-beru'],
+      ['Шашу','shashu'],['Қымызмұрындық','qymyzmuryndyq'],['Бесікке салу','besikke-salu']
+    ];
+    const checks=[];
+    for (const [label, expected] of cases) {
+      const clicked = await evaluate(`(() => {const b=[...document.querySelectorAll('button')].find(x=>x.textContent.trim()===${JSON.stringify(label)});b?.click();return !!b})()`);
+      if (!clicked) throw new Error(`Missing gallery tab ${label}`);
+      await pause(350); await waitForModel();
+      const state = await evaluate(`(() => ({canvasCount:document.querySelectorAll('canvas').length,loadError:document.body.innerText.includes('GLB үлгісін жүктеу мүмкін болмады'),lastGlb:performance.getEntriesByType('resource').filter(x=>x.name.endsWith('.glb')).at(-1)?.name.split('/').pop()}))()`);
+      if (state.canvasCount!==1 || state.loadError || state.lastGlb!==`${expected}.glb`) throw new Error(`Switch to ${expected} failed: ${JSON.stringify(state)}`);
+      checks.push({scenario:expected,...state});
+    }
+    await fs.writeFile(path.join(output,'gallery-switch-test.json'),JSON.stringify(checks,null,2));
+  } else if (requested.length) {
+    for (const scene of requested) {
+      const id = `ar-${scene}`;
+      await navigate(id);
+      if (previewOnly) { await scrub(11.8); await preview(scene); continue; }
+      if (measureOnly) { await measure(scene); continue; }
+      if (detailsOnly) {
+        await scrub(11.8);
+        await clickLabel('Жақын'); await screenshot(`${scene}-close`);
+        await clickLabel('Жалпы'); await orbit(288); await screenshot(`${scene}-rear`);
+        continue;
+      }
+      for (const [stage, time] of [[1,3.8],[2,7.8],[3,11.8]]) {
+        const selected = await evaluate(`(() => { const host=document.querySelector('canvas')?.parentElement; const button=[...(host?.querySelectorAll('button')??[])].find(b=>b.textContent.trim().startsWith('${stage}. ')); button?.click(); return !!button; })()`);
+        if (!selected) throw new Error(`Stage ${stage} control missing for ${scene}`);
+        await pause(150);
+        await scrub(time);
+        await screenshot(`${scene}-stage-${stage}-front`);
+      }
+      await measure(scene);
+      await orbit(144);
+      await screenshot(`${scene}-stage-3-side`);
+    }
+    if (!previewOnly && !detailsOnly) await fs.writeFile(path.join(output, 'additional-browser-metrics.json'), JSON.stringify(measurements, null, 2));
+  } else {
   await navigate('ar-asar');
   await scrub(3.8); await screenshot('asar-stage-1-front');
   await clickLabel('2. Шаңырақ көтеру'); await scrub(7.8); await screenshot('asar-stage-2-front');
@@ -134,6 +190,7 @@ try {
   await clickLabel('3. Алғашқы қадам'); await scrub(12); await screenshot('tusaukeser-stage-3'); await measure('tusaukeser');
   await orbit(144); await screenshot('tusaukeser-stage-3-side');
   await fs.writeFile(path.join(output, 'browser-metrics.json'), JSON.stringify(measurements, null, 2));
+  }
 } finally {
   socket?.close();
   chrome.kill();

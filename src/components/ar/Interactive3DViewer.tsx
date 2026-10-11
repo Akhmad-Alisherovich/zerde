@@ -26,6 +26,7 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [tusaukeserStage, setTusaukeserStage] = useState<number>(1);
   const [asarStage, setAsarStage] = useState<number>(1);
+  const [additionalStage, setAdditionalStage] = useState<number>(1);
   const [cameraPreset, setCameraPreset] = useState<'general' | 'top' | 'close' | 'orbit'>('general');
   const [showMuseumPhoto, setShowMuseumPhoto] = useState<boolean>(false);
 
@@ -142,10 +143,10 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
   }, [scenarioId]);
 
   useEffect(() => {
-    const stage = scenarioId === 'ar-asar' ? asarStage : tusaukeserStage;
+    const stage = scenarioId === 'ar-asar' ? asarStage : scenarioId === 'ar-tusaukeser' ? tusaukeserStage : additionalStage;
     timelineRef.current = { time: (stage - 1) * 4, target: stage * 4, running: asset.duration > 0 };
     setIsPlaying(asset.duration > 0);
-  }, [scenarioId, asarStage, tusaukeserStage, replay]);
+  }, [scenarioId, asarStage, tusaukeserStage, additionalStage, replay]);
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (Math.hypot(e.clientX - pointerStartRef.current.x, e.clientY - pointerStartRef.current.y) > 6) return;
@@ -226,14 +227,14 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
         {/* Top Right Viewport Controls & Camera Presets */}
         <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
           {/* Museum Photographic Reference Button */}
-          <button
+          {referencePhotos[scenarioId] && <button
             onClick={() => setShowMuseumPhoto(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#051B44]/90 hover:bg-[#062B65] border border-[#D49A35]/60 text-[#D49A35] text-xs font-bold transition-all shadow-gold-glow backdrop-blur-md"
             title="2D референсті көру"
           >
             <Eye className="w-3.5 h-3.5 text-[#00E5FF]" />
             <span className="hidden sm:inline">2D референс</span>
-          </button>
+          </button>}
 
           {/* Camera Presets Selector */}
           <div className="hidden sm:flex items-center bg-[#051B44]/90 rounded-xl border border-white/15 p-1 backdrop-blur-md">
@@ -362,6 +363,21 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
           </div>
         )}
 
+        {asset.stageLabels.length > 0 && scenarioId !== 'ar-asar' && scenarioId !== 'ar-tusaukeser' && (
+          <div className="absolute bottom-4 left-4 right-4 z-10 flex justify-center">
+            <div className="p-1.5 rounded-2xl bg-[#051B44]/95 border border-[#D49A35]/50 backdrop-blur-md flex flex-wrap items-center gap-1 shadow-2xl max-w-2xl w-full">
+              {asset.stageLabels.map((label, index) => (
+                <button key={label} onClick={() => { setAdditionalStage(index + 1); setReplay(v => v + 1); }}
+                  className={`flex-1 min-w-[120px] py-2 px-2 rounded-xl text-xs font-bold text-center ${additionalStage === index + 1
+                    ? 'bg-gradient-to-r from-[#D49A35] to-[#F3BE5E] text-[#051B44]'
+                    : 'text-slate-300 hover:bg-white/5'}`}>
+                  {index + 1}. {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Selected 3D Hotspot / Mesh Detail Modal */}
         {selectedHotspot && (
           <div className="absolute bottom-24 sm:bottom-28 left-4 right-4 max-w-md mx-auto z-20 animate-slideUp">
@@ -383,6 +399,8 @@ export const Interactive3DViewer: React.FC<Interactive3DViewerProps> = ({ scenar
               <p className="text-xs text-slate-200 leading-relaxed">
                 {selectedHotspot.meaning}
               </p>
+              {asset.sourceUrl && <a className="inline-block mt-3 text-xs text-[#00E5FF] underline" href={asset.sourceUrl}
+                target="_blank" rel="noopener noreferrer">Дереккөз: {asset.sourceTitle}</a>}
             </div>
           </div>
         )}

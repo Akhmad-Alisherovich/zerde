@@ -1,0 +1,38 @@
+[
+  {
+    "scenario": "betashar",
+    "canvasCount": 1,
+    "loadError": false,
+    "lastGlb": "betashar.glb"
+  },
+  {
+    "scenario": "syrga-salu",
+    "canvasCount": 1,
+    "loadError": false,
+    "lastGlb": "syrga-salu.glb"
+  },
+  {
+    "scenario": "bata-beru",
+    "canvasCount": 1,
+    "loadError": false,
+    "lastGlb": "bata-beru.glb"
+  },
+  {
+    "scenario": "shashu",
+    "canvasCount": 1,
+    "loadError": false,
+    "lastGlb": "shashu.glb"
+  },
+  {
+    "scenario": "qymyzmuryndyq",
+    "canvasCount": 1,
+    "loadError": false,
+    "lastGlb": "qymyzmuryndyq.glb"
+  },
+  {
+    "scenario": "besikke-salu",
+    "canvasCount": 1,
+    "loadError": false,
+    "lastGlb": "besikke-salu.glb"
+  }
+]

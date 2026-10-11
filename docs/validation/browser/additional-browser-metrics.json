@@ -1,0 +1,80 @@
+[
+  {
+    "scene": "besikke-salu",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.56,
+    "animationFrames": 13,
+    "rafPerSecond": 5.1,
+    "drawCallsPerRaf": 112,
+    "glbResource": {
+      "name": "besikke-salu.glb",
+      "durationMs": 61.3,
+      "transferSize": 4406744
+    }
+  },
+  {
+    "scene": "betashar",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.6,
+    "animationFrames": 13,
+    "rafPerSecond": 5,
+    "drawCallsPerRaf": 129,
+    "glbResource": {
+      "name": "betashar.glb",
+      "durationMs": 59.5,
+      "transferSize": 5021568
+    }
+  },
+  {
+    "scene": "syrga-salu",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.68,
+    "animationFrames": 14,
+    "rafPerSecond": 5.2,
+    "drawCallsPerRaf": 118,
+    "glbResource": {
+      "name": "syrga-salu.glb",
+      "durationMs": 50.9,
+      "transferSize": 4557540
+    }
+  },
+  {
+    "scene": "bata-beru",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.67,
+    "animationFrames": 14,
+    "rafPerSecond": 5.2,
+    "drawCallsPerRaf": 122,
+    "glbResource": {
+      "name": "bata-beru.glb",
+      "durationMs": 42.6,
+      "transferSize": 4589168
+    }
+  },
+  {
+    "scene": "shashu",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.53,
+    "animationFrames": 15,
+    "rafPerSecond": 5.9,
+    "drawCallsPerRaf": 126,
+    "glbResource": {
+      "name": "shashu.glb",
+      "durationMs": 56.1,
+      "transferSize": 4486912
+    }
+  },
+  {
+    "scene": "qymyzmuryndyq",
+    "environment": "Chrome headless SwiftShader on local Vite",
+    "sampleSeconds": 2.66,
+    "animationFrames": 14,
+    "rafPerSecond": 5.3,
+    "drawCallsPerRaf": 128,
+    "glbResource": {
+      "name": "qymyzmuryndyq.glb",
+      "durationMs": 40,
+      "transferSize": 4770780
+    }
+  }
+]

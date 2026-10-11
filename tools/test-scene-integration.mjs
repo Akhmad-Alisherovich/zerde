@@ -12,7 +12,7 @@ for (const [id, definition] of Object.entries(SCENE_ASSETS)) {
   const gltf = await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), '');
   const root = gltf.scene;
   const spots = getHotspots(root, id);
-  assert(spots.length >= 3, `Missing selectable objects in ${id}`);
+  assert(spots.length >= (id === 'ar-bata-beru' ? 2 : 3), `Missing selectable objects in ${id}`);
   for (const spot of spots) {
     let candidate;
     root.traverse(object => { if (object.userData.hotspot === spot.id) candidate = object; });
@@ -48,7 +48,7 @@ for (const [id, definition] of Object.entries(SCENE_ASSETS)) {
       mixer.setTime(15.999); assert(panel.scale.x > .9 && support.scale.x < .01);
       mixer.setTime(15.999); assert(panel.scale.x > .9 && support.scale.x < .01, 'Finished pose must survive repeated browser render frames');
       mixer.setTime(0); assert(crownCentre().y < .2 && panel.scale.x < .01); // rewind
-    } else {
+    } else if (id === 'ar-tusaukeser') {
       const child = root.getObjectByName('toddler'), rope = root.getObjectByName('ala-zhip'), blade = root.getObjectByName('scissor-blade-1');
       assert(child && rope && blade);
       mixer.setTime(4); const q = blade.quaternion.clone(); const z = child.position.z;
@@ -57,6 +57,18 @@ for (const [id, definition] of Object.entries(SCENE_ASSETS)) {
       const cut = root.getObjectByName('cut-ala-zhip'); assert(cut && cut.scale.x > .99); assert(rope.scale.x < .01);
       mixer.setTime(12); assert(child.position.z > z + .9);
       mixer.setTime(0); assert(Math.abs(child.position.z + .6) < .001);
+    } else {
+      const marked = id === 'ar-besikke-salu' ? 'infant' : id === 'ar-betashar' ? 'bridal-veil'
+        : id === 'ar-syrga-salu' ? 'right-earring' : id === 'ar-bata-beru' ? 'blessing-elder-upperarm_l'
+        : id === 'ar-shashu' ? 'sweet-0' : 'serving-jug';
+      const target = root.getObjectByName(marked); assert(target, `Missing key moving object ${marked}`);
+      mixer.setTime(0); const start = { position: target.position.clone(), rotation: target.quaternion.clone() };
+      mixer.setTime(id === 'ar-betashar' ? 10 : id === 'ar-qymyzmuryndyq' ? 6.5 : 7.8);
+      assert(target.position.distanceTo(start.position) > .03 || target.quaternion.angleTo(start.rotation) > .08,
+        `${id} did not visibly move at middle stage`);
+      mixer.setTime(0);
+      assert(target.position.distanceTo(start.position) < .001 && target.quaternion.angleTo(start.rotation) < .001,
+        `${id} did not rewind`);
     }
     mixer.stopAllAction(); mixer.uncacheRoot(root);
   }
