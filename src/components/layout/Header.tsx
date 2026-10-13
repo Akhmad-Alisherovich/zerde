@@ -4,6 +4,7 @@ import {
   Compass, 
   Layers, 
   Bot, 
+  Film, 
   Maximize2, 
   Printer, 
   Menu, 
@@ -35,7 +36,7 @@ export const Header: React.FC = () => {
     { to: '/modules', label: '4 Модуль', icon: Layers },
     { to: '/traditions', label: '6 Дәстүр', icon: Sparkles },
     { to: '/ai-assistant', label: 'ЖИ-көмекші', icon: Bot },
-    { to: '/ar-gallery', label: 'AR галерея', icon: Maximize2 },
+    { to: '/media-gallery', label: 'Фото және видео', icon: Film },
     { to: '/research', label: 'Зерттеу', icon: BarChart2 },
     { to: '/ethics', label: 'Этика', icon: ShieldCheck },
   ];

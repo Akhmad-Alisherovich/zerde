@@ -27,7 +27,7 @@ export const ModulesPage: React.FC = () => {
               </h1>
               <p className="text-slate-300 text-sm sm:text-base max-w-3xl mt-2 leading-relaxed">
                 Білім беру кешені 4 логикалық сатыдан тұрады: Академиялық карточкалар → Дерекке негізделген ЖИ → 
-                WebAR визуализациясы → Бағалау мен сараптама.
+                Фото және видео галереясы → Бағалау мен сараптама.
               </p>
             </div>
 

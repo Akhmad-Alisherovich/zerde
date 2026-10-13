@@ -14,7 +14,8 @@ import {
   Tag, 
   Share2,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Film
 } from 'lucide-react';
 import { TRADITIONS_DATA, AR_SCENARIOS_DATA } from '../data/traditionsData';
 import { useChatbot } from '../context/ChatbotContext';
@@ -102,15 +103,13 @@ export const TraditionDetailPage: React.FC = () => {
                 <span>ЖИ-ден осы дәстүрді сұрау</span>
               </button>
 
-              {tradition.hasArScenario && (
-                <Link
-                  to={`/ar-gallery?scenario=${tradition.arScenarioId}`}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#D49A35] hover:bg-[#F3BE5E] text-[#051B44] font-bold text-xs sm:text-sm shadow-gold-glow transition-all"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                  <span>AR Галерея</span>
-                </Link>
-              )}
+              <Link
+                to={`/media-gallery?tradition=${tradition.id}`}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#D49A35] hover:bg-[#F3BE5E] text-[#051B44] font-bold text-xs sm:text-sm shadow-gold-glow transition-all"
+              >
+                <Film className="w-4 h-4" />
+                <span>Фото және видео</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -153,42 +152,40 @@ export const TraditionDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* AR Scenario Card (if applicable) */}
-            {arScenario && (
-              <div className="glass-panel p-6 rounded-3xl border border-[#00BFFF]/40 shadow-cyan-glow/20 relative overflow-hidden">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="p-2 rounded-xl bg-[#00BFFF]/20 text-[#00BFFF]">
-                      <Maximize2 className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white">AR 3D Сценарийі бар</h4>
-                      <p className="text-[11px] text-slate-300">{arScenario.name}</p>
-                    </div>
+            {/* Media Gallery Card */}
+            <div className="glass-panel p-6 rounded-3xl border border-[#00BFFF]/40 shadow-cyan-glow/20 relative overflow-hidden">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-xl bg-[#00BFFF]/20 text-[#00BFFF]">
+                    <Film className="w-5 h-5" />
                   </div>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">
-                    WebAR Ready
-                  </span>
+                  <div>
+                    <h4 className="text-sm font-bold text-white">Көрнекі фото және бейне</h4>
+                    <p className="text-[11px] text-slate-300">{tradition.name} галереясы</p>
+                  </div>
                 </div>
-                
-                <p className="text-xs text-slate-300 mb-4 leading-relaxed">
-                  {arScenario.sceneDescription}
-                </p>
-
-                <div className="p-3 rounded-xl bg-[#041535] border border-white/10 text-xs mb-4">
-                  <span className="text-[#00BFFF] font-semibold block mb-1">Оқушы тапсырмасы:</span>
-                  <span className="text-slate-300">{arScenario.studentTask}</span>
-                </div>
-
-                <Link
-                  to={`/ar-gallery?scenario=${arScenario.id}`}
-                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#00BFFF] to-[#0090C8] hover:from-[#38D2FF] hover:to-[#00BFFF] text-[#051B44] font-bold text-xs flex items-center justify-center gap-2 shadow-cyan-glow transition-all"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                  <span>Бұл сценарийді AR Галереясында ашу</span>
-                </Link>
+                <span className="px-2 py-0.5 rounded bg-cyan-500/20 text-[#00E5FF] text-[10px] font-bold">
+                  HD Галерея
+                </span>
               </div>
-            )}
+              
+              <p className="text-xs text-slate-300 mb-4 leading-relaxed">
+                Бұл дәстүрге арналған жоғары сапалы этнографиялық суреттер, салттық киім мен бұйымдардың көрнекі бөлшектері және танымдық бейнероликтер.
+              </p>
+
+              <div className="p-3 rounded-xl bg-[#041535] border border-white/10 text-xs mb-4">
+                <span className="text-[#00BFFF] font-semibold block mb-1">Оқу мақсаты:</span>
+                <span className="text-slate-300">«{tradition.coreValue}» ұстанымын зерделеу және салттың тәрбиелік мәнін түсіну</span>
+              </div>
+
+              <Link
+                to={`/media-gallery?tradition=${tradition.id}`}
+                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#00BFFF] to-[#0090C8] hover:from-[#38D2FF] hover:to-[#00BFFF] text-[#051B44] font-bold text-xs flex items-center justify-center gap-2 shadow-cyan-glow transition-all"
+              >
+                <Film className="w-4 h-4" />
+                <span>«{tradition.name}» фото және видеоларын ашу</span>
+              </Link>
+            </div>
 
             {/* Tags list */}
             <div className="glass-panel p-5 rounded-3xl border border-white/10">

@@ -12,7 +12,8 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Compass,
-  Award
+  Award,
+  Film
 } from 'lucide-react';
 import { PROJECT_INFO } from '../data/researchData';
 import { TRADITIONS_DATA } from '../data/traditionsData';
@@ -29,7 +30,7 @@ export const HomePage: React.FC = () => {
     },
     {
       title: '4 Байланысты Модуль',
-      subtitle: 'Цифрлық оқу логикасы: Карточка → ЖИ/AR → Тапсырма → Бағалау',
+      subtitle: 'Цифрлық оқу логикасы: Карточка → ЖИ/Медиа → Тапсырма → Бағалау',
       to: '/modules',
       icon: Layers,
       color: '#00E5FF',
@@ -52,10 +53,10 @@ export const HomePage: React.FC = () => {
       badge: '5-Бөлім'
     },
     {
-      title: 'AR Кеңістіктік Галерея',
-      subtitle: '3D интерактивті үлгілер, парта үстіндегі WebAR және Hiro маркері',
-      to: '/ar-gallery',
-      icon: Maximize2,
+      title: 'Фото және видео',
+      subtitle: 'Қазақтың ұлттық дәстүрлерінің бай көрнекі суреттері мен бейнероликтері',
+      to: '/media-gallery',
+      icon: Film,
       color: '#00BFFF',
       badge: '6-Бөлім'
     },
@@ -170,7 +171,7 @@ export const HomePage: React.FC = () => {
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl text-sm font-bold text-[#F8FCFF] bg-[#062B65]/90 hover:bg-[#0B357A] border border-[#00BFFF]/40 hover:border-[#00BFFF] flex items-center justify-center gap-2 transition-all shadow-glass"
             >
               <Bot className="w-4 h-4 text-[#00BFFF]" />
-              <span>Цифрлық өнім (ЖИ + AR)</span>
+              <span>Цифрлық өнім (ЖИ + Медиа)</span>
             </Link>
 
             <Link
@@ -204,13 +205,13 @@ export const HomePage: React.FC = () => {
               </div>
             </Link>
 
-            <Link to="/ar-gallery" className="p-4 rounded-xl glass-panel border border-[#00BFFF]/20 flex items-start gap-3 hover:border-[#00BFFF] transition-colors">
+            <Link to="/media-gallery" className="p-4 rounded-xl glass-panel border border-[#00BFFF]/20 flex items-start gap-3 hover:border-[#00BFFF] transition-colors">
               <div className="p-2 rounded-lg bg-[#00BFFF]/10 text-[#00BFFF] shrink-0">
-                <Compass className="w-5 h-5" />
+                <Film className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-base sm:text-lg font-bold text-white">3 AR Көрініс</div>
-                <div className="text-xs text-slate-300">Маркерлік кеңістіктік үлгі</div>
+                <div className="text-base sm:text-lg font-bold text-white">Фото & Видео</div>
+                <div className="text-xs text-slate-300">Ұлттық дәстүрлер галереясы</div>
               </div>
             </Link>
 

@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-lg">
-              Қазақ халқының бай этномәдени мұрасын жасанды интеллект және толықтырылған шынайылық (AR) 
+              Қазақ халқының бай этномәдени мұрасын жасанды интеллект және заманауи көрнекі медиа-технологиялар 
               арқылы жаңғыртуға арналған ғылыми-тәжірибелік зерттеу жобасы.
             </p>
 
@@ -96,8 +96,8 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/ar-gallery" className="hover:text-[#00BFFF] transition-colors">
-                  • AR көріністер галереясы
+                <Link to="/media-gallery" className="hover:text-[#00BFFF] transition-colors">
+                  • Фото және видео галереясы
                 </Link>
               </li>
               <li>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ChatbotProvider } from './context/ChatbotContext';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { MainLayout } from './components/layout/MainLayout';
@@ -17,8 +17,8 @@ import { PostersPage } from './pages/PostersPage';
 import { ExhibitionPage } from './pages/ExhibitionPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
-// Keep the Three.js viewer out of the initial bundle for the text-first routes.
-const ARGalleryPage = React.lazy(() => import('./pages/ARGalleryPage').then(module => ({ default: module.ARGalleryPage })));
+// Lazy load MediaGalleryPage
+const MediaGalleryPage = React.lazy(() => import('./pages/MediaGalleryPage').then(module => ({ default: module.MediaGalleryPage })));
 
 export function App() {
   return (
@@ -34,7 +34,8 @@ export function App() {
             <Route path="traditions" element={<TraditionsPage />} />
             <Route path="traditions/:id" element={<TraditionDetailPage />} />
             <Route path="ai-assistant" element={<AIAssistantPage />} />
-            <Route path="ar-gallery" element={<React.Suspense fallback={<div role="status" className="min-h-[50vh] flex items-center justify-center p-6 text-center text-white">AR галереясы жүктелуде…</div>}><ARGalleryPage /></React.Suspense>} />
+            <Route path="media-gallery" element={<React.Suspense fallback={<div role="status" className="min-h-[50vh] flex items-center justify-center p-6 text-center text-white font-serif">Медиа галерея жүктелуде…</div>}><MediaGalleryPage /></React.Suspense>} />
+            <Route path="ar-gallery" element={<Navigate to="/media-gallery" replace />} />
             <Route path="research" element={<ResearchPage />} />
             <Route path="ethics" element={<EthicsPage />} />
             <Route path="posters" element={<PostersPage />} />

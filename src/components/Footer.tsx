@@ -47,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenExhibition, onOpenPosters 
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-lg">
-              Қазақ халқының бай этномәдени мұрасын жасанды интеллект және толықтырылған шынайылық (AR) 
+              Қазақ халқының бай этномәдени мұрасын жасанды интеллект және заманауи көрнекі медиа-технологиялар 
               арқылы жаңғыртуға арналған ғылыми-тәжірибелік зерттеу жобасы.
             </p>
 
@@ -122,8 +122,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenExhibition, onOpenPosters 
                 </a>
               </li>
               <li>
-                <a href="#ar-gallery" className="hover:text-white transition-colors">
-                  • AR көріністер галереясы
+                <a href="/media-gallery" className="hover:text-white transition-colors">
+                  • Фото және видео галереясы
                 </a>
               </li>
               <li>

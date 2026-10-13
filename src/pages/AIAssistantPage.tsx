@@ -31,10 +31,10 @@ export const AIAssistantPage: React.FC = () => {
             </div>
 
             <Link
-              to="/ar-gallery"
+              to="/media-gallery"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] font-bold text-xs sm:text-sm shadow-cyan-glow transition-all self-start md:self-auto shrink-0"
             >
-              <span>AR галереяға өту</span>
+              <span>Фото және видеоға өту</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -60,10 +60,10 @@ export const AIAssistantPage: React.FC = () => {
           </div>
 
           <Link
-            to="/ar-gallery"
+            to="/media-gallery"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] text-xs sm:text-sm font-bold transition-all shadow-cyan-glow"
           >
-            <span>Келесі: AR Галерея</span>
+            <span>Келесі: Фото және видео</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

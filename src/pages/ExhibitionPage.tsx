@@ -126,8 +126,8 @@ export const ExhibitionPage: React.FC = () => {
             </div>
             <div className="p-4 rounded-2xl bg-[#062B65] border border-[#00BFFF]/50 shadow-cyan-glow">
               <div className="text-xs font-bold text-[#00E5FF] mb-1">02. Жеткізу</div>
-              <h4 className="text-sm font-bold text-white mb-2">ЖИ + 3 AR сценарий</h4>
-              <p className="text-[11px] text-slate-300">Қауіпсіз түсіндіру және 3D үлгі</p>
+              <h4 className="text-sm font-bold text-white mb-2">ЖИ + Медиа Галерея</h4>
+              <p className="text-[11px] text-slate-300">Қауіпсіз түсіндіру және фото/бейне</p>
             </div>
             <div className="p-4 rounded-2xl bg-[#062B65] border border-[#D49A35]/30">
               <div className="text-xs font-bold text-[#D49A35] mb-1">03. Әрекет</div>
@@ -142,7 +142,7 @@ export const ExhibitionPage: React.FC = () => {
           </div>
         </div>
       ),
-      notes: 'Жоба 4 байланысты модульден құралған: тексерілген карточкалар, дерекке шектелген ЖИ және AR көрініс, оқушының танымдық әрекеті және 10 ұпайлық ғылыми бағалау жүйесі.'
+      notes: 'Жоба 4 байланысты модульден құралған: тексерілген карточкалар, дерекке шектелген ЖИ және этнографиялық медиа галерея, оқушының танымдық әрекеті және 10 ұпайлық ғылыми бағалау жүйесі.'
     },
     {
       id: 3,
@@ -205,29 +205,48 @@ export const ExhibitionPage: React.FC = () => {
     },
     {
       id: 5,
-      title: 'AR Кеңістіктік Сценарийлері',
+      title: 'Фото және Бейне Медиа Галереясы',
       component: (
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="text-center">
-            <span className="text-xs uppercase text-[#D49A35] font-bold">5-кезең: Кеңістіктік визуалдау</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">3 AR.js Маркерлік Сценарийі</h2>
+            <span className="text-xs uppercase text-[#D49A35] font-bold">5-кезең: Көрнекі этнографиялық кешен</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Ұлттық Дәстүрлердің Фото және Бейне Галереясы</h2>
+            <p className="text-xs text-slate-300 max-w-2xl mx-auto mt-1">
+              Дәстүрлердің шынайы тұрмыстық бейнесі, ұлттық киім-кешек, салттық бұйымдар және макро-детальдардың жоғары сапалы визуалды қоры.
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {AR_SCENARIOS_DATA.map((sc) => (
-              <div key={sc.id} className="p-4 rounded-2xl bg-[#041535] border border-white/10">
-                <span className="text-[10px] font-bold text-[#D49A35] uppercase">{sc.markerType}</span>
-                <h4 className="text-sm font-bold text-white mt-1 mb-1">{sc.name}</h4>
-                <div className="text-xs text-[#00BFFF] mb-2">{sc.keyAction}</div>
-                <p className="text-[11px] text-slate-300 leading-relaxed mb-3">{sc.sceneDescription}</p>
-                <div className="text-[10px] p-2 rounded-lg bg-white/5 text-slate-300">
-                  <strong>Тапсырма:</strong> {sc.studentTask}
-                </div>
+            <div className="p-4 rounded-2xl bg-[#041535] border border-white/10">
+              <span className="text-[10px] font-bold text-[#00E5FF] uppercase">Этнографиялық суреттер</span>
+              <h4 className="text-sm font-bold text-white mt-1 mb-1">22+ Жоғары сапалы кадр</h4>
+              <div className="text-xs text-[#00BFFF] mb-2">11 Дәстүр қамтылған</div>
+              <p className="text-[11px] text-slate-300 leading-relaxed mb-3">Сәукеле, ала жіп, қазан-ошақ, домбыра және дастарқан бұйымдарының шынайы этнографиялық суреттері.</p>
+              <div className="text-[10px] p-2 rounded-lg bg-white/5 text-slate-300">
+                <strong>Артықшылығы:</strong> Толық масштабты Lightbox және масштабтау (zoom)
               </div>
-            ))}
+            </div>
+            <div className="p-4 rounded-2xl bg-[#041535] border border-white/10">
+              <span className="text-[10px] font-bold text-[#D49A35] uppercase">Танымдық бейнероликтер</span>
+              <h4 className="text-sm font-bold text-white mt-1 mb-1">Динамикалық ойнатқыш</h4>
+              <div className="text-xs text-[#00BFFF] mb-2">Рәсімдік қимылдар</div>
+              <p className="text-[11px] text-slate-300 leading-relaxed mb-3">Дәстүрлі салттардың орындалу барысын қозғалыста көрсететін бейне қатар және кәсіби медиа ойнатқыш.</p>
+              <div className="text-[10px] p-2 rounded-lg bg-white/5 text-slate-300">
+                <strong>Артықшылығы:</strong> Толық экран, дыбыс және ұялы бейімділік
+              </div>
+            </div>
+            <div className="p-4 rounded-2xl bg-[#041535] border border-white/10">
+              <span className="text-[10px] font-bold text-emerald-400 uppercase">Мәдени талдау</span>
+              <h4 className="text-sm font-bold text-white mt-1 mb-1">Педагогикалық мазмұн</h4>
+              <div className="text-xs text-[#00BFFF] mb-2">Ғылыми негіздер</div>
+              <p className="text-[11px] text-slate-300 leading-relaxed mb-3">Әрбір дәстүрдің негізгі тәрбиелік құндылығы, сыни ойлауды дамытатын рефлексия сұрақтары мен академиялық сілтемелер.</p>
+              <div className="text-[10px] p-2 rounded-lg bg-white/5 text-slate-300">
+                <strong>Артықшылығы:</strong> Мектеп бағдарламасымен интеграция
+              </div>
+            </div>
           </div>
         </div>
       ),
-      notes: 'AR көріністері – бұл жай QR-кодтан бейне ашу емес. Бұл – физикалық парта үстінде Hiro маркері арқылы ашылатын 3D интерактивті нысандар.'
+      notes: 'Фото және бейне галереясы – ұлттық дәстүрлердің шынайы болмысын оқушыларға көрнекі әрі түсінікті түрде жеткізудің заманауи медиа кешені.'
     },
     {
       id: 51,
@@ -238,7 +257,7 @@ export const ExhibitionPage: React.FC = () => {
             <span className="text-xs uppercase text-[#00E5FF] font-bold">5.1-қосымша: Ұлттық дәстүрлер бейнесі</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">Қазақ Салт-дәстүрлерінің Этнографиялық Кешені</h2>
             <p className="text-xs text-slate-300 max-w-2xl mx-auto mt-1">
-              3D GLB модельдеріне көрнекі қосымша: жоғары ажыратымдылықтағы этнографиялық кадрлар, сәукеле, домбыра және дастарқан детальдары.
+              Дәстүрлердің шынайы тұрмыстық бейнесі: жоғары ажыратымдылықтағы этнографиялық кадрлар, сәукеле, домбыра және дастарқан детальдары.
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -354,7 +373,7 @@ export const ExhibitionPage: React.FC = () => {
             «Технологияның міндеті – дәстүрді өзгерту емес, оның мәнін түсінуге көмектесу»
           </h2>
           <p className="text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Жоба прототипі әзірленді: 6 карточка, ЖИ алгоритмі, 3 AR сценарийі және өлшеу әдістемесі дайын. 
+            Жоба прототипі әзірленді: 6 карточка, ЖИ алгоритмі, фото және бейне медиа кешені және өлшеу әдістемесі дайын. 
             Келесі қадам – мектепте тәжірибе өткізіп, деректерді тіркеу.
           </p>
           <div className="pt-4">

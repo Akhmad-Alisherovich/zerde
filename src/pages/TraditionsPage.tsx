@@ -6,7 +6,7 @@ import {
   ArrowLeft, 
   ChevronRight, 
   BookOpen, 
-  Maximize2, 
+  Film, 
   Bot, 
   HelpCircle,
   Tag,
@@ -120,12 +120,10 @@ export const TraditionsPage: React.FC = () => {
                   )}
                 </div>
 
-                {tradition.hasArScenario && (
-                  <div className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#00BFFF]/80 backdrop-blur-md text-[#051B44] text-[10px] font-bold shadow-sm">
-                    <Maximize2 className="w-3 h-3" />
-                    <span>AR 3D Бар</span>
-                  </div>
-                )}
+                <div className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#00BFFF]/80 backdrop-blur-md text-[#051B44] text-[10px] font-bold shadow-sm">
+                  <Film className="w-3 h-3" />
+                  <span>Фото & Бейне</span>
+                </div>
 
                 {/* Bottom Card Title Overlay */}
                 <div className="absolute bottom-3 left-3 right-3">

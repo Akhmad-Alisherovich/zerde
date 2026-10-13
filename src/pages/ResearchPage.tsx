@@ -56,11 +56,11 @@ export const ResearchPage: React.FC = () => {
       <div className="bg-[#030F26] border-t border-[#00BFFF]/20 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link
-            to="/ar-gallery"
+            to="/media-gallery"
             className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-xs sm:text-sm font-semibold transition-all border border-white/10"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Алдыңғы: AR Галерея</span>
+            <span>Алдыңғы: Фото және видео</span>
           </Link>
 
           <div className="text-xs text-slate-400 text-center">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Home, ArrowLeft, Sparkles, BookOpen, Bot, Maximize2 } from 'lucide-react';
+import { Compass, Home, ArrowLeft, Sparkles, BookOpen, Bot, Film } from 'lucide-react';
 
 export const NotFoundPage: React.FC = () => {
   return (
@@ -46,11 +46,11 @@ export const NotFoundPage: React.FC = () => {
           </Link>
 
           <Link
-            to="/ar-gallery"
+            to="/media-gallery"
             className="p-3 rounded-2xl bg-[#041535] border border-white/10 hover:border-[#00BFFF]/40 hover:bg-[#062B65] text-slate-200 hover:text-[#00BFFF] flex items-center gap-2 transition-all"
           >
-            <Maximize2 className="w-4 h-4 text-[#00BFFF]" />
-            <span>AR галерея</span>
+            <Film className="w-4 h-4 text-[#00BFFF]" />
+            <span>Фото және видео</span>
           </Link>
 
           <Link

@@ -11,7 +11,8 @@ import {
   BarChart2, 
   ShieldCheck, 
   Sparkles,
-  Award
+  Award,
+  Film
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -28,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenExhibition, onOpenPosters 
     { href: '#modules', label: '4 Модуль', icon: Layers },
     { href: '#cards', label: '6 Дәстүр', icon: Sparkles },
     { href: '#chatbot', label: 'ЖИ-Көмекші', icon: Bot },
-    { href: '#ar-gallery', label: 'AR Галерея', icon: Maximize2 },
+    { href: '/media-gallery', label: 'Фото және видео', icon: Film },
     { href: '#research', label: 'Зерттеу', icon: BarChart2 },
     { href: '#ethics', label: 'Этика мен Қауіпсіздік', icon: ShieldCheck },
   ];
