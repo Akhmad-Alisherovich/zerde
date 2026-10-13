@@ -3,8 +3,6 @@ import {
   Compass, 
   Layers, 
   Bot, 
-  Maximize2, 
-  Printer, 
   Menu, 
   X, 
   BookOpen, 
@@ -15,12 +13,9 @@ import {
   Film
 } from 'lucide-react';
 
-interface HeaderProps {
-  onOpenExhibition: () => void;
-  onOpenPosters: () => void;
-}
+interface HeaderProps {}
 
-export const Header: React.FC<HeaderProps> = ({ onOpenExhibition, onOpenPosters }) => {
+export const Header: React.FC<HeaderProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -77,35 +72,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenExhibition, onOpenPosters 
             ))}
           </nav>
 
-          {/* Action CTAs: Posters & Exhibition Mode */}
-          <div className="hidden sm:flex items-center space-x-3">
-            <button
-              onClick={onOpenPosters}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold text-[#DDF5FF] bg-[#062B65]/80 hover:bg-[#0B357A] border border-[#00BFFF]/30 flex items-center space-x-2 hover:border-[#00BFFF] transition-all shadow-sm"
-              title="3 көрме плакатын қарау және басып шығару"
-            >
-              <Printer className="w-4 h-4 text-[#00BFFF]" />
-              <span>3 Плакат (Баспа)</span>
-            </button>
-
-            <button
-              onClick={onOpenExhibition}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-[#051B44] bg-gradient-to-r from-[#00BFFF] to-[#00E5FF] hover:from-[#38D2FF] hover:to-[#00BFFF] flex items-center space-x-2 shadow-cyan-glow transition-all transform hover:scale-105"
-            >
-              <Maximize2 className="w-4 h-4" />
-              <span>Көрме режимі</span>
-            </button>
-          </div>
-
           {/* Mobile hamburger button */}
           <div className="xl:hidden flex items-center space-x-2">
-            <button
-              onClick={onOpenPosters}
-              className="sm:hidden p-2 rounded-lg bg-[#062B65] text-[#00BFFF] border border-[#00BFFF]/30"
-              title="Плакаттар"
-            >
-              <Printer className="w-4 h-4" />
-            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-lg text-slate-200 hover:text-white hover:bg-[#062B65] transition-colors"
@@ -131,28 +99,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenExhibition, onOpenPosters 
               <span>{item.label}</span>
             </a>
           ))}
-          <div className="pt-4 border-t border-[#00BFFF]/20 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenPosters();
-              }}
-              className="w-full py-2.5 rounded-lg text-xs font-semibold text-[#DDF5FF] bg-[#0B357A] border border-[#00BFFF]/40 flex items-center justify-center space-x-2"
-            >
-              <Printer className="w-4 h-4 text-[#00BFFF]" />
-              <span>3 Ғылыми Көрме Плакаты (Баспа)</span>
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenExhibition();
-              }}
-              className="w-full py-2.5 rounded-lg text-xs font-bold text-[#051B44] bg-[#00BFFF] flex items-center justify-center space-x-2"
-            >
-              <Maximize2 className="w-4 h-4" />
-              <span>Толық экранды Көрме режимі</span>
-            </button>
-          </div>
         </div>
       )}
     </header>

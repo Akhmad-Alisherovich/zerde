@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   BookOpen, 
   ChevronUp, 
-  X,
-  Printer,
-  Maximize2
+  X
 } from 'lucide-react';
 import { PROJECT_INFO, REFERENCES_LIST } from '../../data/researchData';
 
@@ -106,15 +104,13 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/posters" className="text-[#D49A35] hover:underline flex items-center gap-1 font-semibold">
-                  <Printer className="w-3.5 h-3.5" />
-                  <span>3 Баспа көрме плакаты</span>
+                <Link to="/ethics" className="hover:text-[#00BFFF] transition-colors">
+                  • Этика мен қауіпсіздік
                 </Link>
               </li>
               <li>
-                <Link to="/exhibition" className="text-[#00BFFF] hover:underline flex items-center gap-1 font-semibold">
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Қазыларға таныстыру режимі</span>
+                <Link to="/modules" className="hover:text-[#00BFFF] transition-colors">
+                  • 4 Байланысты модуль
                 </Link>
               </li>
             </ul>

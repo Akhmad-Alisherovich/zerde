@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, ArrowRight, ArrowLeft, ChevronRight, Lock, UserCheck, FileCheck, Award, Printer } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ShieldCheck, ArrowRight, ArrowLeft, ChevronRight, Lock, UserCheck, FileCheck, Award, Home } from 'lucide-react';
 import { EthicsSection } from '../components/EthicsSection';
 import { ConclusionSection } from '../components/ConclusionSection';
 
 export const EthicsPage: React.FC = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#051B44] text-[#F8FCFF]">
@@ -34,12 +33,11 @@ export const EthicsPage: React.FC = () => {
             </div>
 
             <Link
-              to="/posters"
+              to="/"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] font-bold text-xs sm:text-sm shadow-cyan-glow transition-all self-start md:self-auto shrink-0"
             >
-              <Printer className="w-4 h-4" />
-              <span>3 Көрме плакатына өту</span>
-              <ArrowRight className="w-4 h-4" />
+              <Home className="w-4 h-4" />
+              <span>Басты бетке оралу</span>
             </Link>
           </div>
         </div>
@@ -49,10 +47,7 @@ export const EthicsPage: React.FC = () => {
       <EthicsSection />
 
       {/* 2. Conclusion & Author Reflection Section */}
-      <ConclusionSection 
-        onOpenExhibition={() => navigate('/exhibition')}
-        onOpenPosters={() => navigate('/posters')}
-      />
+      <ConclusionSection />
 
       {/* Bottom Route Navigation Bar */}
       <div className="bg-[#030F26] border-t border-[#00BFFF]/20 py-8 px-4 sm:px-6 lg:px-8">
@@ -70,11 +65,11 @@ export const EthicsPage: React.FC = () => {
           </div>
 
           <Link
-            to="/posters"
+            to="/"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00BFFF] hover:bg-[#38D2FF] text-[#051B44] text-xs sm:text-sm font-bold transition-all shadow-cyan-glow"
           >
-            <span>Келесі: 3 Плакат (Баспа)</span>
-            <ArrowRight className="w-4 h-4" />
+            <Home className="w-4 h-4" />
+            <span>Басты бетке оралу</span>
           </Link>
         </div>
       </div>

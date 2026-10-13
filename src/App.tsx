@@ -13,8 +13,6 @@ import { TraditionDetailPage } from './pages/TraditionDetailPage';
 import { AIAssistantPage } from './pages/AIAssistantPage';
 import { ResearchPage } from './pages/ResearchPage';
 import { EthicsPage } from './pages/EthicsPage';
-import { PostersPage } from './pages/PostersPage';
-import { ExhibitionPage } from './pages/ExhibitionPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 // Lazy load MediaGalleryPage
@@ -38,12 +36,10 @@ export function App() {
             <Route path="ar-gallery" element={<Navigate to="/media-gallery" replace />} />
             <Route path="research" element={<ResearchPage />} />
             <Route path="ethics" element={<EthicsPage />} />
-            <Route path="posters" element={<PostersPage />} />
+            <Route path="posters" element={<Navigate to="/" replace />} />
+            <Route path="exhibition" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
-
-          {/* Dedicated full-screen presentation mode for jury defense */}
-          <Route path="exhibition" element={<ExhibitionPage />} />
         </Routes>
       </ChatbotProvider>
     </BrowserRouter>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   CheckCircle2, 
   Clock, 
-  Maximize2, 
-  Printer, 
   Sparkles, 
   BookOpen, 
   HelpCircle, 
@@ -14,15 +13,9 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-interface ConclusionSectionProps {
-  onOpenExhibition: () => void;
-  onOpenPosters: () => void;
-}
+interface ConclusionSectionProps {}
 
-export const ConclusionSection: React.FC<ConclusionSectionProps> = ({
-  onOpenExhibition,
-  onOpenPosters
-}) => {
+export const ConclusionSection: React.FC<ConclusionSectionProps> = () => {
   const [reflection1, setReflection1] = useState('Салт-дәстүрлердің жай ғана тарихи рәсім емес, терең адамгершілік және тәрбиелік құндылық екенін түсіндім. Деректерді UNESCO мен ғылыми кітаптардан тексерудің маңызын үйрендім.');
   const [reflection2, setReflection2] = useState('ЖИ-чатботтың ойдан дерек қоспауын (галлюцинация жасамауын) қамтамасыз ету қиын болды. Оны шешу үшін білім қорын қатаң 6 карточкамен шектеп, тексеру рубрикасын енгіздік.');
   const [reflection3, setReflection3] = useState('Бастапқыда барлық дәстүрлерге бірден AR жасауды ойлаған едік. Бірақ ғылыми кеңесшіммен ақылдаса келе, сапалы зерттеу үшін 3 негізгі сценариймен шектеліп, әдістемені тереңдету дұрыс деп таптық.');
@@ -150,21 +143,21 @@ export const ConclusionSection: React.FC<ConclusionSectionProps> = ({
 
               {/* CTAs in the banner */}
               <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={onOpenExhibition}
+                <Link
+                  to="/media-gallery"
                   className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-[#051B44] bg-[#00BFFF] hover:bg-[#38D2FF] shadow-cyan-glow flex items-center gap-2 transition-all transform hover:scale-105"
                 >
-                  <Maximize2 className="w-4 h-4" />
-                  <span>Қазылар алқасына таныстыру режимі</span>
-                </button>
+                  <Sparkles className="w-4 h-4" />
+                  <span>Медиа галереяны қарау</span>
+                </Link>
 
-                <button
-                  onClick={onOpenPosters}
+                <Link
+                  to="/research"
                   className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#062B65]/90 hover:bg-[#0B357A] border border-[#D49A35] flex items-center gap-2 transition-all"
                 >
-                  <Printer className="w-4 h-4 text-[#D49A35]" />
-                  <span>3 Баспа Плакатын көру</span>
-                </button>
+                  <BookOpen className="w-4 h-4 text-[#D49A35]" />
+                  <span>Зерттеу қорытындылары</span>
+                </Link>
               </div>
             </div>
           </div>

@@ -6,18 +6,13 @@ import {
   ChevronUp, 
   FileText, 
   X,
-  Sparkles,
-  Printer,
-  Maximize2
+  Sparkles
 } from 'lucide-react';
 import { PROJECT_INFO, REFERENCES_LIST } from '../data/researchData';
 
-interface FooterProps {
-  onOpenExhibition: () => void;
-  onOpenPosters: () => void;
-}
+interface FooterProps {}
 
-export const Footer: React.FC<FooterProps> = ({ onOpenExhibition, onOpenPosters }) => {
+export const Footer: React.FC<FooterProps> = () => {
   const [showRefModal, setShowRefModal] = useState(false);
 
   const scrollToTop = () => {
@@ -87,30 +82,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenExhibition, onOpenPosters 
             </div>
           </div>
 
-          {/* Col 3: Navigation & Exhibition Tools */}
+          {/* Col 3: Navigation Tools */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Көрме құралдары
+              Навигация
             </h4>
             <ul className="space-y-2 text-xs">
-              <li>
-                <button
-                  onClick={onOpenExhibition}
-                  className="text-[#00BFFF] hover:underline flex items-center gap-1.5 font-semibold"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Қазыларға таныстыру режимі</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenPosters}
-                  className="text-[#D49A35] hover:underline flex items-center gap-1.5 font-semibold"
-                >
-                  <Printer className="w-3.5 h-3.5" />
-                  <span>3 Баспа көрме плакаты</span>
-                </button>
-              </li>
               <li>
                 <a href="#cards" className="hover:text-white transition-colors">
                   • 6 Оқу карточкасы

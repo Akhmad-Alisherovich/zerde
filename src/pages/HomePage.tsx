@@ -5,10 +5,8 @@ import {
   BookOpen, 
   Layers, 
   Bot, 
-  Maximize2, 
   BarChart2, 
   ShieldCheck, 
-  Printer, 
   ArrowRight, 
   CheckCircle2, 
   Compass,
@@ -53,7 +51,7 @@ export const HomePage: React.FC = () => {
       badge: '5-Бөлім'
     },
     {
-      title: 'Фото және видео',
+      title: 'AR Галерея',
       subtitle: 'Қазақтың ұлттық дәстүрлерінің бай көрнекі суреттері мен бейнероликтері',
       to: '/media-gallery',
       icon: Film,
@@ -75,14 +73,6 @@ export const HomePage: React.FC = () => {
       icon: ShieldCheck,
       color: '#10B981',
       badge: '11-Бөлім'
-    },
-    {
-      title: '3 Баспа Көрме Плакаты',
-      subtitle: 'Ғылыми стендке арналған жоғары ажыратымдылықтағы баспа нұсқалары',
-      to: '/posters',
-      icon: Printer,
-      color: '#D49A35',
-      badge: 'Баспа (Print)'
     }
   ];
 
@@ -333,7 +323,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. Cinematic Exhibition Feature */}
+      {/* 4. Cinematic Cultural Vision Feature */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden border border-[#00BFFF]/40 shadow-2xl">
           <div className="aspect-[16/9] sm:aspect-[21/9] w-full bg-slate-900 relative">
@@ -346,30 +336,30 @@ export const HomePage: React.FC = () => {
             
             <div className="absolute inset-0 p-6 sm:p-12 flex flex-col justify-end max-w-3xl">
               <span className="text-xs uppercase tracking-widest text-[#00E5FF] font-bold mb-2">
-                Интерактивті Ғылыми Экспозиция • 2026
+                Интерактивті Ғылыми Зерттеу Кешені • 2026
               </span>
               <h3 className="text-2xl sm:text-4xl font-extrabold text-white font-serif mb-3">
                 «Технологияның міндеті – дәстүрді өзгерту емес, оның мәнін түсінуге көмектесу»
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-6">
-                Жоба ғылыми қазылар алқасына таныстыруға, мектеп сыныптарында қолдануға және көрме стендтеріне басып шығаруға толық дайын.
+                Жоба мектеп сыныптарында қолдануға, ғылыми зерттеу жұмыстарына және ұлттық құндылықтарды цифрлық форматта жаңғыртуға толық дайын.
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  to="/exhibition"
+                  to="/media-gallery"
                   className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-[#051B44] bg-[#00BFFF] hover:bg-[#38D2FF] shadow-cyan-glow flex items-center gap-2 transition-all transform hover:scale-105"
                 >
-                  <Maximize2 className="w-4 h-4" />
-                  <span>Толық экранды Қазылар Режиміне өту</span>
+                  <Film className="w-4 h-4" />
+                  <span>Көрнекі галереяны ашу</span>
                 </Link>
 
                 <Link
-                  to="/posters"
+                  to="/research"
                   className="px-6 py-3 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#062B65]/90 hover:bg-[#0B357A] border border-[#D49A35] flex items-center gap-2 transition-all"
                 >
-                  <Printer className="w-4 h-4 text-[#D49A35]" />
-                  <span>3 Баспа Көрме Плакатын көру</span>
+                  <BarChart2 className="w-4 h-4 text-[#D49A35]" />
+                  <span>Зерттеу дизайны мен нәтижелері</span>
                 </Link>
               </div>
             </div>
